@@ -87,36 +87,6 @@
     });
 })();
 
-// ===== NAV UTILITY BOX =====
-// Appended inside #navLinks itself, so it opens/closes with the exact
-// same toggle as the main nav links (no new button, no new state) —
-// a small boxed group of legal pages + the admin login, matching the
-// "hamburger opens the nav links AND a box with Privacy/Cookie/Terms
-// + an admin link" pattern from the reference site.
-(function () {
-    const links = document.getElementById('navLinks');
-    if (!links || document.getElementById('navUtilityBox')) return; // don't duplicate
-
-    const box = document.createElement('div');
-    box.className = 'nav-utility-box';
-    box.id = 'navUtilityBox';
-    box.innerHTML = `
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="cookie-policy.html">Cookie Policy</a>
-        <a href="terms.html">Terms &amp; Conditions</a>
-        <a href="admin-lock.html" class="nav-utility-admin">Admin →</a>
-    `;
-    links.appendChild(box);
-
-    // These links weren't present when the "close menu on tap" binding
-    // above ran, so give them the same behavior.
-    box.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            links.classList.remove('active');
-            document.getElementById('menuToggle')?.setAttribute('aria-expanded', 'false');
-        });
-    });
-})();
 
 // ===== SCROLL REVEAL =====
 // Centralized here so every page gets it automatically (previously
