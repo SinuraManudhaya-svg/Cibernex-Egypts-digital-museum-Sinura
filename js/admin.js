@@ -15,7 +15,7 @@
 'use strict';
 
 const $ = id => document.getElementById(id);
-const API_BASE = 'http://localhost:3000/api';
+const API_BASE = '/api';
 const TOKEN_KEY = 'edm_admin_token';
 const PASSWORD_KEY = 'edm_admin_password';
 
