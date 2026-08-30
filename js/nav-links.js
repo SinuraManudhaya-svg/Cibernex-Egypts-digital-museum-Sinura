@@ -153,7 +153,6 @@
                     <a href="privacy-policy.html">Privacy Policy</a>
                     <a href="cookie-policy.html">Cookie Policy</a>
                     <a href="terms.html">Terms &amp; Conditions</a>
-                    <a href="admin-lock.html">Admin</a>
                 </div>
                 <div class="footer-col footer-col-about">
                     <p class="footer-col-label">About This Project</p>
