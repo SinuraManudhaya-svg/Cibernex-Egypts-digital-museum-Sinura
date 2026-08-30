@@ -27,7 +27,7 @@ function esc(v) {
 // server (see /server), this points at it. If that server isn't
 // running for some reason, we fall back to the static JSON file so
 // the page still works.
-const API_URL = 'http://localhost:3000/api/artifacts';
+const API_URL = '/api/artifacts';
 const FALLBACK_DATA_URL = 'json/artifacts.json';
 
 async function loadArtifacts() {
