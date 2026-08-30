@@ -33,7 +33,7 @@
     }
 
     try {
-        const res = await fetch('http://localhost:3000/api/announcements');
+        const res = await fetch('/api/announcements');
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const all = await res.json();
         const active = Array.isArray(all) ? all.filter(a => a.active) : [];
