@@ -1,0 +1,259 @@
+/* ===== MAIN LOADING SCREEN (home page, first load only) =====
+ * A richer, longer intro reserved for the very first visit each
+ * browser session. Every other page keeps the original, quicker
+ * #loader from loader.css — this file is only linked from
+ * index.html and never touches the shared loader's classes/IDs.
+ */
+
+#mainLoader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.07), transparent 60%),
+        #0a0806;
+    overflow: hidden;
+}
+
+/* Set synchronously in <head> (before first paint) when this
+   session has already seen the intro — skips it instantly, no
+   flash, no re-animation. */
+html.skip-main-loader #mainLoader {
+    display: none;
+}
+
+.main-loader-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+}
+
+/* ---------- GLYPH RING ---------- */
+.glyph-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: glyph-ring-spin 60s linear infinite;
+    opacity: 0;
+    animation: glyph-ring-spin 60s linear infinite, glyph-ring-fade-in 1.2s ease 0.6s forwards;
+}
+
+.glyph-ring span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px;
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    color: #b98f36;
+    transform-origin: 0 0;
+}
+
+@keyframes glyph-ring-spin {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes glyph-ring-fade-in {
+    to { opacity: 0.55; }
+}
+
+/* ---------- EYE OF HORUS (bigger, centerpiece) ---------- */
+.main-eye-wrap {
+    width: 150px;
+    height: 112px;
+    margin-bottom: 38px;
+    filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.4));
+}
+
+.main-eye-wrap svg { width: 100%; height: 100%; overflow: visible; }
+
+.main-eye-wrap .eye-path {
+    fill: none;
+    stroke: #d4af37;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 420;
+    stroke-dashoffset: 420;
+    animation: main-loader-draw-eye 2s ease forwards, main-loader-glow-eye 3.2s ease-in-out 2s infinite;
+}
+
+.main-eye-wrap .eye-pupil {
+    fill: #d4af37;
+    opacity: 0;
+    animation: main-loader-fade-in 0.6s ease 1.7s forwards;
+}
+
+@keyframes main-loader-draw-eye { to { stroke-dashoffset: 0; } }
+@keyframes main-loader-fade-in { to { opacity: 1; } }
+@keyframes main-loader-glow-eye {
+    0%, 100% { filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.4)); }
+    50%      { filter: drop-shadow(0 0 11px rgba(233, 201, 104, 0.9)); }
+}
+
+/* ---------- WORDMARK ---------- */
+.main-loader-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8a6a25;
+    margin-bottom: 14px;
+    opacity: 0;
+    animation: main-loader-fade-up 0.8s ease 0.2s forwards;
+}
+
+.main-loader-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    margin: 0 0 34px;
+}
+
+.title-line {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 34px;
+    letter-spacing: 0.14em;
+    color: #f4ede0;
+}
+
+.title-line--small {
+    font-size: 16px;
+    letter-spacing: 0.32em;
+    color: #d4af37;
+    margin-top: 8px;
+}
+
+/* Each letter is an individually-animated span, injected by
+   main-loader.js — staggered rise-in for a "carved into stone"
+   reveal feel rather than a flat fade. */
+.title-line .letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(120%);
+    animation: letter-rise 0.6s cubic-bezier(.2, .8, .2, 1) forwards;
+}
+
+@keyframes letter-rise {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- PROGRESS ---------- */
+.main-progress-track {
+    width: 260px;
+    height: 1px;
+    background: rgba(212, 175, 55, 0.18);
+    position: relative;
+    opacity: 0;
+    animation: main-loader-fade-up 0.8s ease 1.9s forwards;
+}
+
+.main-progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #8a6a25, #e9c968);
+    transition: width 0.25s ease-out;
+    box-shadow: 0 0 8px rgba(233, 201, 104, 0.6);
+}
+
+.main-progress-meta {
+    display: flex;
+    justify-content: space-between;
+    width: 260px;
+    margin-top: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a6a25;
+    opacity: 0;
+    animation: main-loader-fade-up 0.8s ease 1.9s forwards;
+}
+
+#mainProgressPercent {
+    color: #d4af37;
+    font-variant-numeric: tabular-nums;
+}
+
+@keyframes main-loader-fade-up {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- GOLDEN FLASH (fires just before the doors open) ---------- */
+#mainLoader.flash::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 3;
+    background: radial-gradient(circle at 50% 45%, rgba(244, 224, 164, 0.95), rgba(212, 175, 55, 0.2) 55%, transparent 75%);
+    animation: main-loader-flash 0.5s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes main-loader-flash {
+    0%   { opacity: 0; }
+    35%  { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* ---------- DOORS (final reveal) ---------- */
+.loader-door {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: #0a0806;
+    z-index: 1;
+    transition: transform 1s cubic-bezier(.76, 0, .24, 1);
+}
+
+.loader-door--left  { left: 0;  transform: translateX(0); }
+.loader-door--right { right: 0; transform: translateX(0); }
+
+#mainLoader.open .loader-door--left  { transform: translateX(-100%); }
+#mainLoader.open .loader-door--right { transform: translateX(100%); }
+
+#mainLoader.open .main-loader-inner {
+    transition: opacity 0.4s ease;
+    opacity: 0;
+}
+
+#mainLoader.removed {
+    display: none;
+}
+
+@media (max-width: 560px) {
+    .glyph-ring { width: 300px; height: 300px; }
+    .main-eye-wrap { width: 110px; height: 82px; margin-bottom: 28px; }
+    .title-line { font-size: 26px; }
+    .title-line--small { font-size: 13px; }
+    .main-progress-track, .main-progress-meta { width: 220px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .glyph-ring, .eye-path, .letter {
+        animation: none !important;
+    }
+    .eye-path { stroke-dashoffset: 0; }
+    .eye-pupil { opacity: 1; }
+    .letter { opacity: 1; transform: none; }
+    .loader-door { transition: none; }
+}

@@ -1,0 +1,319 @@
+/*
+ * virtual-museum.css
+ * Page-specific styles for virtual-museum.html. Reuses
+ * .linked-artifact-grid/.linked-artifact-card (exhibition-detail.css),
+ * .cta-explore (exhibitions.css), .chip-row/.chip (components.css),
+ * and .page-hero/.section-heading/.empty-state (artifacts.css) as-is.
+ * Only the room stage + navigation controls are new to this page.
+ */
+
+.room-section {
+    max-width: var(--max-width);
+    margin: 0 auto 60px;
+    padding: 0 30px;
+}
+
+.room-progress {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.room-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    align-items: center;
+    gap: 20px;
+}
+
+.room-stage-inner {
+    position: relative;
+    overflow: hidden;
+    min-height: 360px;
+    border: 1px solid var(--border);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(214, 168, 79, 0.12), transparent 55%),
+        radial-gradient(circle at 85% 80%, rgba(214, 168, 79, 0.10), transparent 50%),
+        linear-gradient(160deg, #16130d, #0a0907);
+}
+
+/* Room background photo (reuses the room's exhibition "image" field)
+   + a dark scrim so text and hotspots stay readable on top of any
+   photo, plus a layer for the hotspot dots — explicit z-index on all
+   three so stacking order never depends on paint-order quirks. */
+.room-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.room-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(10, 9, 7, 0.25), rgba(10, 9, 7, 0.82));
+    pointer-events: none;
+}
+
+.room-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.room-hotspots {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+}
+
+.room-hotspot {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.room-hotspot-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 0 5px rgba(214, 168, 79, 0.2);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: room-hotspot-pulse 2.4s ease-in-out infinite;
+}
+
+.room-hotspot:hover .room-hotspot-dot,
+.room-hotspot:focus-visible .room-hotspot-dot {
+    transform: scale(1.3);
+    box-shadow: 0 0 0 8px rgba(214, 168, 79, 0.3);
+    animation-play-state: paused;
+}
+
+@keyframes room-hotspot-pulse {
+    0%, 100% { box-shadow: 0 0 0 5px rgba(214, 168, 79, 0.2); }
+    50%      { box-shadow: 0 0 0 9px rgba(214, 168, 79, 0.08); }
+}
+
+.room-hotspot-panel {
+    margin-top: 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.015);
+    display: none;
+}
+
+.room-hotspot-panel.is-active { display: block; }
+
+.room-hotspot-panel h4 {
+    font-family: "Cinzel", serif;
+    font-size: 17px;
+    margin-bottom: 6px;
+}
+
+.room-hotspot-panel .room-hotspot-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.room-stage-inner .room-glyph {
+    font-size: 64px;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+
+.room-stage-inner.has-image .room-glyph {
+    display: none;
+}
+
+.room-stage-inner .section-label { margin-bottom: 10px; }
+
+.room-stage-inner h2 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    margin-bottom: 16px;
+}
+
+.room-stage-inner p.prose {
+    max-width: 620px;
+    margin-bottom: 24px;
+}
+
+.room-meta {
+    display: flex;
+    gap: 26px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.room-meta strong { color: var(--gold-light); font-weight: 500; }
+
+.room-nav {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+    justify-self: center;
+}
+
+.room-nav:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    background: rgba(214, 168, 79, 0.08);
+}
+
+.room-nav:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+}
+
+.room-tabs {
+    justify-content: center;
+    margin-top: 24px;
+}
+
+/* .linked-artifacts (from exhibition-detail.css) normally gets its
+   width/padding from its parent .exhibition-detail-wrap on
+   exhibition.html. This page doesn't use that wrapper, so give the
+   section its own matching max-width/padding here. */
+.linked-artifacts {
+    max-width: var(--max-width);
+    margin: 0 auto 60px;
+    padding: 0 30px;
+}
+
+@media (max-width: 700px) {
+    .room-section { padding-left: 20px; padding-right: 20px; }
+    .room-stage { grid-template-columns: 44px 1fr 44px; gap: 10px; }
+    .room-stage-inner { padding: 30px 24px; min-height: 300px; }
+    .room-nav { width: 40px; height: 40px; }
+}
+
+/* ---------- VIEW IN 3D BUTTON (on artifact cards that have a model) ---------- */
+.view-3d-btn {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 13px;
+    align-self: flex-start;
+    color: #080705;
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.view-3d-btn:hover { transform: translateY(-2px); }
+
+/* ---------- 3D MODEL VIEWER MODAL ---------- */
+.model-viewer-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(5, 4, 3, 0.85);
+    backdrop-filter: blur(4px);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    animation: model-viewer-fade 0.2s ease;
+}
+
+@keyframes model-viewer-fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.model-viewer-panel {
+    width: min(720px, 100%);
+    border: 1px solid var(--border);
+    background: linear-gradient(160deg, #16130d, #0a0907);
+}
+
+.model-viewer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.model-viewer-header h3 {
+    font-family: "Cinzel", serif;
+    font-size: 18px;
+}
+
+.model-viewer-close {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.model-viewer-close:hover { border-color: var(--gold); color: var(--gold-light); }
+
+.model-viewer-canvas-wrap {
+    position: relative;
+    aspect-ratio: 4 / 3;
+}
+
+.model-viewer-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+}
+
+.model-viewer-canvas:active { cursor: grabbing; }
+
+.model-viewer-status {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--text-secondary);
+    font-size: 12px;
+    letter-spacing: 1px;
+    pointer-events: none;
+}
+
+.model-viewer-hint {
+    text-align: center;
+    padding: 12px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+}

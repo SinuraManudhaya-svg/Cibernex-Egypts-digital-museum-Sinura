@@ -1,0 +1,296 @@
+/* ---------- GLASS PANEL ---------- */
+.panel {
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, rgba(214,168,79,0.06), rgba(255,255,255,0.012));
+    backdrop-filter: blur(8px);
+    padding: 28px;
+}
+
+/* ---------- SECTION WRAPPER (shared) ---------- */
+.section {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 80px 30px 120px;
+}
+
+.section-head {
+    margin-bottom: 40px;
+}
+
+.section-head h2 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-top: 10px;
+}
+
+/* ---------- EXPLORER ---------- */
+.explorer-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 20px 30px 120px;
+}
+
+.filters { align-self: start; position: sticky; top: 110px; }
+.filters h3 {
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    margin: 22px 0 12px;
+}
+.filters h3:first-child { margin-top: 0; }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+    padding: 7px 12px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.chip:hover { border-color: var(--gold); color: var(--gold-light); }
+.chip.active { background: var(--gold); border-color: var(--gold); color: #0b0906; }
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+.search-bar input, .text-input {
+    flex: 1;
+    padding: 15px 18px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+.search-bar input::placeholder, .text-input::placeholder { color: var(--text-secondary); }
+
+.results-count { color: var(--text-secondary); font-size: 12px; letter-spacing: 2px; margin-bottom: 18px; }
+
+.artifact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.artifact-card {
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.015);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.35s ease, border-color 0.35s ease;
+    overflow: hidden;
+}
+.artifact-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+
+.artifact-thumb {
+    height: 180px;
+    display: grid;
+    place-items: center;
+    font-size: 60px;
+    color: var(--gold);
+    background:
+        radial-gradient(circle at 50% 40%, rgba(214,168,79,0.18), transparent 65%),
+        linear-gradient(160deg, #16130d, #0a0907);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.5s ease;
+}
+.artifact-card:hover .artifact-thumb { transform: scale(1.06); }
+
+.artifact-body { padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.artifact-body h3 { font-family: "Cinzel", serif; font-size: 19px; }
+.artifact-meta { color: var(--text-secondary); font-size: 12px; letter-spacing: 1px; }
+.artifact-body .btn { margin-top: auto; align-self: flex-start; padding: 10px 16px; }
+
+.tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border: 1px solid var(--border);
+    color: var(--gold);
+}
+
+.empty-state { color: var(--text-secondary); padding: 60px 0; text-align: center; }
+
+/* ---------- ARTIFACT DETAIL ---------- */
+.artifact-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 20px 30px 120px;
+}
+.viewer-stage {
+    aspect-ratio: 1;
+    border: 1px solid var(--border);
+    background: radial-gradient(circle at 50% 45%, rgba(214,168,79,0.14), transparent 65%), #0c0b08;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.viewer-stage canvas { width: 100% !important; height: 100% !important; display: block; }
+.viewer-glyph { font-size: 150px; color: var(--gold); }
+.viewer-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+
+.fact-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin: 28px 0; }
+.fact { background: var(--bg-primary); padding: 18px; }
+.fact span { display: block; font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-bottom: 6px; }
+.fact strong { font-weight: 500; font-size: 15px; }
+
+.prose { color: var(--text-secondary); line-height: 1.9; }
+.prose + .prose { margin-top: 16px; }
+
+.sources { margin-top: 30px; font-size: 12px; color: var(--text-secondary); }
+.sources li { margin-left: 18px; line-height: 1.9; }
+
+/* ---------- TIMELINE ---------- */
+.timeline-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding: 10px 30px 26px;
+    max-width: var(--max-width);
+    margin: auto;
+    scrollbar-width: thin;
+}
+.timeline-node {
+    flex: 0 0 auto;
+    padding: 16px 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    text-align: left;
+    min-width: 190px;
+    transition: all 0.3s ease;
+}
+.timeline-node:hover { border-color: var(--gold); color: var(--gold-light); }
+.timeline-node.active { border-color: var(--gold); background: rgba(214,168,79,0.12); color: var(--text-primary); }
+.timeline-node strong { display: block; font-family: "Cinzel", serif; font-size: 15px; margin-bottom: 6px; }
+.timeline-node small { font-size: 11px; letter-spacing: 1px; }
+
+.period-panel { display: grid; grid-template-columns: 1fr 320px; gap: 30px; }
+@media (max-width: 900px) { .period-panel { grid-template-columns: 1fr; } }
+.period-panel h2 { font-family: "Cinzel", serif; font-size: clamp(1.8rem,4vw,2.8rem); }
+.bullet-list li { margin-left: 18px; line-height: 1.9; color: var(--text-secondary); }
+
+/* ---------- EXHIBITIONS ---------- */
+.exhibition-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.exhibition-card {
+    min-height: 320px;
+    padding: 30px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+    background: linear-gradient(180deg, rgba(214,168,79,0.05), rgba(8,7,5,0.9));
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+.exhibition-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+.exhibition-card h3 { font-family: "Cinzel", serif; font-size: 26px; line-height: 1.15; }
+.exhibition-card p { color: var(--text-secondary); line-height: 1.7; font-size: 14px; }
+
+/* ---------- MAP ---------- */
+.map-layout { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+#egyptMap { height: 480px; border: 1px solid var(--border); background: #0c0b08; }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip { background: #11100c; color: #f4ead5; border-radius: 0; }
+
+/* ---------- HIEROGLYPH LAB ---------- */
+.glyph-output {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 24px;
+    min-height: 90px;
+}
+.glyph-tile {
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    text-align: center;
+    animation: fade-up 0.4s ease both;
+}
+.glyph-tile b { display: block; font-size: 34px; color: var(--gold); line-height: 1.2; }
+.glyph-tile small { font-size: 10px; letter-spacing: 2px; color: var(--text-secondary); }
+
+/* ---------- QUIZ ---------- */
+.quiz-question { font-family: "Cinzel", serif; font-size: 22px; margin: 14px 0 22px; line-height: 1.4; }
+.quiz-options { display: grid; gap: 10px; }
+.quiz-option {
+    text-align: left;
+    padding: 15px 18px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.25s ease;
+}
+.quiz-option:hover:not(:disabled) { border-color: var(--gold); background: rgba(214,168,79,0.08); }
+.quiz-option.correct { border-color: #6ac47a; background: rgba(106,196,122,0.14); }
+.quiz-option.wrong { border-color: #d1614f; background: rgba(209,97,79,0.14); }
+.quiz-feedback { margin-top: 18px; color: var(--text-secondary); line-height: 1.8; min-height: 40px; }
+.quiz-bar { height: 3px; background: var(--border); margin-bottom: 22px; }
+.quiz-bar i { display: block; height: 100%; background: var(--gold); transition: width 0.4s ease; }
+
+/* ---------- GUIDE ---------- */
+.guide-layout { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+.guide-log { display: flex; flex-direction: column; gap: 12px; max-height: 340px; overflow-y: auto; }
+.msg { padding: 14px 16px; border: 1px solid var(--border); line-height: 1.7; font-size: 14px; animation: fade-up 0.35s ease both; }
+.msg.guide { background: rgba(95,214,224,0.06); border-color: rgba(95,214,224,0.28); }
+.msg.user { background: rgba(214,168,79,0.08); align-self: flex-end; }
+
+/* ---------- LEARN ---------- */
+.learn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.learn-card { padding: 28px; border: 1px solid var(--border); background: rgba(255,255,255,0.015); }
+.learn-card h3 { font-family: "Cinzel", serif; font-size: 22px; margin-bottom: 12px; }
+.learn-card p { color: var(--text-secondary); line-height: 1.8; font-size: 14px; }
+.learn-card .glyph { font-size: 34px; color: var(--gold); margin-bottom: 12px; }
+
+/* ---------- JOURNEY ---------- */
+.journey {
+    display: grid;
+    gap: 12px;
+}
+
+.journey-step {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    padding: 22px 28px;
+    border: 1px solid var(--border);
+    background: linear-gradient(145deg, rgba(214,168,79,0.04), transparent);
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.journey-step:hover {
+    border-color: var(--gold);
+    background: linear-gradient(145deg, rgba(214,168,79,0.09), transparent);
+}
+
+.journey-step b {
+    font-family: "Cinzel", serif;
+    font-size: 15px;
+    color: var(--gold);
+    min-width: 36px;
+    flex-shrink: 0;
+}
+
+.journey-step span {
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}

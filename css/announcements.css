@@ -1,0 +1,73 @@
+/*
+ * announcements.css
+ * Styles for the "Announcements" section at the bottom of the
+ * homepage (index.html), populated by js/announcements.js. Reuses
+ * the site's existing tokens (--gold, --border, --bg-primary, etc.)
+ * and the .section-head/.section-label pattern already established
+ * in components.css — this file only adds the announcement list and
+ * item card itself.
+ */
+
+.announcements-section {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 80px 30px 130px;
+}
+
+.announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.announcement-item {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 26px;
+    padding: 26px 30px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    background: linear-gradient(145deg, rgba(214, 168, 79, 0.05), rgba(255, 255, 255, 0.01));
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.announcement-item:hover {
+    border-color: var(--gold);
+    background: linear-gradient(145deg, rgba(214, 168, 79, 0.09), rgba(255, 255, 255, 0.015));
+    transform: translateX(4px);
+}
+
+.announcement-date {
+    display: block;
+    color: var(--gold);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    align-self: start;
+    padding-top: 3px;
+}
+
+.announcement-body h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text-primary);
+}
+
+.announcement-body p {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    font-size: 14px;
+}
+
+@media (max-width: 640px) {
+    .announcements-section { padding: 60px 20px 100px; }
+
+    .announcement-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 22px 22px;
+    }
+}

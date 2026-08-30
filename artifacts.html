@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the artifact collection of Egypt Digital Museum — sculptures, funerary art, writing and monuments from thousands of years of Egyptian civilization.">
+
+    <title>Artifacts | Egypt Digital Museum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/artifacts.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="rings">
+                <div class="ring ring--1"></div>
+                <div class="ring ring--2"></div>
+                <div class="ring ring--3"></div>
+            </div>
+
+            <div class="eye-wrap">
+                <svg viewBox="0 0 120 90" fill="none">
+                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+                                               C 60 66, 30 62, 8 40 Z" />
+                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
+                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+                </svg>
+            </div>
+
+            <p class="loader-eyebrow">A Digital Journey Through History</p>
+            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-meta">
+                <span id="progress-label">Unsealing the archives</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END LOADING SCREEN ===== -->
+
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo">
+                <span class="logo-symbol" aria-hidden="true">𓂀</span>
+                <span>EGYPT</span>
+                <small>DIGITAL MUSEUM</small>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="artifacts.html" class="active">Artifacts</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="exhibitions.html">Exhibitions</a>
+                <a href="virtual-museum.html">Virtual Museum</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+
+        <!-- PAGE HERO -->
+        <section class="page-hero">
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-content">
+                <p class="eyebrow">DIGITAL COLLECTION</p>
+                <h1>Explore <span>Artifacts</span></h1>
+                <p>Discover objects, monuments, writings and works of art from thousands of years of Egyptian civilization.</p>
+                <div class="hero-actions">
+                    <button type="button" id="collectionToggle" class="collection-toggle">
+                        <span class="heart" aria-hidden="true">♥</span>
+                        My Collection
+                        <span class="collection-count" id="collectionCount">0</span>
+                    </button>
+                </div>
+            </div>
+            <div class="hero-eye" aria-hidden="true">𓂀</div>
+        </section>
+
+        <!-- FEATURED ARTIFACT -->
+        <section class="featured-section" id="featuredSection" aria-label="Featured artifact"></section>
+
+        <!-- COLLECTION -->
+        <section class="collection-section">
+            <div class="section-heading">
+                <div>
+                    <p class="section-label">THE COLLECTION</p>
+                    <h2>Ancient Egypt, <span>digitally preserved.</span></h2>
+                </div>
+                <div class="heading-actions">
+                    <p id="resultCount" class="result-count">Loading artifacts…</p>
+                    <button id="resetFilters" class="reset-button" aria-label="Reset all filters">Reset filters</button>
+                </div>
+            </div>
+
+            <!-- CONTROLS -->
+            <div class="controls">
+                <label class="search-box">
+                    <span aria-hidden="true">⌕</span>
+                    <input id="searchInput" type="search" placeholder="Search artifacts, periods, materials…" aria-label="Search artifacts">
+                </label>
+                <label class="select-wrap">
+                    <span>PERIOD</span>
+                    <select id="periodFilter" aria-label="Filter by period">
+                        <option value="all">All periods</option>
+                    </select>
+                </label>
+                <label class="select-wrap">
+                    <span>CATEGORY</span>
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="all">All categories</option>
+                    </select>
+                </label>
+                <label class="select-wrap">
+                    <span>SORT</span>
+                    <select id="sortSelect" aria-label="Sort artifacts">
+                        <option value="featured">Featured</option>
+                        <option value="az">A–Z</option>
+                        <option value="za">Z–A</option>
+                        <option value="oldest">Oldest first</option>
+                        <option value="newest">Newest first</option>
+                    </select>
+                </label>
+            </div>
+
+            <!-- GRID -->
+            <div id="artifactGrid" class="artifact-grid" role="list"></div>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="empty-state hidden" role="status">
+                <div class="empty-symbol" aria-hidden="true">𓂀</div>
+                <h3>No artifacts found</h3>
+                <p>Try another search term or reset the filters.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MY COLLECTION PANEL -->
+    <div class="modal hidden" id="collectionModal" role="dialog" aria-modal="true" aria-labelledby="collectionModalTitle">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="collection-panel">
+            <div class="collection-panel-head">
+                <div>
+                    <h2 id="collectionModalTitle">My Collection</h2>
+                    <p>Artifacts you've saved, stored in this browser.</p>
+                </div>
+                <button class="modal-close" id="collectionModalClose" aria-label="Close My Collection">×</button>
+            </div>
+            <div id="collectionList" class="collection-list" role="list"></div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <span>© 2025 Egypt Digital Museum</span>
+        <span>Ancient Civilization × Future Technology</span>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/collection.js"></script>
+    <script src="js/artifacts.js"></script>
+    <script src="js/nav-links.js"></script>
+    <script>
+        // IntersectionObserver for scroll reveals
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(
+            '.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item, .reveal'
+        ).forEach((el, i) => {
+            el.style.transitionDelay = `${(i % 3) * 0.15}s`;
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+</html>

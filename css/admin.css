@@ -1,0 +1,439 @@
+/*
+ * admin.css
+ * Styles for admin.html. Reuses .egypt-table (learn.css), .chip-row/
+ * .chip, .btn/.btn-primary/.btn-secondary, .prose and CSS variables
+ * (--gold, --border, --bg-primary, etc.) from the rest of the site —
+ * this file only adds what's unique to the dashboard: the login
+ * gate, tab panels, and form layout.
+ */
+
+.admin-body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* ---------- LOGIN GATE (split layout: form + brand panel) ---------- */
+.admin-login {
+    min-height: 100vh;
+}
+
+.admin-login-grid {
+    display: grid;
+    grid-template-columns: minmax(380px, 460px) 1fr;
+    min-height: 100vh;
+}
+
+/* ---- LEFT: FORM PANEL ---- */
+.admin-login-form-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: var(--bg-primary);
+}
+
+.admin-login-form-inner {
+    width: 100%;
+    max-width: 320px;
+}
+
+.admin-login-glyph {
+    display: block;
+    font-size: 32px;
+    color: var(--gold);
+    margin-bottom: 18px;
+}
+
+.admin-login-form-inner h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
+
+.admin-login-subtext {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+#adminLoginForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-login-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 16px 0 6px;
+}
+
+.admin-login-label:first-of-type { margin-top: 0; }
+
+#adminTokenInput,
+#adminPasswordInput {
+    width: 100%;
+    padding: 13px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+#adminTokenInput:focus,
+#adminPasswordInput:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.password-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-field input { padding-right: 46px; }
+
+.password-toggle {
+    position: absolute;
+    right: 4px;
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.password-toggle:hover,
+.password-toggle[aria-pressed="true"] { color: var(--gold); }
+
+.remember-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 8px !important;
+    margin-top: 16px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.remember-row input {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--gold);
+}
+
+.admin-login-submit {
+    margin-top: 24px;
+    width: 100%;
+    text-align: center;
+}
+
+.admin-login-error {
+    margin-top: 12px;
+    color: #e06a5f;
+    font-size: 12px;
+    text-align: center;
+}
+
+.admin-login-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.admin-login-footer a { color: var(--text-secondary); transition: color 0.2s ease; }
+.admin-login-footer a:hover { color: var(--gold-light); }
+
+/* ---- RIGHT: BRAND PANEL ---- */
+.admin-login-brand {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 25% 20%, rgba(214, 168, 79, 0.16), transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(214, 168, 79, 0.10), transparent 50%),
+        linear-gradient(160deg, #16130d, #0a0907);
+}
+
+.admin-login-brand::before {
+    content: '𓂀';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 42vw;
+    color: rgba(214, 168, 79, 0.05);
+    pointer-events: none;
+    line-height: 1;
+}
+
+.admin-login-brand-content {
+    position: relative;
+    z-index: 2;
+    padding: 60px;
+}
+
+.admin-login-brand-eyebrow {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.admin-login-brand-content h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+}
+
+.admin-login-brand-tagline {
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .admin-login-grid { grid-template-columns: 1fr; }
+    .admin-login-brand { display: none; }
+    .admin-login-form-panel { padding: 60px 24px; min-height: 100vh; }
+}
+
+/* ---------- DASHBOARD SHELL ---------- */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.admin-header .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+.admin-header .logo small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
+}
+
+.admin-header .logo-symbol { color: var(--gold); font-size: 22px; }
+
+.admin-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.admin-view-site {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.admin-view-site:hover { color: var(--gold-light); }
+
+.admin-logout {
+    padding: 9px 16px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-logout:hover { border-color: var(--gold); color: var(--gold-light); }
+
+.admin-tabs {
+    max-width: var(--max-width);
+    margin: 26px auto 0;
+    padding: 0 30px;
+}
+
+.admin-tabs .chip { cursor: pointer; }
+
+.admin-toast {
+    max-width: var(--max-width);
+    margin: 18px auto 0;
+    padding: 0 30px;
+}
+
+.admin-toast:not(.hidden)::before {
+    content: attr(data-message);
+    display: block;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    font-size: 13px;
+}
+
+.admin-toast.success:not(.hidden)::before {
+    border-color: #4a8a5a;
+    color: #8fd19e;
+}
+
+.admin-toast.error:not(.hidden)::before {
+    border-color: #a04a42;
+    color: #e59a92;
+}
+
+/* ---------- PANELS ---------- */
+.admin-panel {
+    max-width: var(--max-width);
+    margin: 30px auto 80px;
+    padding: 0 30px;
+}
+
+.admin-panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.admin-panel-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+}
+
+.admin-note {
+    margin-bottom: 20px;
+    font-size: 13px;
+}
+
+/* ---------- FORMS ---------- */
+.admin-form {
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.015);
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.admin-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.admin-form label small {
+    font-weight: 400;
+    color: var(--text-secondary);
+    opacity: 0.75;
+}
+
+.admin-form input[type="text"],
+.admin-form input[type="number"],
+.admin-form textarea {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    resize: vertical;
+}
+
+.admin-form input:focus,
+.admin-form textarea:focus {
+    outline: none;
+    border-color: var(--gold);
+}
+
+.admin-full {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.admin-checkbox {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 8px !important;
+}
+
+.admin-checkbox input { width: 16px; height: 16px; }
+
+.admin-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 6px;
+}
+
+/* ---------- TABLES ---------- */
+.admin-table td:last-child {
+    white-space: nowrap;
+}
+
+.admin-row-btn {
+    padding: 6px 11px;
+    margin-right: 6px;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.admin-row-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+.admin-row-btn.danger:hover { border-color: #a04a42; color: #e59a92; }
+
+.admin-table-empty td {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 30px !important;
+}
+
+@media (max-width: 700px) {
+    .admin-header { padding: 16px 20px; flex-wrap: wrap; gap: 12px; }
+    .admin-tabs, .admin-toast, .admin-panel { padding-left: 20px; padding-right: 20px; }
+    .admin-form-grid { grid-template-columns: 1fr; }
+}

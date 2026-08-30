@@ -1,0 +1,603 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import url('https://unpkg.com/lenis@1.3.26/dist/lenis.css');
+:root {
+    --bg-primary: #080705;
+    --bg-secondary: #11100c;
+    --bg-third: #11100cb8;
+    --gold: #d6a84f;
+    --gold-light: #f1cf78;
+    --gold-dim: #7A6228;
+    --text-primary: #f4ead5;
+    --text-secondary: #a99f8d;
+    --border: rgba(214, 168, 79, 0.25);
+    --max-width: 1400px;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(214, 168, 79, 0.08),
+            transparent 35%
+        ),
+        var(--bg-primary);
+    color: var(--text-primary);
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* NAVBAR */
+.site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background:
+        rgba(8, 7, 5, 0.78);
+    backdrop-filter: blur(20px);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* LOGO */
+.logo {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    align-items: center;
+    font-family: "Cinzel", serif;
+    letter-spacing: 2px;
+}
+
+
+.logo-symbol {
+    grid-row: span 2;
+    font-size: 30px;
+    color: var(--gold);
+}
+
+
+.logo span:not(.logo-symbol) {
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+.logo small {
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: var(--text-secondary);
+}
+
+/* NAVIGATION */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    position: relative;
+    padding-bottom: 4px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+    font-family: "Cinzel", serif;
+    font-size: 12px;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: white;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a.active {
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+    background: var(--gold);
+}   
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--gold);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+
+/* HERO */
+.hero {
+    min-height: 100vh;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 150px 30px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 760px;
+    position: relative;
+    z-index: 2;
+}
+
+.eyebrow,
+.section-label {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(4rem, 9vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: -3px;
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    display: block;
+    color: var(--gold);
+    font-size: 0.42em;
+    letter-spacing: 5px;
+    margin-top: 20px;
+}
+
+.hero-description {
+    max-width: 550px;
+    color: var(--text-secondary);
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* BUTTONS */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 15px 24px;
+    border: 1px solid var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: #0b0906;
+}
+
+.btn-secondary {
+    color: var(--gold);
+    background: transparent;
+}
+
+.btn-secondary:hover {
+    background: rgba(214, 168, 79, 0.1);
+}
+
+/* HERO DECORATION */
+.hero-decoration {
+    position: absolute;
+    right: 5%;
+    width: 420px;
+    height: 420px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+
+.hero-decoration::before,
+.hero-decoration::after {
+    content: "";
+    position: absolute;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+}
+
+.hero-decoration::before {
+    inset: 35px;
+}
+
+.hero-decoration::after {
+    inset: 90px;
+}
+
+.hieroglyph {
+    font-size: 130px;
+    color: var(--gold);
+    z-index: 2;
+    text-shadow: 0 0 30px rgba(214, 168, 79, 0.25);
+}
+
+/* ─── STATS ROW ─── */
+.stats {
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 4rem 2rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stat-num {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+}  
+
+/* ─── TICKER ─── */
+.ticker-wrap {
+    background: var(--gold);
+    padding: 0.5rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+}
+
+.ticker span {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: rgb(41, 28, 0);
+    letter-spacing: 0.12em;
+    margin-right: 3rem;
+}
+
+@keyframes ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+.intro {
+    max-width: 900px;
+    margin: auto;
+    padding: 130px 30px;
+    text-align: center;
+}
+
+.intro h2 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.intro > p:last-child {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+.features {
+    max-width: var(--max-width);
+    padding: 40px 30px 130px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 35px;
+    min-height: 300px;
+    border: 1px solid var(--border);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(214,168,79,0.07),
+            rgba(255,255,255,0.01)
+        );
+    transition:
+        transform 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+}
+
+.feature-number {
+    color: var(--gold);
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+}
+
+.feature-card h3 {
+    font-family: "Cinzel", serif;
+    font-size: 28px;
+    margin: 55px 0 15px;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.feature-card a {
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+/* FOOTER */
+.site-footer {
+    border-top: 1px solid var(--border);
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   NEW BELOW THIS LINE — append to the end of main.css.
+   Nothing above this marker should be changed.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ---------- SCROLL REVEAL ----------
+   Makes the already-wired-up IntersectionObserver (js/nav-links.js)
+   actually visible — before this, .reveal/.is-visible existed only
+   as JS class names with no matching styles anywhere, so elements
+   were always fully visible regardless of scroll position. */
+.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item {
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal, .reveal-up, .stagger-item { transform: translateY(28px); }
+.reveal-left  { transform: translateX(-28px); }
+.reveal-right { transform: translateX(28px); }
+.reveal-scale { transform: scale(0.94); }
+
+.reveal.is-visible, .reveal-up.is-visible, .reveal-left.is-visible,
+.reveal-right.is-visible, .reveal-scale.is-visible, .stagger-item.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ---------- NAV UTILITY BOX ----------
+   Appended inside #navLinks by js/nav-links.js — opens and closes
+   with the same toggle as the main nav links. */
+.nav-utility-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+}
+
+.nav-utility-box a {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.nav-utility-box a:hover { color: var(--gold-light); }
+
+.nav-utility-box .nav-utility-admin {
+    color: var(--gold);
+    font-weight: 600;
+}
+
+.nav-utility-box .nav-utility-admin:hover { color: var(--gold-light); }
+
+/* On wide screens the mobile nav-links panel (and this box inside
+   it) is hidden entirely by the existing responsive rules, so no
+   extra breakpoint handling is needed here. */
+
+/* ---------- LARGE FOOTER ----------
+   Overrides the original .site-footer's simple flex row (border-top,
+   padding, space-between) once js/nav-links.js adds the
+   .site-footer--large modifier class and replaces its content. */
+.site-footer.site-footer--large {
+    display: block;
+    padding: 0;
+    border-top: 1px solid var(--border);
+    background-image:url("/images/footer-image/footer.png");
+}
+
+.footer-inner {
+    position: relative;
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 70px 30px 30px;
+    overflow: hidden;
+}
+
+.footer-columns {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-col-label {
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.footer-col a {
+    color: var(--text-secondary);
+    font-size: 13px;
+    transition: color 0.2s ease;
+    width: fit-content;
+}
+
+.footer-col a:hover { color: var(--gold-light); }
+
+.footer-about-text {
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.footer-wordmark {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 30px;
+    opacity: 0.35;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.footer-wordmark-glyph {
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.footer-wordmark-text {
+    font-family: "Cinzel", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(2rem, 7vw, 5rem);
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+
+.footer-bottom {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.footer-bottom a {
+    color: var(--text-secondary);
+    transition: color 0.2s ease;
+}
+
+.footer-bottom a:hover { color: var(--gold-light); }
+
+.footer-bottom-sep { opacity: 0.5; }
+
+@media (max-width: 900px) {
+    .footer-columns { grid-template-columns: repeat(2, 1fr); gap: 30px 24px; }
+}
+
+@media (max-width: 560px) {
+    .footer-inner { padding: 50px 20px 24px; }
+    .footer-columns { grid-template-columns: 1fr; gap: 26px; margin-bottom: 40px; }
+    .footer-wordmark { margin-bottom: 22px; }
+}

@@ -1,0 +1,188 @@
+/* ===== LOADING SCREEN ===== */
+
+#loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(212, 175, 55, 0.06), transparent 60%),
+    #0a0806;
+  transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* concentric rings, echoing the hero */
+.rings {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 340px;
+  height: 340px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.18);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ring--1 { width: 340px; height: 340px; animation: loader-spin 22s linear infinite; }
+.ring--2 { width: 250px; height: 250px; animation: loader-spin 16s linear infinite reverse; }
+.ring--3 { width: 170px; height: 170px; animation: loader-pulse-ring 3.2s ease-in-out infinite; }
+
+@keyframes loader-spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes loader-pulse-ring {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.9; }
+}
+
+/* eye of horus — draws itself in gold, then holds with a slow glow */
+.eye-wrap {
+  width: 120px;
+  height: 90px;
+  margin-bottom: 34px;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+}
+
+.eye-wrap svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.eye-path {
+  fill: none;
+  stroke: #d4af37;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 420;
+  stroke-dashoffset: 420;
+  animation: loader-draw-eye 2.6s ease forwards, loader-glow-eye 3.2s ease-in-out 2.6s infinite;
+}
+
+.eye-pupil {
+  fill: #d4af37;
+  opacity: 0;
+  animation: loader-fade-in 0.6s ease 2.2s forwards;
+}
+
+@keyframes loader-draw-eye {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes loader-fade-in {
+  to { opacity: 1; }
+}
+
+@keyframes loader-glow-eye {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(212, 175, 55, 0.4)); }
+  50% { filter: drop-shadow(0 0 9px rgba(233, 201, 104, 0.85)); }
+}
+
+/* wordmark */
+.loader-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #8a6a25;
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: loader-fade-up 0.8s ease 0.3s forwards;
+}
+
+.loader-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: 0.14em;
+  color: #f4ede0;
+  margin: 0 0 28px;
+  opacity: 0;
+  animation: loader-fade-up 0.8s ease 0.5s forwards;
+}
+
+.loader-title span {
+  display: block;
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  color: #d4af37;
+  margin-top: 6px;
+}
+
+@keyframes loader-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* progress */
+.progress-track {
+  width: 220px;
+  height: 1px;
+  background: rgba(212, 175, 55, 0.18);
+  position: relative;
+  opacity: 0;
+  animation: loader-fade-up 0.8s ease 0.8s forwards;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #8a6a25, #e9c968);
+  transition: width 0.25s ease-out;
+}
+
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+  margin-top: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8a6a25;
+  opacity: 0;
+  animation: loader-fade-up 0.8s ease 0.8s forwards;
+}
+
+#progress-percent {
+  color: #d4af37;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring--1, .ring--2, .ring--3, .eye-path {
+    animation: none;
+  }
+  .eye-path { stroke-dashoffset: 0; }
+  .eye-pupil { opacity: 1; }
+}

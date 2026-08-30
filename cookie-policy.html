@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cookie Policy — Egypt Digital Museum.">
+    <title>Cookie Policy | Egypt Digital Museum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="rings">
+                <div class="ring ring--1"></div>
+                <div class="ring ring--2"></div>
+                <div class="ring ring--3"></div>
+            </div>
+            <div class="eye-wrap">
+                <svg viewBox="0 0 120 90" fill="none">
+                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+                                               C 60 66, 30 62, 8 40 Z" />
+                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
+                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+                </svg>
+            </div>
+            <p class="loader-eyebrow">A Digital Journey Through History</p>
+            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-meta">
+                <span id="progress-label">Unsealing the archives</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo">
+                <span class="logo-symbol" aria-hidden="true">𓂀</span>
+                <span>EGYPT</span>
+                <small>DIGITAL MUSEUM</small>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="artifacts.html">Artifacts</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="exhibitions.html">Exhibitions</a>
+                <a href="virtual-museum.html">Virtual Museum</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+        <section class="section reveal">
+            <div class="section-head">
+                <p class="section-label">LEGAL</p>
+                <h2>Cookie Policy</h2>
+            </div>
+
+            <p class="prose">This site does not use tracking cookies. It does use two kinds of browser storage — technically not cookies, but serving a similar "remember something locally" purpose — described below.</p>
+
+            <div class="section-head" style="margin-top:40px;">
+                <p class="section-label">LOCAL STORAGE — "MY COLLECTION"</p>
+            </div>
+            <p class="prose">When you save an artifact to "My Collection," its ID is stored in your browser's <code>localStorage</code>. This stays on your device, persists between visits until you clear it, and is never transmitted to any server. It exists purely so your saved list is still there next time you open the site.</p>
+
+            <div class="section-head" style="margin-top:40px;">
+                <p class="section-label">LOCAL / SESSION STORAGE — ADMIN LOGIN</p>
+            </div>
+            <p class="prose">The admin dashboard stores its login token and password in <code>sessionStorage</code> by default (cleared when the browser tab closes), or in <code>localStorage</code> if "Remember Me" is checked at login (persists until manually logged out or cleared). This only applies to the site's administrator — visitors browsing the museum never trigger this.</p>
+
+            <div class="section-head" style="margin-top:40px;">
+                <p class="section-label">THIRD-PARTY RESOURCES</p>
+            </div>
+            <p class="prose">This site loads fonts from Google Fonts and a scrolling library (Lenis) from a public CDN. These are static files (fonts, code) and don't set tracking cookies as used here, though the hosting services themselves may have their own standard server logs, outside this site's control.</p>
+
+            <div class="section-head" style="margin-top:40px;">
+                <p class="section-label">CLEARING STORED DATA</p>
+            </div>
+            <p class="prose">You can clear everything this site has stored in your browser at any time: open your browser's developer tools → Application (or Storage) tab → find this site → clear local storage and session storage. Or use your browser's general "Clear browsing data" / "Clear site data" option.</p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <span>© 2026 Egypt Digital Museum</span>
+        <span>Ancient Civilization × Future Technology</span>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/nav-links.js"></script>
+</body>
+</html>

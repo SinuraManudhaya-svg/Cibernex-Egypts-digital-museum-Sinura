@@ -1,0 +1,219 @@
+/*
+ * exhibitions.css
+ * Page-specific styles for exhibitions.html (collection/browse page).
+ * Shared components (.exhibition-grid, .exhibition-card, .chip-row,
+ * .chip, .page-hero, .section-label, .empty-state, .btn) already
+ * exist in components.css / artifacts.css / main.css — this file
+ * only adds what's new to this page. No inline styles anywhere here;
+ * every container gets its own real class.
+ */
+
+.featured-exhibition {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    max-width: var(--max-width);
+    margin: 0 auto 50px;
+    padding: 0 30px;
+}
+
+.featured-visual {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    border: 1px solid var(--border);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 40%, rgba(214, 168, 79, 0.16), transparent 65%),
+        linear-gradient(160deg, #16130d, #0a0907);
+}
+
+.featured-visual-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+/* When a real photo is showing, dim it and hide the decorative
+   glyph so the photo itself is the focus (glyph still shows on its
+   own, centered, whenever there's no image — unchanged from before). */
+.featured-visual.has-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(10, 9, 7, 0.15), rgba(10, 9, 7, 0.55));
+    pointer-events: none;
+}
+
+.featured-visual.has-image .featured-glyph {
+    display: none;
+}
+
+.featured-glyph {
+    position: relative;
+    z-index: 1;
+    font-size: 130px;
+    color: var(--gold);
+}
+
+.featured-body h3 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+    margin: 8px 0 16px;
+}
+
+.featured-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    margin: 24px 0;
+}
+
+.featured-meta div {
+    background: var(--bg-primary);
+    padding: 16px;
+}
+
+.featured-meta span {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.featured-meta strong {
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* ---------- COLLECTION SECTION ---------- */
+.exhibitions-collection {
+    max-width: var(--max-width);
+    margin: auto;
+    padding: 0 30px 60px;
+}
+
+.exhibitions-toolbar {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(150px, 220px);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+/* .search-box / .select-wrap already defined in artifacts.css and
+   reused as-is here so this toolbar matches the artifacts page. */
+
+.chip-row {
+    margin-bottom: 30px;
+}
+
+/* ---------- EXHIBITION CARD (photo behind a dark scrim, text on
+   top — the layout .exhibition-card in components.css was already
+   built for this: min-height + justify-content:flex-end +
+   background gradient. It just never had an <img> wired to it.
+   These rules add the image/scrim layers using explicit z-index so
+   stacking order is guaranteed regardless of DOM position. ---------- */
+.exhibition-card {
+    position: relative;
+    overflow: hidden;
+    padding: 0; /* padding now lives on .exhibition-card-content instead */
+    cursor: pointer;
+    background: #16130dc2;
+}
+
+.exhibition-card:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+.exhibition-card-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.exhibition-card:hover .exhibition-card-bg {
+    transform: scale(1.05);
+}
+
+.exhibition-card-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(214, 168, 79, 0.05), rgba(8, 7, 5, 0.92));
+    pointer-events: none;
+}
+
+.exhibition-card-content {
+    position: relative;
+    z-index: 2;
+    min-height: 320px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.exhibition-card-meta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.exhibition-card .tag { align-self: flex-start; }
+.exhibition-card .btn { align-self: flex-start; margin-top: 4px; }
+
+/* ---------- CALL TO EXPLORE ---------- */
+.cta-explore {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 100px;
+    padding: 0 30px;
+}
+
+.cta-explore h2 {
+    font-family: "Cinzel", serif;
+    font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+    margin-bottom: 16px;
+}
+
+.cta-explore-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 24px;
+}
+
+#exhibitionsFatalError {
+    margin: 0 30px 100px;
+}
+
+@media (max-width: 900px) {
+    .featured-exhibition { grid-template-columns: 1fr; }
+    .featured-meta { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 700px) {
+    .featured-exhibition,
+    .exhibitions-collection,
+    .cta-explore { padding-left: 20px; padding-right: 20px; }
+    .exhibitions-toolbar { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Walk through the halls of Egypt Digital Museum — an interactive room-by-room virtual tour of its exhibitions.">
+
+    <title>Virtual Museum | Egypt Digital Museum</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/artifacts.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/exhibitions.css">
+    <link rel="stylesheet" href="css/exhibition-detail.css">
+    <link rel="stylesheet" href="css/virtual-museum.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="rings">
+                <div class="ring ring--1"></div>
+                <div class="ring ring--2"></div>
+                <div class="ring ring--3"></div>
+            </div>
+            <div class="eye-wrap">
+                <svg viewBox="0 0 120 90" fill="none">
+                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+                                               C 60 66, 30 62, 8 40 Z" />
+                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
+                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+                </svg>
+            </div>
+            <p class="loader-eyebrow">A Digital Journey Through History</p>
+            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-meta">
+                <span id="progress-label">Unsealing the archives</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
+            <a href="index.html" class="logo">
+                <span class="logo-symbol" aria-hidden="true">𓂀</span>
+                <span>EGYPT</span>
+                <small>DIGITAL MUSEUM</small>
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="artifacts.html">Artifacts</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="exhibitions.html">Exhibitions</a>
+                <a href="virtual-museum.html" class="active">Virtual Museum</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html">About</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+
+        <!-- HERO -->
+        <section class="page-hero">
+            <div class="hero-grid" aria-hidden="true"></div>
+            <div class="hero-content">
+                <p class="eyebrow">VIRTUAL MUSEUM / 04</p>
+                <h1>Walk Through the <span>Halls</span></h1>
+                <p>Step room to room through Egypt Digital Museum's galleries — each hall built from a curated exhibition and the real artifacts within it.</p>
+            </div>
+            <div class="hero-eye" aria-hidden="true">𓂀</div>
+        </section>
+
+        <!-- MUSEUM ROOT (shown once rooms load) -->
+        <div id="museumRoot">
+
+            <!-- ROOM STAGE -->
+            <section class="room-section">
+                <div class="room-progress">
+                    <span id="roomProgressLabel"></span>
+                </div>
+
+                <div class="room-stage">
+                    <button type="button" class="room-nav room-nav--prev" id="roomPrevBtn" aria-label="Previous room">←</button>
+
+                    <div class="room-stage-inner" id="roomStageInner"></div>
+
+                    <button type="button" class="room-nav room-nav--next" id="roomNextBtn" aria-label="Next room">→</button>
+                </div>
+
+                <div class="room-hotspot-panel" id="roomHotspotPanel"></div>
+
+                <div class="chip-row room-tabs" id="roomTabs" role="tablist" aria-label="Jump to a room"></div>
+            </section>
+
+            <!-- ROOM ARTIFACTS -->
+            <section class="linked-artifacts">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-label">INSIDE THIS HALL</p>
+                        <h2 id="roomArtifactsHeading">Artifacts <span>On Display</span></h2>
+                    </div>
+                </div>
+                <div class="linked-artifact-grid" id="roomArtifactGrid" role="list"></div>
+            </section>
+
+        </div>
+
+        <!-- FATAL ERROR STATE -->
+        <div class="empty-state hidden" id="museumFatalError" role="status">
+            <div class="empty-symbol" aria-hidden="true">𓂀</div>
+            <h3>Virtual Museum unavailable</h3>
+            <p>Please refresh the page, or open this project with a local server instead of a plain file:// path.</p>
+        </div>
+
+        <!-- CALL TO EXPLORE -->
+        <section class="cta-explore">
+            <h2>Continue Exploring the Museum</h2>
+            <p class="prose">Every hall connects back to its full exhibition, artifacts and place in the timeline.</p>
+            <div class="cta-explore-buttons">
+                <a href="exhibitions.html" class="btn btn-primary">Browse Exhibitions</a>
+                <a href="artifacts.html" class="btn btn-secondary">Browse Artifacts</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <span>© 2025 Egypt Digital Museum</span>
+        <span>Ancient Civilization × Future Technology</span>
+    </footer>
+
+    <script src="js/collection.js"></script>
+    <script src="js/virtual-museum.js"></script>
+
+    <!-- 3D model viewer (Three.js, loaded via importmap — no build step) -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module" src="js/model-viewer.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/nav-links.js"></script>
+
+</body>
+</html>
