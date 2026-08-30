@@ -108,19 +108,13 @@
                 <div class="footer-col footer-col-about">
                     <p class="footer-col-label">About This Project</p>
                     <p class="footer-about-text">Egypt Digital Museum is a student-built digital museum exploring ancient Egyptian history — artifacts, timelines and curated exhibitions, sourced from real institutions.</p>
-                    <a href="about.html">— Learn More —</a>
+                    <a href="about.html">— Meet the Developer —</a>
                 </div>
-            </div>
-
-            <div class="footer-wordmark" aria-hidden="true">
-                <span class="footer-wordmark-glyph">    </span>
-                <span class="footer-wordmark-text">            </span>
             </div>
 
             <div class="footer-bottom">
                 <span>© ${year} Egypt Digital Museum</span>
                 <span class="footer-bottom-sep">·</span>
-                <a href="about.html">— Meet the Developer —</a>
             </div>
         </div>
     `;
