@@ -20,7 +20,7 @@ function esc(v) {
 
 // Same local-API-with-fallback pattern used on the artifacts and
 // artifact detail pages.
-const API_URL = 'http://localhost:3000/api/artifacts';
+const API_URL = '/api/artifacts';
 const FALLBACK_DATA_URL = 'json/artifacts.json';
 
 async function loadArtifacts() {
