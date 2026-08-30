@@ -1,0 +1,11 @@
+# Node server dependencies
+.env
+node_modules/
+
+# Environment file with MongoDB credentials — NEVER commit this
+.env
+server/.env
+atlas-credentials.env
+
+# macOS
+.DS_Store
