@@ -161,10 +161,6 @@
                 </div>
             </div>
 
-            <div class="footer-wordmark" aria-hidden="true">
-                <span class="footer-wordmark-glyph">𓂀</span>
-                <span class="footer-wordmark-text">Egypt Digital Museum</span>
-            </div>
 
             <div class="footer-bottom">
                 <span>© ${year} Egypt Digital Museum</span>
