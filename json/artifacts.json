@@ -90,7 +90,7 @@
   {
     "id": 5,
     "objectId": "EDM-OK-002",
-    "featured": false,
+    "featured": true,
     "name": "Great Sphinx of Giza",
     "subtitle": "Monumental guardian statue",
     "period": "Old Kingdom",
@@ -112,7 +112,7 @@
   {
     "id": 6,
     "objectId": "EDM-NK-003",
-    "featured": false,
+    "featured": true,
     "name": "Canopic Jar of Imsety",
     "subtitle": "Funerary vessel for preserved organs",
     "period": "New Kingdom",
@@ -134,7 +134,7 @@
   {
     "id": 7,
     "objectId": "EDM-MK-001",
-    "featured": false,
+    "featured": true,
     "name": "Scarab Amulet",
     "subtitle": "Protective seal amulet",
     "period": "Middle Kingdom",
@@ -156,7 +156,7 @@
   {
     "id": 8,
     "objectId": "EDM-ED-001",
-    "featured": false,
+    "featured": true,
     "name": "Narmer Palette",
     "subtitle": "Ceremonial siltstone palette",
     "period": "Early Dynastic Period",
