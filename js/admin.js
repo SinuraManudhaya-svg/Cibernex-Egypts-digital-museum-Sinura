@@ -1,9 +1,12 @@
 /**
  * admin.js
- * Powers admin.html. Handles the token+password login gate, tab
- * switching, and create/edit/delete for artifacts, exhibitions and
- * announcements — all three share the same generic CRUD helpers
- * below, configured per entity in ENTITY_CONFIG.
+ * Shared by TWO separate pages:
+ *   - login.html  (the token+password entry screen)
+ *   - admin.html  (the dashboard — artifacts/exhibitions/announcements)
+ *
+ * Each page only has the DOM elements relevant to it, so every block
+ * below checks for its own elements before touching them, rather than
+ * assuming both pages' markup exists at once.
  *
  * SECURITY NOTE: the "login" here is a single shared token+password
  * pair checked server-side (see server.js requireAdmin) — there are
@@ -18,6 +21,8 @@ const $ = id => document.getElementById(id);
 const API_BASE = '/api';
 const TOKEN_KEY = 'edm_admin_token';
 const PASSWORD_KEY = 'edm_admin_password';
+const LOGIN_PAGE = 'login.html';
+const DASHBOARD_PAGE = 'admin.html';
 
 function esc(v) {
     return String(v ?? '').replaceAll('&', '&amp;')
@@ -25,6 +30,144 @@ function esc(v) {
                            .replaceAll('>', '&gt;')
                            .replaceAll('"', '&quot;')
                            .replaceAll("'", '&#039;');
+}
+
+// ================= CREDENTIAL STORAGE =================
+// "Remember Me" checked -> localStorage (survives closing the
+// browser). Unchecked -> sessionStorage (cleared when the tab/browser
+// closes), which was the original behavior. Reading always checks
+// both, since we don't know which one a given visit used.
+
+function getToken() {
+    return localStorage.getItem(TOKEN_KEY) || sessionStorage.getItem(TOKEN_KEY) || '';
+}
+
+function getPassword() {
+    return localStorage.getItem(PASSWORD_KEY) || sessionStorage.getItem(PASSWORD_KEY) || '';
+}
+
+function storeCredentials(token, password, remember) {
+    const store = remember ? localStorage : sessionStorage;
+    store.setItem(TOKEN_KEY, token);
+    store.setItem(PASSWORD_KEY, password);
+}
+
+function clearCredentials() {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(PASSWORD_KEY);
+    sessionStorage.removeItem(TOKEN_KEY);
+    sessionStorage.removeItem(PASSWORD_KEY);
+}
+
+// Checks a token+password pair against the server. Both must be
+// correct — server.js rejects the request if either one is wrong.
+async function verifyCredentials(token, password) {
+    try {
+        const res = await fetch(`${API_BASE}/admin/verify`, {
+            headers: {
+                'x-admin-token': token,
+                'x-admin-password': password,
+            },
+        });
+        return res.ok;
+    } catch (err) {
+        // Server unreachable (not running, wrong port, etc.) — treat
+        // the same as "not verified" rather than letting the error
+        // bubble up and stop the rest of the page's JS from running.
+        console.warn('Could not reach the API to verify credentials:', err.message);
+        return false;
+    }
+}
+
+async function apiFetch(url, options = {}) {
+    const res = await fetch(url, {
+        ...options,
+        headers: {
+            'Content-Type': 'application/json',
+            'x-admin-token': getToken(),
+            'x-admin-password': getPassword(),
+            ...options.headers,
+        },
+    });
+    if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body.error || `Request failed (${res.status})`);
+    }
+    return res.status === 204 ? null : res.json();
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const onLoginPage = Boolean($('adminLoginForm'));
+    const onDashboardPage = Boolean($('adminDashboard'));
+
+    if (onLoginPage) {
+        await initLoginPage();
+    } else if (onDashboardPage) {
+        await initDashboardPage();
+    }
+});
+
+// ================= LOGIN PAGE (login.html) =================
+async function initLoginPage() {
+    const existingToken = getToken();
+    const existingPassword = getPassword();
+
+    // Already logged in from a previous visit — skip straight to the
+    // dashboard instead of making them log in again.
+    if (existingToken && existingPassword && await verifyCredentials(existingToken, existingPassword)) {
+        window.location.href = DASHBOARD_PAGE;
+        return;
+    }
+    clearCredentials();
+
+    $('adminLoginForm').addEventListener('submit', async e => {
+        e.preventDefault();
+        const token = $('adminTokenInput').value.trim();
+        const password = $('adminPasswordInput').value.trim();
+        const remember = $('rememberMeInput')?.checked ?? false;
+        if (!token || !password) return;
+
+        const ok = await verifyCredentials(token, password);
+        if (ok) {
+            storeCredentials(token, password, remember);
+            window.location.href = DASHBOARD_PAGE;
+        } else {
+            $('adminLoginError')?.classList.remove('hidden');
+        }
+    });
+
+    // Show/hide password toggle
+    const toggleBtn = $('passwordToggleBtn');
+    const passwordInput = $('adminPasswordInput');
+    toggleBtn?.addEventListener('click', () => {
+        const isHidden = passwordInput.type === 'password';
+        passwordInput.type = isHidden ? 'text' : 'password';
+        toggleBtn.setAttribute('aria-pressed', String(isHidden));
+        toggleBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+    });
+}
+
+// ================= DASHBOARD PAGE (admin.html) =================
+async function initDashboardPage() {
+    const token = getToken();
+    const password = getPassword();
+
+    if (!token || !password || !await verifyCredentials(token, password)) {
+        clearCredentials();
+        window.location.href = LOGIN_PAGE;
+        return;
+    }
+
+    $('adminDashboard').classList.remove('hidden');
+
+    $('adminLogoutBtn')?.addEventListener('click', () => {
+        clearCredentials();
+        window.location.href = LOGIN_PAGE;
+    });
+
+    setupTabs();
+    setupForms();
+    Object.keys(ENTITY_CONFIG).forEach(loadEntity);
 }
 
 // ================= ENTITY CONFIG =================
@@ -84,86 +227,6 @@ const ENTITY_CONFIG = {
 };
 
 const state = { data: { artifacts: [], exhibitions: [], announcements: [] } };
-
-// ================= AUTH =================
-
-function getToken() {
-    return sessionStorage.getItem(TOKEN_KEY) || '';
-}
-
-function getPassword() {
-    return sessionStorage.getItem(PASSWORD_KEY) || '';
-}
-
-// Checks a token+password pair against the server. Both must be
-// correct — server.js rejects the request if either one is wrong.
-async function verifyCredentials(token, password) {
-    const res = await fetch(`${API_BASE}/admin/verify`, {
-        headers: {
-            'x-admin-token': token,
-            'x-admin-password': password,
-        },
-    });
-    return res.ok;
-}
-
-async function apiFetch(url, options = {}) {
-    const res = await fetch(url, {
-        ...options,
-        headers: {
-            'Content-Type': 'application/json',
-            'x-admin-token': getToken(),
-            'x-admin-password': getPassword(),
-            ...options.headers,
-        },
-    });
-    if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || `Request failed (${res.status})`);
-    }
-    return res.status === 204 ? null : res.json();
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const existingToken = getToken();
-    const existingPassword = getPassword();
-    if (existingToken && existingPassword && await verifyCredentials(existingToken, existingPassword)) {
-        showDashboard();
-    } else {
-        sessionStorage.removeItem(TOKEN_KEY);
-        sessionStorage.removeItem(PASSWORD_KEY);
-    }
-
-    $('adminLoginForm').addEventListener('submit', async e => {
-        e.preventDefault();
-        const token = $('adminTokenInput').value.trim();
-        const password = $('adminPasswordInput').value.trim();
-        if (!token || !password) return;
-        const ok = await verifyCredentials(token, password);
-        if (ok) {
-            sessionStorage.setItem(TOKEN_KEY, token);
-            sessionStorage.setItem(PASSWORD_KEY, password);
-            showDashboard();
-        } else {
-            $('adminLoginError').classList.remove('hidden');
-        }
-    });
-
-    $('adminLogoutBtn').addEventListener('click', () => {
-        sessionStorage.removeItem(TOKEN_KEY);
-        sessionStorage.removeItem(PASSWORD_KEY);
-        location.reload();
-    });
-
-    setupTabs();
-    setupForms();
-});
-
-function showDashboard() {
-    $('adminLogin').classList.add('hidden');
-    $('adminDashboard').classList.remove('hidden');
-    Object.keys(ENTITY_CONFIG).forEach(loadEntity);
-}
 
 // ================= TABS =================
 
