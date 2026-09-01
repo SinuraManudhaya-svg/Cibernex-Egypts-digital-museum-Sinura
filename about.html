@@ -3,170 +3,377 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="noindex, nofollow">
-    <title>Admin | Egypt Digital Museum</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="About Egypt Digital Museum — the project, the technology behind it, and the developer, Sinura Manudhaya.">
+    <title>About — Egypt Digital Museum</title>
 
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/about.css">
     <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/learn.css">
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
 </head>
-<body class="admin-body">
 
-    <!-- ===== DASHBOARD (only shown once admin.js confirms valid stored credentials — see initDashboardPage in admin.js) ===== -->
-    <div id="adminDashboard" class="admin-dashboard hidden">
+<body>
 
-        <header class="admin-header">
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="rings">
+                <div class="ring ring--1"></div>
+                <div class="ring ring--2"></div>
+                <div class="ring ring--3"></div>
+            </div>
+
+            <div class="eye-wrap">
+                <svg viewBox="0 0 120 90" fill="none">
+                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+                                               C 60 66, 30 62, 8 40 Z" />
+                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
+                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+                </svg>
+            </div>
+
+            <p class="loader-eyebrow">A Digital Journey Through History</p>
+            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-meta">
+                <span id="progress-label">Unsealing the archives</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END LOADING SCREEN ===== -->
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main navigation">
             <a href="index.html" class="logo">
                 <span class="logo-symbol" aria-hidden="true">𓂀</span>
                 <span>EGYPT</span>
-                <small>ADMIN DASHBOARD</small>
+                <small>DIGITAL MUSEUM</small>
             </a>
-            <div class="admin-header-actions">
-                <a href="index.html" class="admin-view-site">View Site ↗</a>
-                <button type="button" class="admin-logout" id="adminLogoutBtn">Log Out</button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="artifacts.html">Artifacts</a>
+                <a href="timeline.html">Timeline</a>
+                <a href="exhibitions.html">Exhibitions</a>
+                <a href="virtual-museum.html">Virtual Museum</a>
+                <a href="learn.html">Learn</a>
+                <a href="about.html" class="active">About</a>
             </div>
-        </header>
-
-        <nav class="chip-row admin-tabs" id="adminTabs">
-            <button type="button" class="chip active" data-tab="artifacts">Artifacts</button>
-            <button type="button" class="chip" data-tab="exhibitions">Exhibitions</button>
-            <button type="button" class="chip" data-tab="announcements">Announcements</button>
         </nav>
+    </header>
 
-        <div id="adminToast" class="admin-toast hidden"></div>
+    <main id="main">
 
-        <!-- ---------- ARTIFACTS PANEL ---------- -->
-        <section class="admin-panel" id="panel-artifacts">
-            <div class="admin-panel-head">
-                <h2>Artifacts</h2>
-                <button type="button" class="btn btn-primary admin-add-btn" data-form="artifact">+ Add Artifact</button>
+        <!-- ABOUT HERO -->
+        <section class="about-hero reveal">
+            <p class="section-label">ABOUT THE PROJECT</p>
+            <h1>The developer behind <span>Egypt Digital Museum</span></h1>
+            <p class="lede">Egypt Digital Museum is a passion project built to make Ancient Egyptian history feel alive — combining museum-quality presentation with modern, interactive web technology.</p>
+        </section>
+
+        <!-- ABOUT THE MUSEUM -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">A MUSEUM WITHOUT WALLS</p>
+                <h2>About the Museum</h2>
             </div>
+            <p class="prose about-lead-text">Egypt Digital Museum is an interactive digital experience designed to bring the history of Ancient Egypt to anyone, anywhere. Explore artifacts, travel through historical periods, walk through curated exhibitions, and learn about one of the world's most fascinating civilizations — all in one place.</p>
+            <p class="prose">Ancient Egypt was chosen because so few civilizations left behind as much to explore: its writing, its rulers, its beliefs about death and the afterlife, and monuments that still stand thousands of years later. The site is built for students, history enthusiasts, and anyone curious about the ancient world, whether or not they've ever set foot in a physical museum.</p>
+        </section>
 
-            <form class="admin-form hidden" id="form-artifact" data-entity="artifacts" data-id-field="id">
-                <input type="hidden" name="__editId">
-                <div class="admin-form-grid">
-                    <label>Name *<input type="text" name="name" required></label>
-                    <label>Object ID<input type="text" name="objectId" placeholder="e.g. EDM-NK-023"></label>
-                    <label>Subtitle<input type="text" name="subtitle"></label>
-                    <label>Period<input type="text" name="period" placeholder="e.g. New Kingdom"></label>
-                    <label>Dynasty<input type="text" name="dynasty" placeholder="e.g. 18th Dynasty"></label>
-                    <label>Date<input type="text" name="date" placeholder="e.g. c. 1323 BCE"></label>
-                    <label>Sort Year (number, negative = BCE)<input type="number" name="sortYear" placeholder="-1323"></label>
-                    <label>Category<input type="text" name="category" placeholder="e.g. Funerary Art"></label>
-                    <label>Material<input type="text" name="material"></label>
-                    <label>Dimensions<input type="text" name="dimensions"></label>
-                    <label>Origin<input type="text" name="origin"></label>
-                    <label>Current Location<input type="text" name="location"></label>
-                    <label>Image path or URL<input type="text" name="image" placeholder="assets/images/artifacts/..."></label>
-                    <label>Source Name<input type="text" name="sourceName"></label>
-                    <label>Source URL<input type="text" name="sourceUrl"></label>
-                    <label class="admin-checkbox"><input type="checkbox" name="featured"> Featured</label>
+        <!-- MISSION & VISION -->
+        <section class="about-section reveal">
+            <div class="mission-vision-grid">
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">𓂀</div>
+                    <h3>Our Mission</h3>
+                    <p>To make Ancient Egyptian history accessible, engaging and interactive through modern digital technology.</p>
                 </div>
-                <label class="admin-full">Discovery<textarea name="discovery" rows="2"></textarea></label>
-                <label class="admin-full">Description<textarea name="description" rows="3"></textarea></label>
-                <label class="admin-full">Significance<textarea name="significance" rows="3"></textarea></label>
-                <div class="admin-form-actions">
-                    <button type="submit" class="btn btn-primary">Save Artifact</button>
-                    <button type="button" class="btn btn-secondary admin-cancel-btn">Cancel</button>
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">☥</div>
+                    <h3>Our Vision</h3>
+                    <p>To create a digital museum where history isn't simply displayed — it can be explored, experienced and understood.</p>
                 </div>
-            </form>
-
-            <div class="egypt-table-wrap">
-                <table class="egypt-table admin-table" id="table-artifacts">
-                    <thead>
-                        <tr><th>ID</th><th>Name</th><th>Period</th><th>Category</th><th>Featured</th><th></th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
             </div>
         </section>
 
-        <!-- ---------- EXHIBITIONS PANEL ---------- -->
-        <section class="admin-panel hidden" id="panel-exhibitions">
-            <div class="admin-panel-head">
-                <h2>Exhibitions</h2>
-                <button type="button" class="btn btn-primary admin-add-btn" data-form="exhibition">+ Add Exhibition</button>
+        <!-- WHAT YOU CAN EXPLORE -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">GET YOUR BEARINGS</p>
+                <h2>What You Can Explore</h2>
             </div>
-
-            <form class="admin-form hidden" id="form-exhibition" data-entity="exhibitions" data-id-field="id">
-                <input type="hidden" name="__editId">
-                <div class="admin-form-grid">
-                    <label>ID / Slug * <small>(e.g. "pharaohs" — cannot be changed once created)</small>
-                        <input type="text" name="id" id="exhibitionIdInput" required pattern="[a-z0-9\-]+" placeholder="pharaohs">
-                    </label>
-                    <label>Title *<input type="text" name="title" required></label>
-                    <label>Category (slug)<input type="text" name="category" placeholder="pharaohs"></label>
-                    <label>Category Label<input type="text" name="categoryLabel" placeholder="Pharaohs"></label>
-                    <label>Period<input type="text" name="period" placeholder="c. 3100 – 30 BCE"></label>
-                    <label>Glyph<input type="text" name="glyph" value="𓂀" maxlength="4"></label>
-                    <label>Image path or URL<input type="text" name="image" placeholder="img/exhibitions/pharaohs.jpg"></label>
-                    <label class="admin-checkbox"><input type="checkbox" name="featured"> Featured</label>
-                </div>
-                <label class="admin-full">Short Description<textarea name="description" rows="2"></textarea></label>
-                <label class="admin-full">Long Description<textarea name="longDescription" rows="3"></textarea></label>
-                <label class="admin-full">Artifact IDs <small>(comma-separated numbers, e.g. 1, 3, 15, 17)</small>
-                    <input type="text" name="artifactIds" placeholder="1, 3, 15, 17, 21">
-                </label>
-                <div class="admin-form-actions">
-                    <button type="submit" class="btn btn-primary">Save Exhibition</button>
-                    <button type="button" class="btn btn-secondary admin-cancel-btn">Cancel</button>
-                </div>
-            </form>
-
-            <div class="egypt-table-wrap">
-                <table class="egypt-table admin-table" id="table-exhibitions">
-                    <thead>
-                        <tr><th>ID</th><th>Title</th><th>Category</th><th>Artifacts</th><th>Featured</th><th></th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="explore-grid">
+                <a href="artifacts.html" class="explore-item"><span class="glyph" aria-hidden="true">🏺</span><h4>Artifacts</h4><p>Explore historical objects and their stories.</p></a>
+                <a href="timeline.html" class="explore-item"><span class="glyph" aria-hidden="true">⏳</span><h4>Timeline</h4><p>Travel through the major eras of Egyptian history.</p></a>
+                <a href="exhibitions.html" class="explore-item"><span class="glyph" aria-hidden="true">🖼</span><h4>Exhibitions</h4><p>Discover curated historical themes and stories.</p></a>
+                <a href="virtual-museum.html" class="explore-item"><span class="glyph" aria-hidden="true">𓂀</span><h4>Virtual Museum</h4><p>Walk room to room through digital museum halls.</p></a>
+                <a href="learn.html" class="explore-item"><span class="glyph" aria-hidden="true">📚</span><h4>Learn</h4><p>Reference guides to history, writing and rulers.</p></a>
+                <a href="artifacts.html" class="explore-item"><span class="glyph" aria-hidden="true">⌕</span><h4>Search</h4><p>Find artifacts by name, period, category or material.</p></a>
+                <a href="virtual-museum.html" class="explore-item"><span class="glyph" aria-hidden="true">☥</span><h4>3D Models</h4><p>Interact with selected objects in 3D where available.</p></a>
             </div>
         </section>
 
-        <!-- ---------- ANNOUNCEMENTS PANEL ---------- -->
-        <section class="admin-panel hidden" id="panel-announcements">
-            <div class="admin-panel-head">
-                <h2>Announcements</h2>
-                <button type="button" class="btn btn-primary admin-add-btn" data-form="announcement">+ Add Announcement</button>
+        <!-- TECHNOLOGY -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">UNDER THE HOOD</p>
+                <h2>Technology Behind the Museum</h2>
             </div>
-            <p class="prose admin-note">Active announcements now appear at the bottom of the homepage automatically — no extra step needed.</p>
-
-            <form class="admin-form hidden" id="form-announcement" data-entity="announcements" data-id-field="id">
-                <input type="hidden" name="__editId">
-                <div class="admin-form-grid">
-                    <label>Title *<input type="text" name="title" required></label>
-                    <label class="admin-checkbox"><input type="checkbox" name="active" checked> Active</label>
+            <div class="tech-stack-grid">
+                <div class="tech-category">
+                    <span>Frontend</span>
+                    <p>HTML5 · CSS3 · Vanilla JavaScript</p>
                 </div>
-                <label class="admin-full">Message<textarea name="message" rows="3"></textarea></label>
-                <div class="admin-form-actions">
-                    <button type="submit" class="btn btn-primary">Save Announcement</button>
-                    <button type="button" class="btn btn-secondary admin-cancel-btn">Cancel</button>
+                <div class="tech-category">
+                    <span>Backend</span>
+                    <p>Node.js · Express</p>
                 </div>
-            </form>
-
-            <div class="egypt-table-wrap">
-                <table class="egypt-table admin-table" id="table-announcements">
-                    <thead>
-                        <tr><th>ID</th><th>Title</th><th>Date</th><th>Active</th><th></th></tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+                <div class="tech-category">
+                    <span>Database</span>
+                    <p>MongoDB · MongoDB Atlas</p>
+                </div>
+                <div class="tech-category">
+                    <span>3D</span>
+                    <p>Three.js</p>
+                </div>
+                <div class="tech-category">
+                    <span>Motion</span>
+                    <p>Lenis (smooth scroll)</p>
+                </div>
+                <div class="tech-category">
+                    <span>Hosting</span>
+                    <p>Currently local/development — not yet deployed publicly</p>
+                </div>
+            </div>
+            <div class="tech-flow" aria-hidden="true">
+                <span>Visitor</span>
+                <span>→</span>
+                <span>HTML / CSS / JavaScript</span>
+                <span>→</span>
+                <span>Express API</span>
+                <span>→</span>
+                <span>MongoDB Atlas</span>
+                <span>→</span>
+                <span>Artifact / Exhibition Data</span>
             </div>
         </section>
 
-    </div>
+        <!-- HOW IT WORKS -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">THE VISITOR EXPERIENCE</p>
+                <h2>How the Museum Works</h2>
+            </div>
+            <div class="journey">
+                <div class="journey-step"><b>01</b><span><strong>Discover</strong> — explore featured historical content on arrival.</span></div>
+                <div class="journey-step"><b>02</b><span><strong>Search</strong> — find artifacts by name, period, category or material.</span></div>
+                <div class="journey-step"><b>03</b><span><strong>Explore</strong> — open detailed artifact and exhibition pages.</span></div>
+                <div class="journey-step"><b>04</b><span><strong>Learn</strong> — understand the historical context behind each object.</span></div>
+                <div class="journey-step"><b>05</b><span><strong>Interact</strong> — walk through virtual museum rooms and rotate 3D models.</span></div>
+                <div class="journey-step"><b>06</b><span><strong>Save</strong> — add interesting artifacts to My Collection for later.</span></div>
+            </div>
+        </section>
+
+        <!-- HISTORICAL INTEGRITY -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">OUR APPROACH</p>
+                <h2>Historical Integrity</h2>
+            </div>
+            <p class="prose">As an educational project, Egypt Digital Museum aims to present historical information clearly and responsibly:</p>
+            <ul class="bullet-list integrity-list">
+                <li>Present historical information as clearly as possible</li>
+                <li>Provide context for each artifact, not just a description</li>
+                <li>Separate established historical fact from interpretation</li>
+                <li>Identify sources where possible</li>
+                <li>Avoid presenting fictional or invented details as historical fact</li>
+            </ul>
+        </section>
+
+        <!-- DEVELOPER PROFILE -->
+        <section class="developer-panel reveal">
+            <div>
+                <div class="developer-photo-wrap">
+                    <img src="My/my.png" alt="Sinura Manudhaya" class="developer-photo">
+                </div>
+                <p class="developer-name">SINURA MANUDHAYA</p>
+                <p class="developer-role">Web Developer · Photographer · Graphic Designer</p>
+            </div>
+
+            <div class="developer-bio">
+                <h2>Hi, I'm Sinura 👋</h2>
+                <p>I'm a web developer with a passion for building interactive, visually striking digital experiences. Egypt Digital Museum is where that passion meets history — an ongoing project to turn Ancient Egypt's artifacts, timelines and stories into something you can explore, not just read about.</p>
+                <p>Alongside development, I work as a photographer, photo editor and graphic designer for my school — capturing and designing visuals for school events and projects. That creative background carries over into this site, from its visual identity to the way its artifacts are presented.</p>
+                <p>I designed and built this site from the ground up, combining a museum-quality visual identity with modern web technology — from the interactive artifact explorer to the MongoDB-powered backend running behind the scenes.</p>
+
+                <div class="developer-facts">
+                    <div class="fact-item">
+                        <span>School</span>
+                        <strong>Anuradhapura Central College</strong>
+                    </div>
+                    <div class="fact-item">
+                        <span>Grade</span>
+                        <strong>Grade 10</strong>
+                    </div>
+                    <div class="fact-item">
+                        <span>Roles</span>
+                        <strong>Web Developer, Photographer, Photo Editor & Graphic Designer</strong>
+                    </div>
+                    <div class="fact-item">
+                        <span>Project</span>
+                        <strong>Egypt Digital Museum</strong>
+                    </div>
+                </div>
+
+                <p>Thanks for exploring the museum — I hope it brings Ancient Egypt to life for you the way building it did for me.</p>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">TOOLKIT</p>
+                <h2>Skills</h2>
+            </div>
+            <div class="learn-grid">
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">𓂀</div>
+                    <h3>Web Development</h3>
+                    <p>HTML · CSS · JavaScript</p>
+                </div>
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">☥</div>
+                    <h3>Database</h3>
+                    <p>MongoDB · REST APIs</p>
+                </div>
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">🧊</div>
+                    <h3>3D / Interactive</h3>
+                    <p>Three.js</p>
+                </div>
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">⏳</div>
+                    <h3>Design</h3>
+                    <p>Graphic Design · UI/UX</p>
+                </div>
+                <div class="learn-card">
+                    <div class="glyph" aria-hidden="true">📷</div>
+                    <h3>Media</h3>
+                    <p>Photography · Photo Editing</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECT JOURNEY -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">DEVELOPMENT LOG</p>
+                <h2>Project Journey</h2>
+            </div>
+            <div class="journey">
+                <div class="journey-step"><b>01</b><span><strong>Idea</strong> — the concept of a digital Ancient Egyptian museum.</span></div>
+                <div class="journey-step"><b>02</b><span><strong>Design</strong> — development of the visual identity and interface.</span></div>
+                <div class="journey-step"><b>03</b><span><strong>Artifact Explorer</strong> — the searchable artifact collection.</span></div>
+                <div class="journey-step"><b>04</b><span><strong>Timeline</strong> — the historical period timeline.</span></div>
+                <div class="journey-step"><b>05</b><span><strong>Exhibitions</strong> — curated digital exhibitions.</span></div>
+                <div class="journey-step"><b>06</b><span><strong>Virtual Museum</strong> — interactive room-by-room walkthrough.</span></div>
+                <div class="journey-step"><b>07</b><span><strong>Database</strong> — integration with MongoDB Atlas.</span></div>
+                <div class="journey-step"><b>08</b><span><strong>What's Next</strong> — more 3D models and educational tools.</span></div>
+            </div>
+        </section>
+
+        <!-- WHY A DIGITAL MUSEUM -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">HISTORY WITHOUT BORDERS</p>
+                <h2>Why a Digital Museum?</h2>
+            </div>
+            <p class="prose">A digital museum removes the barriers a physical one can't: distance, cost, and opening hours. It lets students and visitors explore from anywhere, search a collection in seconds instead of walking a building, and learn interactively rather than just reading a placard — experiencing historical objects digitally, on their own time.</p>
+        </section>
+
+        <!-- FUTURE DEVELOPMENT -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">WHAT'S NEXT</p>
+                <h2>Future Development</h2>
+            </div>
+            <p class="prose">This project is still growing. Planned next steps include:</p>
+            <ul class="future-list">
+                <li>More artifacts and exhibitions</li>
+                <li>More 3D models</li>
+                <li>Interactive archaeological maps</li>
+                <li>Educational quizzes and learning modules</li>
+                <li>Multilingual support</li>
+                <li>Audio guides</li>
+            </ul>
+        </section>
+
+        <!-- CREDITS & SOURCES -->
+        <section class="about-section reveal">
+            <div class="section-head">
+                <p class="section-label">WITH THANKS</p>
+                <h2>Credits &amp; Sources</h2>
+            </div>
+            <div class="fact-grid credits-grid">
+                <div class="fact">
+                    <span>Design &amp; Development</span>
+                    <strong>Sinura Manudhaya</strong>
+                </div>
+                <div class="fact">
+                    <span>Libraries</span>
+                    <strong>Three.js · Lenis</strong>
+                </div>
+                <div class="fact">
+                    <span>Images</span>
+                    <strong>Wikimedia Commons · National Geographic</strong>
+                </div>
+                <div class="fact">
+                    <span>Historical Research</span>
+                    <strong>General Egyptology references</strong>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEEDBACK -->
+        <section class="about-section feedback-section reveal">
+            <h2>Help Improve the Museum</h2>
+            <p class="prose">Found something incorrect? Have a suggestion? Want to contribute?</p>
+            <a href="mailto:hello@example.com?subject=Egypt%20Digital%20Museum%20Feedback" class="btn btn-primary">Send Feedback →</a>
+        </section>
+
+    </main>
 
     <footer class="site-footer">
-        <span>© 2026 Egypt Digital Museum</span>
+        <span>© 2025 Egypt Digital Museum</span>
         <span>Ancient Civilization × Future Technology</span>
     </footer>
 
-    <script src="js/admin.js"></script>
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/collection.js"></script>
+    <script src="js/nav-links.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.2 });
 
+        document.querySelectorAll(
+            '.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item, .reveal'
+        ).forEach((el, i) => {
+            el.style.transitionDelay = `${(i % 3) * 0.15}s`;
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
