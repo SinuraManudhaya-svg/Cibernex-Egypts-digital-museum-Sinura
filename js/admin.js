@@ -18,7 +18,7 @@
 'use strict';
 
 const $ = id => document.getElementById(id);
-const API_BASE = '/api';
+const API_BASE = 'https://egypt-museum-api.onrender.com/api';
 const TOKEN_KEY = 'edm_admin_token';
 const PASSWORD_KEY = 'edm_admin_password';
 const LOGIN_PAGE = 'login.html';
