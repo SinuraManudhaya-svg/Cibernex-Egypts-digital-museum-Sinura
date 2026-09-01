@@ -67,7 +67,9 @@ async function init() {
         return;
     }
 
-    const artifactsById = new Map(artifacts.map(a => [a.id, a]));
+    const artifactsById = new Map(
+    artifacts.map(a => [String(a.id), a])
+    );
     const exhibition = exhibitions.find(e => String(e.id) === String(id));
 
     if (!id || !exhibition) {
@@ -77,7 +79,9 @@ async function init() {
 
     const hydrated = {
         ...exhibition,
-        artifacts: exhibition.artifactIds.map(aid => artifactsById.get(aid)).filter(Boolean),
+        artifacts: exhibition.artifactIds
+           .map(aid => artifactsById.get(String(aid)))
+           .filter(Boolean),
     };
 
     document.title = `${hydrated.title} | Egypt Digital Museum`;
@@ -129,17 +133,34 @@ function renderExhibition(ex) {
     if (!ex.artifacts.length) {
         grid.innerHTML = '<p class="linked-artifacts-empty">No artifacts linked to this exhibition yet.</p>';
     } else {
-        grid.innerHTML = ex.artifacts.map(a => `
-            <article class="linked-artifact-card" data-id="${esc(a.id)}" role="listitem" tabindex="0"
-                     aria-label="${esc(a.name)} — ${esc(a.period)}">
-                <div class="linked-artifact-glyph" aria-hidden="true">𓂀</div>
-                <div class="linked-artifact-body">
-                    <h3>${esc(a.name)}</h3>
-                    <p class="linked-artifact-meta">${esc(a.dynasty)}<br>${esc(a.date)} · ${esc(a.category)}</p>
-                    <span class="linked-artifact-explore">View Artifact →</span>
-                </div>
-            </article>
-        `).join('');
+       grid.innerHTML = ex.artifacts.map(a => `
+<article
+    class="linked-artifact-card"
+    data-id="${esc(a.id)}"
+    role="listitem"
+    tabindex="0"
+    aria-label="${esc(a.name)} — ${esc(a.period)}"
+>
+    <div class="linked-artifact-image-wrap">
+        <img
+            src="${esc(a.image)}"
+            alt="${esc(a.name)}"
+            class="linked-artifact-image"
+            loading="lazy"
+        >
+    </div>
+    <div class="linked-artifact-body">
+        <h3>${esc(a.name)}</h3>
+        <p class="linked-artifact-meta">
+            ${esc(a.dynasty)}<br>
+            ${esc(a.date)} · ${esc(a.category)}
+        </p>
+        <span class="linked-artifact-explore">
+            View Artifact →
+        </span>
+    </div>
+</article>
+`).join('');
 
         grid.addEventListener('click', goToArtifactCard);
         grid.addEventListener('keydown', e => {
