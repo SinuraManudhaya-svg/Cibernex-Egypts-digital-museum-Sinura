@@ -233,6 +233,25 @@
     padding: 40px 0;
 }
 
+.linked-artifact-image-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #111;
+}
+
+.linked-artifact-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.linked-artifact-card:hover .linked-artifact-image {
+    transform: scale(1.04);
+}
+
 /* ---------- BACK / PREV / NEXT ---------- */
 .exhibition-prevnext {
     display: flex;
