@@ -260,3 +260,15 @@ function goToCard(e) {
     const card = e.target.closest('.exhibition-card[data-id]');
     if (card) window.location.href = `exhibition.html?id=${encodeURIComponent(card.dataset.id)}`;
 }
+
+const title = String(ex.title || '').toLowerCase();
+const category = String(ex.categoryLabel || '').toLowerCase();
+const description = String(ex.description || '').toLowerCase();
+const period = String(ex.period || '').toLowerCase();
+
+list = list.filter(() =>
+    title.includes(term) ||
+    category.includes(term) ||
+    description.includes(term) ||
+    period.includes(term)
+);
