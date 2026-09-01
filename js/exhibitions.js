@@ -172,7 +172,7 @@ function renderFeatured() {
                 <div><span>Artifacts</span><strong>${ex.artifactCount}</strong></div>
                 <div><span>Category</span><strong>${esc(ex.categoryLabel)}</strong></div>
             </div>
-            <a href="exhibition.html"?id=${encodeURIComponent(ex.id)}" class="btn btn-primary">Explore Exhibition →</a>
+            <a href="exhibition.html?id=${encodeURIComponent(ex.id)}" class="btn btn-primary">Explore →</a>
         </div>
     `;
 
