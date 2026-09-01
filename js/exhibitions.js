@@ -172,7 +172,7 @@ function renderFeatured() {
                 <div><span>Artifacts</span><strong>${ex.artifactCount}</strong></div>
                 <div><span>Category</span><strong>${esc(ex.categoryLabel)}</strong></div>
             </div>
-            <a href="exhibition.html?id=${encodeURIComponent(ex.id)}" class="btn btn-primary">Explore Exhibition →</a>
+            <a href="exhibition.html"?id=${encodeURIComponent(ex.id)}" class="btn btn-primary">Explore Exhibition →</a>
         </div>
     `;
 
@@ -189,13 +189,17 @@ function renderCategoryChips() {
         </button>
     `).join('');
 
-    row.addEventListener('click', e => {
-        const btn = e.target.closest('.chip');
-        if (!btn) return;
-        state.activeCategory = btn.dataset.category;
-        row.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === btn));
-        renderGrid();
-    });
+    $('categoryChips')?.addEventListener('click', e => {
+    const btn = e.target.closest('.chip');
+    if (!btn) return;
+
+    state.activeCategory = btn.dataset.category;
+
+    document.querySelectorAll('#categoryChips .chip')
+        .forEach(c => c.classList.toggle('active', c === btn));
+
+    renderGrid();
+   });
 }
 
 function renderGrid() {
