@@ -348,4 +348,47 @@ function renderCollectionPanel() {
         const card = e.target.closest('.artifact-card[data-id]');
         if (card) goToArtifact(card.dataset.id);
     };
+
+    /**
+ * artifacts.js — DEPLOYMENT FIX (patch only the loadArtifacts function)
+ * ========================================================================
+ * PROBLEM: const API_URL = '/api/artifacts' always 404s on Vercel because
+ * there is no serverless function at that path. The fallback works, but
+ * every single page load generates a console warning and a wasted network
+ * request.
+ *
+ * FIX: Detect production by checking if we're NOT on localhost/127.0.0.1,
+ * and skip the API call entirely in production, going straight to the JSON.
+ *
+ * WHERE TO APPLY: Replace the existing loadArtifacts() function in js/artifacts.js
+ */
+
+// ── REPLACE this block in artifacts.js ────────────────────────────────────
+// (find "const API_URL" through the closing brace of loadArtifacts)
+
+const API_URL          = '/api/artifacts';
+const FALLBACK_DATA_URL = 'json/artifacts.json';
+
+async function loadArtifacts() {
+  // Only try the local Express API when running on localhost.
+  // On Vercel (or any non-local host) skip straight to the static JSON
+  // so we don't generate a noisy 404 warning on every production page load.
+  const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
+
+  if (isLocal) {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error(`API responded ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      console.warn('Local API unavailable, falling back to json/artifacts.json:', err.message);
+    }
+  }
+
+  // Production path (or local fallback)
+  const res = await fetch(FALLBACK_DATA_URL);
+  if (!res.ok) throw new Error(`HTTP ${res.status} loading ${FALLBACK_DATA_URL}`);
+  return await res.json();
+}
+// ── END REPLACEMENT ────────────────────────────────────────────────────────
 }
