@@ -1,10 +1,10 @@
 /*
  * admin.css
- * Styles for admin.html. Reuses .egypt-table (learn.css), .chip-row/
- * .chip, .btn/.btn-primary/.btn-secondary, .prose and CSS variables
- * (--gold, --border, --bg-primary, etc.) from the rest of the site —
- * this file only adds what's unique to the dashboard: the login
- * gate, tab panels, and form layout.
+ * Styles for login.html and admin.html. Reuses .egypt-table
+ * (learn.css), .chip-row/.chip, .btn/.btn-primary/.btn-secondary,
+ * .prose and CSS variables (--gold, --border, --bg-primary, etc.)
+ * from the rest of the site — this file only adds what's unique to
+ * these two pages: the login gate, tab panels, and form layout.
  */
 
 .admin-body {
