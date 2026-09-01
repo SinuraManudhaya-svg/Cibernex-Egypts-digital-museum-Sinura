@@ -1,1 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin | Egypt Digital Museum</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/learn.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+    <!-- ===== DASHBOARD (only shown once admin.js confirms valid stored credentials — see initDashboardPage in admin.js) ===== -->
+    <div id="adminDashboard" class="admin-dashboard hidden">
+
+        <header class="admin-header">
+            <a href="index.html" class="logo">
+                <span class="logo-symbol" aria-hidden="true">𓂀</span>
+                <span>EGYPT</span>
+                <small>ADMIN DASHBOARD</small>
+            </a>
+            <div class="admin-header-actions">
+                <a href="index.html" class="admin-view-site">View Site ↗</a>
+                <button type="button" class="admin-logout" id="adminLogoutBtn">Log Out</button>
+            </div>
+        </header>
+
+        <nav class="chip-row admin-tabs" id="adminTabs">
+            <button type="button" class="chip active" data-tab="artifacts">Artifacts</button>
+            <button type="button" class="chip" data-tab="exhibitions">Exhibitions</button>
+            <button type="button" class="chip" data-tab="announcements">Announcements</button>
+        </nav>
+
+        <div id="adminToast" class="admin-toast hidden"></div>
+
+        <!-- ---------- ARTIFACTS PANEL ---------- -->
+        <section class="admin-panel" id="panel-artifacts">
+            <div class="admin-panel-head">
+                <h2>Artifacts</h2>
+                <button type="button" class="btn btn-primary admin-add-btn" data-form="artifact">+ Add Artifact</button>
+            </div>
+
+            <form class="admin-form hidden" id="form-artifact" data-entity="artifacts" data-id-field="id">
+                <input type="hidden" name="__editId">
+                <div class="admin-form-grid">
+                    <label>Name *<input type="text" name="name" required></label>
+                    <label>Object ID<input type="text" name="objectId" placeholder="e.g. EDM-NK-023"></label>
+                    <label>Subtitle<input type="text" name="subtitle"></label>
+                    <label>Period<input type="text" name="period" placeholder="e.g. New Kingdom"></label>
+                    <label>Dynasty<input type="text" name="dynasty" placeholder="e.g. 18th Dynasty"></label>
+                    <label>Date<input type="text" name="date" placeholder="e.g. c. 1323 BCE"></label>
+                    <label>Sort Year (number, negative = BCE)<input type="number" name="sortYear" placeholder="-1323"></label>
+                    <label>Category<input type="text" name="category" placeholder="e.g. Funerary Art"></label>
+                    <label>Material<input type="text" name="material"></label>
+                    <label>Dimensions<input type="text" name="dimensions"></label>
+                    <label>Origin<input type="text" name="origin"></label>
+                    <label>Current Location<input type="text" name="location"></label>
+                    <label>Image path or URL<input type="text" name="image" placeholder="assets/images/artifacts/..."></label>
+                    <label>Source Name<input type="text" name="sourceName"></label>
+                    <label>Source URL<input type="text" name="sourceUrl"></label>
+                    <label class="admin-checkbox"><input type="checkbox" name="featured"> Featured</label>
+                </div>
+                <label class="admin-full">Discovery<textarea name="discovery" rows="2"></textarea></label>
+                <label class="admin-full">Description<textarea name="description" rows="3"></textarea></label>
+                <label class="admin-full">Significance<textarea name="significance" rows="3"></textarea></label>
+                <div class="admin-form-actions">
+                    <button type="submit" class="btn btn-primary">Save Artifact</button>
+                    <button type="button" class="btn btn-secondary admin-cancel-btn">Cancel</button>
+                </div>
+            </form>
+
+            <div class="egypt-table-wrap">
+                <table class="egypt-table admin-table" id="table-artifacts">
+                    <thead>
+                        <tr><th>ID</th><th>Name</th><th>Period</th><th>Category</th><th>Featured</th><th></th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ---------- EXHIBITIONS PANEL ---------- -->
+        <section class="admin-panel hidden" id="panel-exhibitions">
+            <div class="admin-panel-head">
+                <h2>Exhibitions</h2>
+                <button type="button" class="btn btn-primary admin-add-btn" data-form="exhibition">+ Add Exhibition</button>
+            </div>
+
+            <form class="admin-form hidden" id="form-exhibition" data-entity="exhibitions" data-id-field="id">
+                <input type="hidden" name="__editId">
+                <div class="admin-form-grid">
+                    <label>ID / Slug * <small>(e.g. "pharaohs" — cannot be changed once created)</small>
+                        <input type="text" name="id" id="exhibitionIdInput" required pattern="[a-z0-9\-]+" placeholder="pharaohs">
+                    </label>
+                    <label>Title *<input type="text" name="title" required></label>
+                    <label>Category (slug)<input type="text" name="category" placeholder="pharaohs"></label>
+                    <label>Category Label<input type="text" name="categoryLabel" placeholder="Pharaohs"></label>
+                    <label>Period<input type="text" name="period" placeholder="c. 3100 – 30 BCE"></label>
+                    <label>Glyph<input type="text" name="glyph" value="𓂀" maxlength="4"></label>
+                    <label>Image path or URL<input type="text" name="image" placeholder="img/exhibitions/pharaohs.jpg"></label>
+                    <label class="admin-checkbox"><input type="checkbox" name="featured"> Featured</label>
+                </div>
+                <label class="admin-full">Short Description<textarea name="description" rows="2"></textarea></label>
+                <label class="admin-full">Long Description<textarea name="longDescription" rows="3"></textarea></label>
+                <label class="admin-full">Artifact IDs <small>(comma-separated numbers, e.g. 1, 3, 15, 17)</small>
+                    <input type="text" name="artifactIds" placeholder="1, 3, 15, 17, 21">
+                </label>
+                <div class="admin-form-actions">
+                    <button type="submit" class="btn btn-primary">Save Exhibition</button>
+                    <button type="button" class="btn btn-secondary admin-cancel-btn">Cancel</button>
+                </div>
+            </form>
+
+            <div class="egypt-table-wrap">
+                <table class="egypt-table admin-table" id="table-exhibitions">
+                    <thead>
+                        <tr><th>ID</th><th>Title</th><th>Category</th><th>Artifacts</th><th>Featured</th><th></th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ---------- ANNOUNCEMENTS PANEL ---------- -->
+        <section class="admin-panel hidden" id="panel-announcements">
+            <div class="admin-panel-head">
+                <h2>Announcements</h2>
+                <button type="button" class="btn btn-primary admin-add-btn" data-form="announcement">+ Add Announcement</button>
+            </div>
+            <p class="prose admin-note">Active announcements now appear at the bottom of the homepage automatically — no extra step needed.</p>
+
+            <form class="admin-form hidden" id="form-announcement" data-entity="announcements" data-id-field="id">
+                <input type="hidden" name="__editId">
+                <div class="admin-form-grid">
+                    <label>Title *<input type="text" name="title" required></label>
+                    <label class="admin-checkbox"><input type="checkbox" name="active" checked> Active</label>
+                </div>
+                <label class="admin-full">Message<textarea name="message" rows="3"></textarea></label>
+                <div class="admin-form-actions">
+                    <button type="submit" class="btn btn-primary">Save Announcement</button>
+                    <button type="button" class="btn btn-secondary admin-cancel-btn">Cancel</button>
+                </div>
+            </form>
+
+            <div class="egypt-table-wrap">
+                <table class="egypt-table admin-table" id="table-announcements">
+                    <thead>
+                        <tr><th>ID</th><th>Title</th><th>Date</th><th>Active</th><th></th></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="site-footer">
+        <span>© 2026 Egypt Digital Museum</span>
+        <span>Ancient Civilization × Future Technology</span>
+    </footer>
+
+    <script src="js/admin.js"></script>
+
+</body>
+</html>
