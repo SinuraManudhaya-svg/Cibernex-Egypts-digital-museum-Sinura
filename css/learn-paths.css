@@ -1,0 +1,476 @@
+/* =========================================================
+   LEARN-PATHS.CSS
+   Dedicated styles for the "Explore Ancient Egypt" section
+   Egypt Digital Museum — Learning Paths
+   ========================================================= */
+
+/* ---------- LOCAL DESIGN TOKENS ---------- */
+:root {
+  --lp-gold:          #c9a84c;
+  --lp-gold-bright:   #e2bb6a;
+  --lp-gold-dim:      rgba(201, 168, 76, 0.12);
+  --lp-gold-glow:     rgba(201, 168, 76, 0.08);
+  --lp-gold-line:     rgba(201, 168, 76, 0.35);
+  --lp-obsidian:      #0b0906;
+  --lp-surface:       #120f0a;
+  --lp-surface-hover: #161209;
+  --lp-border:        rgba(201, 168, 76, 0.22);
+  --lp-border-hover:  rgba(201, 168, 76, 0.55);
+  --lp-text:          #ede4d1;
+  --lp-text-muted:    rgba(237, 228, 209, 0.50);
+  --lp-text-dim:      rgba(237, 228, 209, 0.30);
+  --lp-radius:        6px;
+  --lp-transition:    0.32s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- SECTION WRAPPER ---------- */
+.learn-paths-section {
+  padding: 7rem 0 6rem;
+  position: relative;
+}
+
+/* Subtle horizontal rule above section */
+.learn-paths-section::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--lp-gold-line) 25%,
+    var(--lp-gold-line) 75%,
+    transparent 100%
+  );
+  margin-bottom: 7rem;
+}
+
+/* ---------- SECTION HEADING ---------- */
+.lp-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 4.5rem;
+}
+
+.lp-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--lp-gold);
+  text-transform: uppercase;
+  margin: 0 0 1.1rem;
+  opacity: 0.8;
+}
+
+.lp-heading h2 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  color: var(--lp-text);
+  margin: 0 0 0.9rem;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+}
+
+.lp-heading h2 span {
+  color: var(--lp-gold);
+}
+
+.lp-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.92rem;
+  color: var(--lp-text-muted);
+  margin: 0;
+  line-height: 1.65;
+}
+
+/* ---------- CARD GRID ---------- */
+.lp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  max-width: 960px;
+  margin: 0 auto 2.5rem;
+  padding: 0 1.5rem;
+}
+
+/* ---------- INDIVIDUAL CARD ---------- */
+.lp-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.4rem 2.4rem 2rem;
+  background: var(--lp-surface);
+  border: 1px solid var(--lp-border);
+  border-radius: var(--lp-radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform var(--lp-transition),
+    border-color var(--lp-transition),
+    background var(--lp-transition),
+    box-shadow var(--lp-transition);
+
+  /* Scroll-reveal initial state */
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.lp-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Radial glow layer (reveals on hover via opacity) */
+.lp-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 65% 55% at 50% 0%,
+    rgba(201, 168, 76, 0.065) 0%,
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity var(--lp-transition);
+  pointer-events: none;
+}
+
+/* Hover state */
+.lp-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--lp-border-hover);
+  background: var(--lp-surface-hover);
+  box-shadow:
+    0 0 0 1px rgba(201, 168, 76, 0.10),
+    0 20px 48px rgba(0, 0, 0, 0.55);
+}
+
+.lp-card:hover::before {
+  opacity: 1;
+}
+
+/* Focus ring for keyboard navigation */
+.lp-card:focus-visible {
+  outline: 2px solid var(--lp-gold);
+  outline-offset: 3px;
+}
+
+/* ---------- CARD TOP ROW: number + glyph ---------- */
+.lp-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.lp-card-number {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--lp-text-dim);
+  line-height: 1;
+  user-select: none;
+}
+
+.lp-card-glyph {
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--lp-gold);
+  opacity: 0.75;
+  transition: font-size var(--lp-transition), opacity var(--lp-transition);
+  user-select: none;
+}
+
+.lp-card:hover .lp-card-glyph {
+  font-size: 2.3rem;
+  opacity: 1;
+}
+
+/* ---------- CARD CATEGORY ---------- */
+.lp-card-category {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--lp-gold);
+  opacity: 0.7;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+  line-height: 1;
+}
+
+/* ---------- CARD TITLE ---------- */
+.lp-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 500;
+  color: var(--lp-text);
+  margin: 0 0 1rem;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+}
+
+/* ---------- CARD DESCRIPTION ---------- */
+.lp-card-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  color: var(--lp-text-muted);
+  line-height: 1.65;
+  margin: 0;
+  flex: 1; /* push CTA to bottom */
+}
+
+/* ---------- CARD CTA ---------- */
+.lp-card-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  color: var(--lp-gold);
+  opacity: 0.7;
+  text-decoration: none;
+  transition: opacity var(--lp-transition);
+  user-select: none;
+}
+
+/* CTA is inside the <article> but links are on the article tag as <a> */
+/* So the article itself IS the link; the .lp-card-cta is a visual element */
+.lp-card:hover .lp-card-cta {
+  opacity: 1;
+}
+
+.lp-cta-text {
+  white-space: nowrap;
+}
+
+.lp-cta-line {
+  flex: 0 0 0;
+  height: 1px;
+  background: var(--lp-gold);
+  opacity: 0.55;
+  transition: flex-basis 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.lp-card:hover .lp-cta-line {
+  flex-basis: 40px;
+}
+
+.lp-cta-arrow {
+  display: inline-block;
+  transition: transform var(--lp-transition);
+}
+
+.lp-card:hover .lp-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- CARD BOTTOM ACCENT LINE ---------- */
+.lp-card-line {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 1px;
+  background: var(--lp-gold);
+  opacity: 0.25;
+  transition: width var(--lp-transition), opacity var(--lp-transition);
+}
+
+.lp-card:hover .lp-card-line {
+  width: 70%;
+  opacity: 0.55;
+}
+
+/* ---------- STAGGERED REVEAL DELAYS ---------- */
+.lp-card:nth-child(1) { transition-delay: 0s; }
+.lp-card:nth-child(2) { transition-delay: 0.08s; }
+.lp-card:nth-child(3) { transition-delay: 0.16s; }
+.lp-card:nth-child(4) { transition-delay: 0.24s; }
+
+/* ---------- SOURCES PANEL ---------- */
+.lp-sources-panel {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.lp-sources-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.6rem 2.4rem;
+  border: 1px solid rgba(201, 168, 76, 0.14);
+  border-radius: var(--lp-radius);
+  background: rgba(201, 168, 76, 0.03);
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    border-color var(--lp-transition);
+}
+
+.lp-sources-inner.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.lp-sources-inner:hover {
+  border-color: rgba(201, 168, 76, 0.28);
+}
+
+.lp-sources-text {
+  flex: 1;
+}
+
+.lp-sources-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--lp-gold);
+  opacity: 0.6;
+  text-transform: uppercase;
+  margin: 0 0 0.4rem;
+}
+
+.lp-sources-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--lp-text);
+  margin: 0 0 0.35rem;
+  letter-spacing: 0.03em;
+}
+
+.lp-sources-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--lp-text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.lp-sources-cta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--lp-gold);
+  text-decoration: none;
+  opacity: 0.65;
+  white-space: nowrap;
+  transition: opacity var(--lp-transition), gap var(--lp-transition);
+}
+
+.lp-sources-cta:hover {
+  opacity: 1;
+  gap: 0.8rem;
+}
+
+.lp-sources-cta:focus-visible {
+  outline: 2px solid var(--lp-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------- REDUCED MOTION ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .lp-card,
+  .lp-sources-inner {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .lp-card:hover {
+    transform: none;
+  }
+
+  .lp-card-glyph,
+  .lp-cta-line,
+  .lp-cta-arrow,
+  .lp-card-line,
+  .lp-card::before {
+    transition: none;
+  }
+}
+
+/* ---------- RESPONSIVE: TABLET (≤768px) ---------- */
+@media (max-width: 768px) {
+  .learn-paths-section {
+    padding: 5rem 0 4rem;
+  }
+
+  .lp-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+    padding: 0 1rem;
+  }
+
+  .lp-card {
+    padding: 1.8rem 1.6rem 1.6rem;
+  }
+
+  .lp-card-glyph {
+    font-size: 1.65rem;
+  }
+
+  .lp-card:hover .lp-card-glyph {
+    font-size: 1.9rem;
+  }
+
+  .lp-sources-panel {
+    padding: 0 1rem;
+  }
+
+  .lp-sources-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    padding: 1.4rem 1.6rem;
+  }
+}
+
+/* ---------- RESPONSIVE: MOBILE (≤480px) ---------- */
+@media (max-width: 480px) {
+  .learn-paths-section {
+    padding: 4rem 0 3rem;
+  }
+
+  .learn-paths-section::before {
+    margin-bottom: 4rem;
+  }
+
+  .lp-heading {
+    margin-bottom: 3rem;
+    padding: 0 1rem;
+  }
+
+  .lp-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .lp-card {
+    padding: 1.8rem 1.6rem 1.6rem;
+  }
+
+  /* No stagger delay on mobile (all in one column) */
+  .lp-card:nth-child(n) {
+    transition-delay: 0s;
+  }
+
+  .lp-sources-panel {
+    padding: 0 1rem;
+  }
+}
