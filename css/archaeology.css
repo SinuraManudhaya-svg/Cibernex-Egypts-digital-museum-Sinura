@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+
+.section-intro {
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:4rem;align-items:end;
+    margin-bottom:3rem
+}
+
+.section-intro.single {
+    display:block
+}
+
+.section-intro h2 {
+    font:600 clamp(2rem,4vw,3.5rem)/1.1 Cinzel;
+    color:var(--text-primary)
+}
+
+.section-intro h2 span {
+    color:var(--gold)
+}
+
+.section-intro > p {
+    color:var(--text-secondary);
+    line-height:1.8
+}
+
+@media(max-width:800px){
+    .section-intro{
+        grid-template-columns:1fr;
+        gap:1rem
+    }
+}
+
+.arch-hero {
+    min-height:64vh;
+    padding:7rem clamp(1.25rem,7vw,8rem);
+    display:grid;
+    grid-template-columns:1fr 230px;
+    align-items:center;
+    gap:4rem;
+    border-bottom:1px solid var(--border);
+    background:radial-gradient(circle at 80% 50%,rgba(214,168,79,.1), transparent 25rem)
+}
+
+.arch-hero h1 {
+    font:700 clamp(3.5rem,8vw,7.5rem)/.9 Cinzel;
+    color:var(--text-primary)
+}
+
+.arch-hero h1 span {
+    color:var(--gold)
+}
+
+.arch-hero p:not(.section-label){
+    max-width:720px;
+    color:var(--text-secondary);
+    line-height:1.9
+}
+
+.arch-seal {
+    width:205px;
+    height:205px;
+    border:1px solid var(--border);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    position:relative
+}
+
+.arch-seal strong {
+    font-size:4rem;
+    color:var(--gold)
+}
+.arch-seal small {
+    position:absolute;
+    bottom:24px;
+    text-align:center;
+    color:var(--text-secondary);
+    font:10px/1.5 'Share Tech Mono';letter-spacing:.2em
+}
+
+.arch-section {
+    width:min(1320px,calc(100% - 2.5rem));
+    margin:auto;padding:7rem 0
+}
+
+.method-grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--border)
+}
+
+.method-grid article{
+    min-height:300px;
+    padding:2rem;
+    background:var(--bg-primary);transition:.3s
+}
+
+.method-grid article:hover{
+    transform:translateY(-5px);
+    background:var(--bg-secondary)
+}
+
+.method-grid article>span{
+    font:11px 'Share Tech Mono';color:#8e6b25
+}
+
+.method-grid b{
+    display:block;
+    margin:3rem 0 1rem;
+    font-size:2rem;
+    color:var(--gold);
+    font-weight:400
+}
+
+.method-grid h3 {
+    font:600 1.25rem Cinzel;
+    color:var(--text-primary)
+}
+.method-grid p,.case-study p,.research-banner p{
+    color:var(--text-secondary);
+    line-height:1.8
+}
+
+.case-study{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:4rem;
+    align-items:center;
+    padding:3rem;
+    border:1px solid var(--border)
+}
+
+.case-study h2,.research-banner h2{
+    font:600 clamp(2rem,4vw,3.4rem)/1.1 Cinzel;
+    color:var(--text-primary)
+}
+
+.case-study h2 span,.research-banner h2 span{
+    color:var(--gold)
+}
+
+.case-study a,.research-banner a{
+    display:inline-flex;
+    margin-top:1rem;
+    padding:.9rem 1.1rem;
+    border:1px solid var(--border);
+    color:var(--text-primary);
+    text-decoration:none;
+    font:11px 'Share Tech Mono'
+}
+
+.case-visual{
+    min-height:300px;
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    border:1px solid var(--border);
+    background:radial-gradient(circle at 50% 30%,rgba(214,168,79,.12),transparent 12rem)
+}
+
+.case-visual strong{
+    font:600 1.4rem Cinzel;
+    color:var(--gold-light)
+}
+
+.case-visual small{
+    margin-top:.5rem;color:var(--text-secondary)
+}
+
+.research-banner{
+    padding:clamp(2rem,6vw,5rem);
+    border:1px solid var(--border);
+    background:linear-gradient(135deg,rgba(214,168,79,.07),transparent)
+}
+
+@media(max-width:900px){
+    .arch-hero{grid-template-columns:1fr}
+    .arch-seal{display:none}
+    .method-grid{grid-template-columns:1fr 1fr}
+    .case-study{grid-template-columns:1fr}
+}
+
+@media(max-width:600px){
+    .arch-hero{padding:5rem 1.25rem}
+    .arch-section{width:calc(100% - 1.5rem);padding:4rem 0}
+    .method-grid{grid-template-columns:1fr}
+    .case-study{padding:1.5rem}
+}
