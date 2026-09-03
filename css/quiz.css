@@ -1,0 +1,230 @@
+/* =========================================================
+   quiz.css — Knowledge Challenge page
+   Egypt Digital Museum
+   ========================================================= */
+
+/* Fonts (loaded once here; preconnect hints are in the HTML <head>) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+
+/* ── Shared layout helpers (used on this page) ─────────────── */
+.section-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 3rem;
+}
+
+.section-intro.single {
+  display: block;
+}
+
+.section-intro h2 {
+  font: 600 clamp(2rem, 4vw, 3.5rem) / 1.1 Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.section-intro h2 span {
+  color: var(--gold);
+}
+
+.section-intro > p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+  .section-intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ── Quiz hero ──────────────────────────────────────────────── */
+.quiz-hero {
+  padding: 7rem clamp(1.25rem, 7vw, 8rem) 5rem;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(
+    circle at 75% 30%,
+    rgba(214, 168, 79, 0.1),
+    transparent 25rem
+  );
+}
+
+.quiz-hero h1 {
+  font: 700 clamp(3.5rem, 8vw, 7rem) / 0.95 Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.quiz-hero h1 span {
+  color: var(--gold);
+}
+
+.quiz-hero > p:last-child {
+  max-width: 700px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ── Quiz shell ─────────────────────────────────────────────── */
+.quiz-shell {
+  width: min(1000px, calc(100% - 2rem));
+  margin: 5rem auto;
+}
+
+/* ── Progress bar row ───────────────────────────────────────── */
+.quiz-top {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  color: #9d8960;
+  font: 10px 'Share Tech Mono', monospace;
+}
+
+.quiz-progress {
+  height: 2px;
+  background: rgba(214, 168, 79, 0.15);
+}
+
+.quiz-progress i {
+  display: block;
+  width: 10%;
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+/* ── Question card ──────────────────────────────────────────── */
+.quiz-card {
+  position: relative;
+  margin-top: 1.5rem;
+  padding: clamp(2rem, 6vw, 5rem);
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(214, 168, 79, 0.06), transparent);
+}
+
+.card-number {
+  position: absolute;
+  right: 2rem;
+  top: 1.5rem;
+  font: 3rem Cinzel, serif;
+  color: rgba(214, 168, 79, 0.12);
+  user-select: none;
+}
+
+.quiz-card h2 {
+  max-width: 760px;
+  font: 600 clamp(1.7rem, 4vw, 3rem) / 1.2 Cinzel, serif;
+  color: var(--text-primary);
+}
+
+/* ── Answer buttons ─────────────────────────────────────────── */
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-top: 2.5rem;
+}
+
+.answer {
+  padding: 1.2rem;
+  text-align: left;
+  border: 1px solid var(--border);
+  background: var(--bg-primary);
+  color: #c8bdab;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, color 0.25s;
+}
+
+.answer span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-right: 0.8rem;
+  border: 1px solid var(--border);
+  color: var(--gold);
+}
+
+.answer:hover,
+.answer.selected {
+  border-color: var(--gold);
+  background: rgba(214, 168, 79, 0.08);
+  color: var(--text-primary);
+}
+
+/* ── Navigation controls ────────────────────────────────────── */
+.quiz-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.quiz-button {
+  padding: 0.9rem 1.3rem;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: #090806;
+  font: 600 11px 'Share Tech Mono', monospace;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.quiz-button.secondary {
+  background: transparent;
+  color: var(--gold);
+}
+
+.quiz-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ── Result panel ───────────────────────────────────────────── */
+.quiz-result {
+  margin-top: 2rem;
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid var(--border);
+  background: rgba(214, 168, 79, 0.05);
+}
+
+.quiz-result strong {
+  display: block;
+  margin: 1rem;
+  font: 700 4rem Cinzel, serif;
+  color: var(--gold);
+}
+
+.quiz-result h2 {
+  font: 600 2rem Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.quiz-result p {
+  color: var(--text-secondary);
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 650px) {
+  .quiz-hero {
+    padding: 5rem 1.25rem 4rem;
+  }
+
+  .quiz-top {
+    grid-template-columns: 1fr;
+  }
+
+  .answers {
+    grid-template-columns: 1fr;
+  }
+
+  .quiz-controls {
+    gap: 0.5rem;
+  }
+
+  .quiz-button {
+    flex: 1;
+  }
+}
