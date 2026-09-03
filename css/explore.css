@@ -1,0 +1,247 @@
+/* =========================================================
+   explore.css — Nile Atlas page
+   Egypt Digital Museum
+   ========================================================= */
+
+/* Fonts (loaded once here; preconnect hints are in the HTML <head>) */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+
+/* ── Shared layout helpers (used on this page) ─────────────── */
+.section-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: end;
+  margin-bottom: 3rem;
+}
+
+.section-intro.single {
+  display: block;
+}
+
+.section-intro h2 {
+  font: 600 clamp(2rem, 4vw, 3.5rem) / 1.1 Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.section-intro h2 span {
+  color: var(--gold);
+}
+
+.section-intro > p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+@media (max-width: 800px) {
+  .section-intro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* ── Atlas hero ─────────────────────────────────────────────── */
+.atlas-hero {
+  min-height: 64vh;
+  padding: 7rem clamp(1.25rem, 7vw, 8rem);
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  align-items: center;
+  gap: 4rem;
+  border-bottom: 1px solid var(--border);
+  background: radial-gradient(
+    circle at 75% 50%,
+    rgba(214, 168, 79, 0.11),
+    transparent 26rem
+  );
+}
+
+.atlas-hero h1 {
+  font: 700 clamp(3.8rem, 9vw, 7.5rem) / 0.92 Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.atlas-hero h1 span {
+  color: var(--gold);
+}
+
+.atlas-hero > div:first-child > p:not(.section-label) {
+  max-width: 720px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+}
+
+.atlas-meta {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  color: #927b4d;
+  font: 10px 'Share Tech Mono', monospace;
+}
+
+/* ── Atlas seal (circular glyph badge) ─────────────────────── */
+.atlas-seal {
+  width: 210px;
+  height: 210px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.atlas-seal strong {
+  font-size: 4rem;
+  color: var(--gold);
+}
+
+.atlas-seal small {
+  position: absolute;
+  bottom: 24px;
+  color: var(--text-secondary);
+  font: 10px / 1.5 'Share Tech Mono', monospace;
+  letter-spacing: 0.2em;
+}
+
+/* ── Section wrapper ────────────────────────────────────────── */
+.atlas-section {
+  width: min(1320px, calc(100% - 2.5rem));
+  margin: auto;
+  padding: 7rem 0;
+}
+
+/* ── Region tabs ────────────────────────────────────────────── */
+.region-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.region-tab {
+  padding: 1rem 1.3rem;
+  background: none;
+  border: 0;
+  color: #8e877b;
+  font: 11px 'Share Tech Mono', monospace;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.region-tab:hover {
+  color: var(--text-primary);
+}
+
+.region-tab.is-active {
+  color: var(--gold-light, var(--gold));
+  border-bottom: 2px solid var(--gold);
+}
+
+/* ── Region panel ───────────────────────────────────────────── */
+.region-panel {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 2rem;
+  padding: 3rem;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(214, 168, 79, 0.07), transparent);
+}
+
+.region-number {
+  font: 700 3rem Cinzel, serif;
+  color: rgba(214, 168, 79, 0.4);
+}
+
+.region-panel h3 {
+  font: 600 2rem Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.region-panel p:not(.section-label) {
+  max-width: 800px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+/* ── Landscape grid ─────────────────────────────────────────── */
+.landscape-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.landscape-card {
+  min-height: 300px;
+  padding: 2rem;
+  background: var(--bg-primary);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.landscape-card:hover {
+  transform: translateY(-5px);
+  background: var(--bg-secondary);
+}
+
+.landscape-card > span {
+  font: 11px 'Share Tech Mono', monospace;
+  color: #8e6b25;
+}
+
+.landscape-card > b {
+  display: block;
+  margin: 3rem 0 1.2rem;
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.landscape-card h3 {
+  font: 600 1.3rem Cinzel, serif;
+  color: var(--text-primary);
+}
+
+.landscape-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.88rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .atlas-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-seal {
+    display: none;
+  }
+
+  .landscape-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .atlas-hero {
+    padding: 5rem 1.25rem;
+  }
+
+  .atlas-section {
+    width: calc(100% - 1.5rem);
+    padding: 4rem 0;
+  }
+
+  .landscape-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .region-panel {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+}
