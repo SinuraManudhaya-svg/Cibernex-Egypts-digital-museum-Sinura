@@ -1,221 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main.css">
-        <title>
-        Archaeology | Egypt Digital Museum
-        </title>
-        <meta name="description" content="Learn how archaeology turns ancient Egyptian remains into evidence.">
-        <link rel="stylesheet" href="css/archaeology.css">
-    </head>
-    <body>
-        <header class="site-header">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                <span class="logo-symbol">
-                𓂀
-                </span>
-                <span>
-                EGYPT
-                </span>
-                <small>
-                DIGITAL MUSEUM
-                </small>
-                </a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
-                ☰
-                </button>
-                <div class="nav-links" id="navLinks">
-                    <a href="index.html">
-                    Home
-                    </a>
-                    <a href="explore.html">
-                    Explore
-                    </a>
-                    <a href="artifacts.html">
-                    Artifacts
-                    </a>
-                    <a href="timeline.html">
-                    Timeline
-                    </a>
-                    <a href="exhibitions.html">
-                    Exhibitions
-                    </a>
-                    <a href="virtual-museum.html">
-                    Virtual Museum
-                    </a>
-                    <a class="active" href="learn.html">
-                    Learn
-                    </a>
-                </div>
-            </nav>
-        </header>
-        <main class="arch-page">
-            <section class="arch-hero">
-                <div>
-                    <p class="section-label">
-                    HOW HISTORY IS BUILT
-                    </p>
-                    <h1>
-                    The
-                    <span>
-                    Archaeology
-                    </span>
-                    Lab
-                    </h1>
-                    <p>
-                    Archaeology turns traces of the past into evidence. Explore the methods researchers use to document, analyse and interpret ancient Egyptian remains.
-                    </p>
-                </div>
-                <div class="arch-seal">
-                    <strong>
-                    𓂀
-                    </strong>
-                    <small>
-                    FIELD
-                    <br>
-                    RESEARCH
-                    </small>
-                </div>
-            </section>
-            <section class="arch-section">
-                <div class="section-intro">
-                    <div>
-                        <p class="section-label">
-                        THE METHOD
-                        </p>
-                        <h2>
-                        From discovery to
-                        <span>
-                        interpretation.
-                        </span>
-                        </h2>
-                    </div>
-                    <p>
-                    Archaeological knowledge is built through careful observation, recording, comparison and evidence-based interpretation.
-                    </p>
-                </div>
-                <div class="method-grid">
-                    <article>
-                        <span>
-                        01
-                        </span>
-                        <b>
-                        ⌖
-                        </b>
-                        <h3>
-                        Context
-                        </h3>
-                        <p>
-                        Where an object is found can be as important as the object itself. Its location and relationships provide clues.
-                        </p>
-                    </article>
-                    <article>
-                        <span>
-                        02
-                        </span>
-                        <b>
-                        ▤
-                        </b>
-                        <h3>
-                        Documentation
-                        </h3>
-                        <p>
-                        Plans, photographs, notes and measurements create a record that can be studied long after fieldwork ends.
-                        </p>
-                    </article>
-                    <article>
-                        <span>
-                        03
-                        </span>
-                        <b>
-                        ◇
-                        </b>
-                        <h3>
-                        Analysis
-                        </h3>
-                        <p>
-                        Materials, inscriptions, styles and scientific evidence can be compared to understand an object's history.
-                        </p>
-                    </article>
-                    <article>
-                        <span>
-                        04
-                        </span>
-                        <b>
-                        ✦
-                        </b>
-                        <h3>
-                        Interpretation
-                        </h3>
-                        <p>
-                        Researchers combine evidence to develop explanations while recognising uncertainty and competing possibilities.
-                        </p>
-                    </article>
-                </div>
-            </section>
-            <section class="arch-section">
-                <div class="case-study">
-                    <div>
-                        <p class="section-label">
-                        CASE STUDY / OBJECT 02
-                        </p>
-                        <h2>
-                        The
-                        <span>
-                        Rosetta Stone
-                        </span>
-                        </h2>
-                        <p>
-                        The Rosetta Stone became important because its inscriptions allowed scholars to compare the same decree in different scripts. It demonstrates how texts can help unlock ancient writing.
-                        </p>
-                        <a href="artifact.html?id=2">
-                        View artifact →
-                        </a>
-                    </div>
-                    <div class="case-visual">
-                        <strong>
-                        TEXT AS
-                        <br>
-                        EVIDENCE
-                        </strong>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn how archaeology turns ancient Egyptian remains into evidence.">
+    <title>Archaeology | Egypt Digital Museum</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/archaeology.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="index.html" class="logo">
+      <span class="logo-symbol" aria-hidden="true">𓂀</span>
+      <span>EGYPT</span>
+      <small>DIGITAL MUSEUM</small>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="artifacts.html">Artifacts</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="exhibitions.html">Exhibitions</a>
+      <a href="virtual-museum.html">Virtual Museum</a>
+      <a href="learn.html" class="active">Learn</a>
+    </div>
+  </nav>
+</header>
+<main class="arch-page">
+    <section class="arch-hero">
+        <div>
+            <p class="section-label">HOW HISTORY IS BUILT</p>
+            <h1>The<span>Archaeology</span>Lab</h1>
+            <p>Archaeology turns traces of the past into evidence. Explore the methods researchers use to document, analyse and interpret ancient Egyptian remains.</p>
+        </div>
+        
+        <div class="arch-seal">
+            <strong>𓂀</strong>
+            <small>FIELD<br>RESEARCH</small>
+        </div>
+    </section>
+    
+    <section class="arch-section">
+        <div class="section-intro">
+            <div>
+                <p class="section-label">THE METHOD</p>
+                <h2>From discovery to<span>interpretation.</span></h2>
+            </div>
+            <p>Archaeological knowledge is built through careful observation, recording, comparison and evidence-based interpretation.</p>
+        </div>
+        
+        <div class="method-grid">
+            <article>
+                <span>01</span>
+                <b>⌖</b>
+                <h3>Context</h3>
+                <p>Where an object is found can be as important as the object itself. Its location and relationships provide clues.</p>
+            </article>
+            
+            <article>
+                <span>02</span>
+                <b>▤/b>
+                <h3>Documentation</h3>
+                <p>Plans, photographs, notes and measurements create a record that can be studied long after fieldwork ends.</p>
+            </article>
+            
+            <article>
+                <span>03</span>
+                <b>◇</b>
+                <h3>Analysis</h3>
+                <p>Materials, inscriptions, styles and scientific evidence can be compared to understand an object's history.</p>
+            </article>
+            
+            <article>
+                <span>04</span>
+                <b>✦</b>
+                <h3>Interpretation</h3>
+                <p>Researchers combine evidence to develop explanations while recognising uncertainty and competing possibilities.</p>
+            </article>
+        </div>
+    </section>
+    
+    <section class="arch-section">
+        <div class="case-study">
+            <div>
+                <p class="section-label">CASE STUDY / OBJECT 02</p>
+                <h2>The<span>Rosetta Stone</span></h2>
+                <p>The Rosetta Stone became important because its inscriptions allowed scholars to compare the same decree in different scripts. It demonstrates how texts can help unlock ancient writing.</p>
+                <a href="artifact.html?id=2">View artifact →</a>
+            </div>
+            
+            <div class="case-visual">
+                <strong>TEXT AS<br>EVIDENCE</strong>
                         <small>
                         Language · Writing · Interpretation
                         </small>
                     </div>
                 </div>
             </section>
+
             <section class="arch-section">
                 <div class="research-banner">
-                    <p class="section-label">
-                    ARCHAEOLOGY TODAY
-                    </p>
-                    <h2>
-                    Every artifact has a
-                    <span>
-                    context.
-                    </span>
-                    </h2>
-                    <p>
-                    Modern archaeology combines fieldwork, conservation, historical research and scientific techniques. The goal is not simply to find objects, but to understand the people, places and processes connected to them.
-                    </p>
-                    <a href="sources.html">
-                    Research &amp; Sources →
-                    </a>
+                    <p class="section-label">ARCHAEOLOGY TODAY</p>
+                    <h2>Every artifact has a<span>context.</span></h2>
+                    <p>Modern archaeology combines fieldwork, conservation, historical research and scientific techniques. The goal is not simply to find objects, but to understand the people, places and processes connected to them.</p>
+                    <a href="sources.html">Research &amp; Sources →</a>
                 </div>
             </section>
-        </main>
-        <footer class="site-footer">
-            <span>
-            © 2026 Egypt Digital Museum
-            </span>
-            <span>
-            Explore · Learn · Discover
-            </span>
-        </footer>
-        <script src="js/archaeology.js">
-        </script>
-    </body>
+        </div>
+    </section>
+</main>
+
+    <footer class="site-footer">
+        <span>© 2026 Egypt Digital Museum</span>
+        <span>Explore · Learn · Discover</span>
+    </footer>
+
+    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+    <script src="js/archaeology.js"></script>
+    <script>
+        // IntersectionObserver for scroll reveals
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll(
+            '.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item, .reveal'
+        ).forEach((el, i) => {
+            el.style.transitionDelay = `${(i % 3) * 0.15}s`;
+            observer.observe(el);
+        });
+
+    </script>
+
+</body>
 </html>
