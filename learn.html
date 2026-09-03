@@ -1,406 +1,513 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about ancient Egypt — history, hieroglyphs, kings and queens, gods, science and technology, and a quiz to test your knowledge.">
-
-    <title>Learn | Egypt Digital Museum</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
-    <link rel="stylesheet" href="css/loader.css">
-    <link rel="stylesheet" href="css/artifacts.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link rel="stylesheet" href="css/exhibitions.css">
-    <link rel="stylesheet" href="css/learn.css">
-    <link rel="stylesheet" href="css/main.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Learn about ancient Egypt — history, hieroglyphs, kings and queens, gods, science and technology, and a quiz to test your knowledge.">
+<title>Learn | Egypt Digital Museum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+<link rel="stylesheet" href="css/loader.css">
+<link rel="stylesheet" href="css/artifacts.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/exhibitions.css">
+<link rel="stylesheet" href="css/learn.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/learn-paths.css">
 </head>
 <body>
 
-    <div id="loader">
-        <div class="loader-inner">
-            <div class="rings">
-                <div class="ring ring--1"></div>
-                <div class="ring ring--2"></div>
-                <div class="ring ring--3"></div>
-            </div>
-            <div class="eye-wrap">
-                <svg viewBox="0 0 120 90" fill="none">
-                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
-                                               C 60 66, 30 62, 8 40 Z" />
-                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
-                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
-                </svg>
-            </div>
-            <p class="loader-eyebrow">A Digital Journey Through History</p>
-            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
-            <div class="progress-track">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <div class="progress-meta">
-                <span id="progress-label">Unsealing the archives</span>
-                <span id="progress-percent">0%</span>
-            </div>
-        </div>
+<div id="loader">
+  <div class="loader-inner">
+    <div class="rings">
+      <div class="ring ring--1"></div>
+      <div class="ring ring--2"></div>
+      <div class="ring ring--3"></div>
+    </div>
+    <div class="eye-wrap">
+      <svg viewBox="0 0 120 90" fill="none">
+        <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+        C 60 66, 30 62, 8 40 Z" />
+        <circle class="eye-pupil" cx="52" cy="38" r="8" />
+        <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+      </svg>
+    </div>
+    <p class="loader-eyebrow">A Digital Journey Through History</p>
+    <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+    <div class="progress-track">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+    <div class="progress-meta">
+      <span id="progress-label">Unsealing the archives</span>
+      <span id="progress-percent">0%</span>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a href="index.html" class="logo">
+      <span class="logo-symbol" aria-hidden="true">𓂀</span>
+      <span>EGYPT</span>
+      <small>DIGITAL MUSEUM</small>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore</a>
+      <a href="artifacts.html">Artifacts</a>
+      <a href="timeline.html">Timeline</a>
+      <a href="exhibitions.html">Exhibitions</a>
+      <a href="virtual-museum.html">Virtual Museum</a>
+      <a href="learn.html" class="active">Learn</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="eyebrow">EDUCATIONAL ARCHIVE / 06</p>
+      <h1>Learn About <span>Ancient Egypt</span></h1>
+      <p>A reference guide to the history, writing, rulers and beliefs of one of history's longest-lived civilizations — a starting point before you explore the collection.</p>
+    </div>
+    <div class="hero-eye" aria-hidden="true">𓂀</div>
+  </section>
+
+  <!-- LEARNING PATHS -->
+  <section class="section learn-section" id="paths">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">BEGIN YOUR JOURNEY</p>
+        <h2>Choose a <span>Learning Path</span></h2>
+      </div>
+    </div>
+    <div class="paths-grid">
+      <a href="#overview" class="path-card"><span class="glyph">𓂀</span><h4>Egyptian History</h4><p>From unification to Roman Egypt.</p></a>
+      <a href="#kings" class="path-card"><span class="glyph">☥</span><h4>Kings &amp; Queens</h4><p>Kingship, power and succession.</p></a>
+      <a href="#gods" class="path-card"><span class="glyph">⏳</span><h4>Gods &amp; Mythology</h4><p>Deities and ancient belief.</p></a>
+      <a href="#hieroglyphs" class="path-card"><span class="glyph">✍️</span><h4>Hieroglyphs</h4><p>How Egyptian writing worked.</p></a>
+      <a href="#science" class="path-card"><span class="glyph">🔬</span><h4>Science &amp; Engineering</h4><p>Mathematics, medicine, astronomy.</p></a>
+      <a href="#quiz" class="path-card"><span class="glyph">🧠</span><h4>Test Your Knowledge</h4><p>A short quiz on everything above.</p></a>
+    </div>
+  </section>
+
+  <!-- QUICK JUMP NAV -->
+  <nav class="learn-jump-nav" aria-label="Jump to section">
+    <div class="chip-row" id="learnJumpNav">
+      <a href="#overview" class="chip">Overview</a>
+      <a href="#hieroglyphs" class="chip">Hieroglyphs</a>
+      <a href="#kings" class="chip">Kings</a>
+      <a href="#queens" class="chip">Queens</a>
+      <a href="#gods" class="chip">Gods & Goddesses</a>
+      <a href="#science" class="chip">Science & Tech</a>
+      <a href="#glossary" class="chip">Glossary</a>
+      <a href="#quiz" class="chip">Quiz</a>
+    </div>
+  </nav>
+
+  <!-- OVERVIEW -->
+  <section class="section learn-section" id="overview">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">WHERE TO BEGIN</p>
+        <h2>Overview <span>of Ancient Egypt</span></h2>
+      </div>
+    </div>
+    <p class="prose">Ancient Egyptian civilization took shape along the banks of the Nile in northeastern Africa and lasted, in one form or another, for roughly three thousand years — from unification around 3100 BCE to Roman annexation in 30 BCE. Few civilizations in history have endured, and left as much behind, for as long.</p>
+    <div class="learn-grid">
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">☥</div>
+        <h3>The Gift of the Nile</h3>
+        <p>Egypt's civilization depended entirely on the Nile's yearly flood, which deposited fertile black silt across an otherwise desert landscape. The Greek historian Herodotus famously called Egypt "the gift of the Nile" — settlements, agriculture and trade all clustered along its banks.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">𓂀</div>
+        <h3>Ma'at: Order Against Chaos</h3>
+        <p>Egyptian religion and kingship centered on Ma'at — truth, balance and cosmic order. The pharaoh's central duty was to uphold Ma'at against Isfet (chaos), a belief that shaped Egyptian art, law and religion for millennia.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">⏳</div>
+        <h3>Three Kingdoms, One Civilization</h3>
+        <p>Historians divide ancient Egyptian history into the Old, Middle and New Kingdoms — eras of strong central rule — separated by "Intermediate Periods" of fragmentation. Despite the ebb and flow of power, core beliefs and artistic traditions stayed remarkably consistent.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIEROGLYPHS -->
+  <section class="section learn-section" id="hieroglyphs">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">THE WRITTEN WORD</p>
+        <h2>Hieroglyphs <span>& the Egyptian Alphabet</span></h2>
+      </div>
+    </div>
+    <p class="prose">Hieroglyphic writing — literally "sacred carving" in Greek — was in use from around 3200 BCE until the last known inscription in 394 CE. The full system combined logograms (signs representing whole words) with phonograms (signs representing sounds), and included over a thousand distinct signs across its history.</p>
+    <p class="prose">Egyptian writing was undecipherable to the modern world for over a thousand years after its last use, until the discovery of the Rosetta Stone in 1799 — a single decree carved in hieroglyphic, Demotic and Greek — let the French scholar Jean-François Champollion crack the code in 1822.</p>
+    <p class="prose">Among the full sign system, 24 signs functioned as single consonants — close to an "alphabet," though Egyptian writing never dropped its word-signs entirely in favor of one. The simplified table below (a popular teaching version, not the full scribal system) shows these uniliteral signs by the object they depict and the consonant sound they represented. Egyptian writing recorded only consonants — vowels were not written.</p>
+    <div class="egypt-table-wrap">
+      <table class="egypt-table">
+        <thead>
+          <tr><th>Sign (depicts)</th><th>Sound</th><th>Sign (depicts)</th><th>Sound</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Egyptian vulture</td><td>A</td><td>Folded cloth</td><td>S</td></tr>
+          <tr><td>Flowering reed</td><td>I</td><td>Pool of water</td><td>SH</td></tr>
+          <tr><td>Two reed flowers</td><td>Y</td><td>Hill slope</td><td>Q</td></tr>
+          <tr><td>Forearm</td><td>A (ayin)</td><td>Basket with handle</td><td>K</td></tr>
+          <tr><td>Quail chick</td><td>W / U</td><td>Jar stand</td><td>G</td></tr>
+          <tr><td>Leg and foot</td><td>B</td><td>Loaf of bread</td><td>T</td></tr>
+          <tr><td>Stool</td><td>P</td><td>Tethering rope</td><td>TJ</td></tr>
+          <tr><td>Horned viper</td><td>F</td><td>Hand</td><td>D</td></tr>
+          <tr><td>Owl</td><td>M</td><td>Cobra</td><td>DJ</td></tr>
+          <tr><td>Water ripple</td><td>N</td><td>Door bolt</td><td>Z</td></tr>
+          <tr><td>Mouth</td><td>R</td><td>Twisted flax</td><td>KH</td></tr>
+          <tr><td>Courtyard / reed shelter</td><td>H</td><td>Animal's belly</td><td>KH (soft)</td></tr>
+        </tbody>
+      </table>
     </div>
 
-    <header class="site-header">
-        <nav class="navbar" aria-label="Main navigation">
-            <a href="index.html" class="logo">
-                <span class="logo-symbol" aria-hidden="true">𓂀</span>
-                <span>EGYPT</span>
-                <small>DIGITAL MUSEUM</small>
-            </a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">Home</a>
-                <a href="artifacts.html">Artifacts</a>
-                <a href="timeline.html">Timeline</a>
-                <a href="exhibitions.html">Exhibitions</a>
-                <a href="virtual-museum.html">Virtual Museum</a>
-                <a href="learn.html" class="active">Learn</a>
-            </div>
-        </nav>
-    </header>
+    <!-- HIEROGLYPH NAME GENERATOR -->
+    <div class="hiero-generator">
+      <p class="section-label">TRY IT YOURSELF</p>
+      <h3>Write Your Name — the Uniliteral Way</h3>
+      <p class="prose">Type a name to see it broken into the nearest matching uniliteral signs above. This is a fun, modern approximation, not scholarly transliteration — Egyptian writing wasn't a direct letter-for-letter match to the English alphabet, and vowels in particular have no real Egyptian sign.</p>
+      <div class="hiero-input-row">
+        <input type="text" id="hieroNameInput" placeholder="Type a name…" maxlength="20" autocomplete="off">
+        <button type="button" class="btn btn-primary" id="hieroGenerateBtn">Generate</button>
+      </div>
+      <div class="hiero-result" id="hieroResult"></div>
+    </div>
+  </section>
 
-    <main id="main">
+  <!-- KINGS -->
+  <section class="section learn-section" id="kings">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">RULERS OF THE NILE</p>
+        <h2>Notable <span>Kings & Pharaohs</span></h2>
+      </div>
+    </div>
+    <p class="prose">A pharaoh's reign was measured not only in years but in monuments, wars and reforms. These are among the most significant rulers across Egypt's three-thousand-year history.</p>
+    <div class="egypt-table-wrap">
+      <table class="egypt-table">
+        <thead>
+          <tr><th>Name</th><th>Period</th><th>Reign (approx.)</th><th>Known For</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Narmer (Menes)</td><td>1st Dynasty</td><td>c. 3100 BCE</td><td>Unified Upper and Lower Egypt; founded Memphis</td></tr>
+          <tr><td>Djoser</td><td>3rd Dynasty, Old Kingdom</td><td>c. 2650 BCE</td><td>Built the Step Pyramid at Saqqara, Egypt's first great stone monument</td></tr>
+          <tr><td>Khufu (Cheops)</td><td>4th Dynasty, Old Kingdom</td><td>c. 2589–2566 BCE</td><td>Built the Great Pyramid of Giza</td></tr>
+          <tr><td>Khafre</td><td>4th Dynasty, Old Kingdom</td><td>c. 2570s BCE</td><td>Built the second Giza pyramid and the Great Sphinx</td></tr>
+          <tr><td>Amenemhat III</td><td>12th Dynasty, Middle Kingdom</td><td>c. 1860–1814 BCE</td><td>Middle Kingdom prosperity; land reclamation in the Faiyum</td></tr>
+          <tr><td>Hatshepsut</td><td>18th Dynasty, New Kingdom</td><td>c. 1479–1458 BCE</td><td>Ruled as full pharaoh; expanded trade with Punt; mortuary temple at Deir el-Bahari</td></tr>
+          <tr><td>Thutmose III</td><td>18th Dynasty, New Kingdom</td><td>c. 1479–1425 BCE</td><td>Military campaigns that built Egypt's largest empire</td></tr>
+          <tr><td>Akhenaten</td><td>18th Dynasty, New Kingdom</td><td>c. 1353–1336 BCE</td><td>Religious reformer; promoted the sun disc Aten; moved the capital to Amarna</td></tr>
+          <tr><td>Tutankhamun</td><td>18th Dynasty, New Kingdom</td><td>c. 1332–1323 BCE</td><td>Restored traditional religion; his nearly intact tomb (found 1922) is the best-known royal burial today</td></tr>
+          <tr><td>Seti I</td><td>19th Dynasty, New Kingdom</td><td>c. 1290–1279 BCE</td><td>Military campaigns; elaborate tomb art; father of Ramesses II</td></tr>
+          <tr><td>Ramesses II ("the Great")</td><td>19th Dynasty, New Kingdom</td><td>c. 1279–1213 BCE</td><td>One of the longest, most celebrated reigns; built Abu Simbel</td></tr>
+          <tr><td>Ptolemy I Soter</td><td>Ptolemaic Period</td><td>c. 305–282 BCE</td><td>Former general of Alexander the Great; founded the Ptolemaic dynasty</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-        <!-- HERO -->
-        <section class="page-hero">
-            <div class="hero-grid" aria-hidden="true"></div>
-            <div class="hero-content">
-                <p class="eyebrow">EDUCATIONAL ARCHIVE / 06</p>
-                <h1>Learn About <span>Ancient Egypt</span></h1>
-                <p>A reference guide to the history, writing, rulers and beliefs of one of history's longest-lived civilizations — a starting point before you explore the collection.</p>
-            </div>
-            <div class="hero-eye" aria-hidden="true">𓂀</div>
-        </section>
+  <!-- QUEENS -->
+  <section class="section learn-section" id="queens">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">WOMEN OF POWER</p>
+        <h2>Notable <span>Queens</span></h2>
+      </div>
+    </div>
+    <p class="prose">Most Egyptian queens ruled as consorts rather than sovereigns — but their influence over religion, diplomacy and succession was often profound, and at least a handful ruled as pharaoh in their own right.</p>
+    <div class="egypt-table-wrap">
+      <table class="egypt-table">
+        <thead>
+          <tr><th>Name</th><th>Period</th><th>Reign / Active (approx.)</th><th>Known For</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Merneith</td><td>1st Dynasty</td><td>c. 2950 BCE</td><td>Possibly Egypt's earliest female ruler; acted as regent, and may have reigned in her own right</td></tr>
+          <tr><td>Ahmose-Nefertari</td><td>18th Dynasty</td><td>c. 1562–1495 BCE</td><td>Helped legitimize the New Kingdom's founding dynasty; later worshipped as a deified ancestor</td></tr>
+          <tr><td>Hatshepsut</td><td>18th Dynasty</td><td>c. 1479–1458 BCE</td><td>Ruled as full pharaoh for over two decades</td></tr>
+          <tr><td>Tiye</td><td>18th Dynasty</td><td>c. 1398–1338 BCE</td><td>Wife of Amenhotep III, mother of Akhenaten; highly influential in diplomacy</td></tr>
+          <tr><td>Nefertiti</td><td>18th Dynasty</td><td>c. 1370–1330 BCE</td><td>Great Royal Wife of Akhenaten; central figure of the Amarna religious revolution</td></tr>
+          <tr><td>Ankhesenamun</td><td>18th Dynasty</td><td>c. 1348 – after 1322 BCE</td><td>Wife of Tutankhamun; daughter of Akhenaten and Nefertiti</td></tr>
+          <tr><td>Nefertari</td><td>19th Dynasty</td><td>c. 1290s–1250s BCE</td><td>Favored wife of Ramesses II; honored with her own temple at Abu Simbel</td></tr>
+          <tr><td>Twosret</td><td>19th Dynasty</td><td>c. 1191–1190 BCE</td><td>Ruled as pharaoh in her own right at the dynasty's end</td></tr>
+          <tr><td>Cleopatra VII</td><td>Ptolemaic Period</td><td>51–30 BCE</td><td>Egypt's last active pharaoh; allied with Rome before Egypt became a Roman province</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-        <!-- LEARNING PATHS -->
-        <section class="section learn-section" id="paths">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">BEGIN YOUR JOURNEY</p>
-                    <h2>Choose a <span>Learning Path</span></h2>
-                </div>
-            </div>
-            <div class="paths-grid">
-                <a href="#overview" class="path-card"><span class="glyph">𓂀</span><h4>Egyptian History</h4><p>From unification to Roman Egypt.</p></a>
-                <a href="#kings" class="path-card"><span class="glyph">☥</span><h4>Kings &amp; Queens</h4><p>Kingship, power and succession.</p></a>
-                <a href="#gods" class="path-card"><span class="glyph">⏳</span><h4>Gods &amp; Mythology</h4><p>Deities and ancient belief.</p></a>
-                <a href="#hieroglyphs" class="path-card"><span class="glyph">✍️</span><h4>Hieroglyphs</h4><p>How Egyptian writing worked.</p></a>
-                <a href="#science" class="path-card"><span class="glyph">🔬</span><h4>Science &amp; Engineering</h4><p>Mathematics, medicine, astronomy.</p></a>
-                <a href="#quiz" class="path-card"><span class="glyph">🧠</span><h4>Test Your Knowledge</h4><p>A short quiz on everything above.</p></a>
-            </div>
-        </section>
+  <!-- GODS -->
+  <section class="section learn-section" id="gods">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">THE DIVINE WORLD</p>
+        <h2>Major <span>Gods & Goddesses</span></h2>
+      </div>
+    </div>
+    <p class="prose">Ancient Egyptian religion was polytheistic, with deities embodying natural forces, moral concepts and the cycle of life and death. These were among the most widely worshipped.</p>
+    <div class="egypt-table-wrap">
+      <table class="egypt-table">
+        <thead>
+          <tr><th>Deity</th><th>Domain</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Ra</td><td>Sun god and chief deity; sailed across the sky each day</td></tr>
+          <tr><td>Osiris</td><td>God of the afterlife, death and resurrection</td></tr>
+          <tr><td>Isis</td><td>Goddess of magic and motherhood; wife of Osiris, mother of Horus</td></tr>
+          <tr><td>Horus</td><td>Sky and falcon god; pharaohs were considered his living embodiment</td></tr>
+          <tr><td>Anubis</td><td>Jackal-headed god of mummification and the dead</td></tr>
+          <tr><td>Thoth</td><td>Ibis-headed god of writing, wisdom and the moon</td></tr>
+          <tr><td>Set</td><td>God of chaos, storms and the desert; rival of Horus</td></tr>
+          <tr><td>Hathor</td><td>Goddess of love, joy, music and motherhood, often shown as a cow</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-        <!-- QUICK JUMP NAV -->
-        <nav class="learn-jump-nav" aria-label="Jump to section">
-            <div class="chip-row" id="learnJumpNav">
-                <a href="#overview" class="chip">Overview</a>
-                <a href="#hieroglyphs" class="chip">Hieroglyphs</a>
-                <a href="#kings" class="chip">Kings</a>
-                <a href="#queens" class="chip">Queens</a>
-                <a href="#gods" class="chip">Gods & Goddesses</a>
-                <a href="#science" class="chip">Science & Tech</a>
-                <a href="#glossary" class="chip">Glossary</a>
-                <a href="#quiz" class="chip">Quiz</a>
-            </div>
-        </nav>
+  <!-- SCIENCE & TECHNOLOGY -->
+  <section class="section learn-section" id="science">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">ANCIENT INNOVATION</p>
+        <h2>Science <span>& Technology</span></h2>
+      </div>
+    </div>
+    <p class="prose">Egyptian civilization's endurance rested on practical knowledge as much as belief — in the fields, in construction, and in tracking the sky and the calendar.</p>
+    <div class="learn-grid science-grid">
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">📐</div>
+        <h3>Mathematics</h3>
+        <p>Egyptian mathematics used fractions and geometry for measurement, taxation, and surveying land after the Nile's yearly flood erased field boundaries.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">🌌</div>
+        <h3>Astronomy</h3>
+        <p>Egyptians tracked the star Sirius to predict the Nile's flood and built a 365-day calendar — a system later civilizations built directly on.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">🩺</div>
+        <h3>Medicine</h3>
+        <p>Medical papyri record surgical procedures, wound treatment and remedies, alongside religious and magical practices used side by side with practical care.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">🏗️</div>
+        <h3>Engineering</h3>
+        <p>Quarrying, hauling and precisely aligning multi-ton stone blocks made the pyramids and temples possible, using ramps, levers, and organized labor.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">🚢</div>
+        <h3>Transportation</h3>
+        <p>The Nile itself was Egypt's highway — boats carried people, grain, and stone the entire length of the country far faster than any overland route.</p>
+      </div>
+      <div class="learn-card">
+        <div class="glyph" aria-hidden="true">🌾</div>
+        <h3>Agriculture</h3>
+        <p>The Nile's predictable annual flood deposited fertile silt across the floodplain, and irrigation channels extended that fertility further from the river.</p>
+      </div>
+    </div>
+  </section>
 
-        <!-- OVERVIEW -->
-        <section class="section learn-section" id="overview">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">WHERE TO BEGIN</p>
-                    <h2>Overview <span>of Ancient Egypt</span></h2>
-                </div>
-            </div>
-            <p class="prose">Ancient Egyptian civilization took shape along the banks of the Nile in northeastern Africa and lasted, in one form or another, for roughly three thousand years — from unification around 3100 BCE to Roman annexation in 30 BCE. Few civilizations in history have endured, and left as much behind, for as long.</p>
+  <!-- GLOSSARY -->
+  <section class="section learn-section" id="glossary">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">KEY TERMS</p>
+        <h2>Glossary <span>of Ancient Egypt</span></h2>
+      </div>
+    </div>
+    <div class="search-bar glossary-search">
+      <input type="text" id="glossarySearch" placeholder="Search terms…" autocomplete="off">
+    </div>
+    <div class="fact-grid glossary-grid" id="glossaryGrid">
+      <div class="fact" data-term="pharaoh"><span>PHARAOH</span><strong>Title of Egypt's king, originally meaning "great house" (royal palace)</strong></div>
+      <div class="fact" data-term="ma'at"><span>MA'AT</span><strong>Truth, balance and cosmic order — the principle the pharaoh was duty-bound to uphold</strong></div>
+      <div class="fact" data-term="ankh"><span>ANKH</span><strong>Hieroglyphic symbol representing "life"</strong></div>
+      <div class="fact" data-term="cartouche"><span>CARTOUCHE</span><strong>An oval loop enclosing a royal name in hieroglyphic writing</strong></div>
+      <div class="fact" data-term="sarcophagus"><span>SARCOPHAGUS</span><strong>An outer stone coffin enclosing a mummy's inner coffin</strong></div>
+      <div class="fact" data-term="ushabti"><span>USHABTI</span><strong>Small funerary figurines meant to serve the deceased in the afterlife</strong></div>
+      <div class="fact" data-term="ba ka"><span>BA & KA</span><strong>Two aspects of the soul in Egyptian belief — personality (Ba) and life-force (Ka)</strong></div>
+      <div class="fact" data-term="nome"><span>NOME</span><strong>An administrative province of ancient Egypt</strong></div>
+      <div class="fact" data-term="vizier"><span>VIZIER</span><strong>The pharaoh's chief minister, overseeing government administration</strong></div>
+      <div class="fact" data-term="book of the dead"><span>BOOK OF THE DEAD</span><strong>A collection of funerary spells guiding the deceased through the afterlife</strong></div>
+    </div>
+    <p class="glossary-empty hidden" id="glossaryEmpty">No terms match your search.</p>
+  </section>
 
-            <div class="learn-grid">
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">☥</div>
-                    <h3>The Gift of the Nile</h3>
-                    <p>Egypt's civilization depended entirely on the Nile's yearly flood, which deposited fertile black silt across an otherwise desert landscape. The Greek historian Herodotus famously called Egypt "the gift of the Nile" — settlements, agriculture and trade all clustered along its banks.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">𓂀</div>
-                    <h3>Ma'at: Order Against Chaos</h3>
-                    <p>Egyptian religion and kingship centered on Ma'at — truth, balance and cosmic order. The pharaoh's central duty was to uphold Ma'at against Isfet (chaos), a belief that shaped Egyptian art, law and religion for millennia.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">⏳</div>
-                    <h3>Three Kingdoms, One Civilization</h3>
-                    <p>Historians divide ancient Egyptian history into the Old, Middle and New Kingdoms — eras of strong central rule — separated by "Intermediate Periods" of fragmentation. Despite the ebb and flow of power, core beliefs and artistic traditions stayed remarkably consistent.</p>
-                </div>
-            </div>
-        </section>
+  <!-- QUIZ -->
+  <section class="section learn-section" id="quiz">
+    <div class="section-heading">
+      <div>
+        <p class="section-label">TEST YOUR KNOWLEDGE</p>
+        <h2>Ancient Egypt <span>Quiz</span></h2>
+      </div>
+    </div>
+    <p class="prose">Eight questions covering everything on this page. Your best score is saved on this device so you can try to beat it later.</p>
+    <div class="quiz-box" id="quizBox">
+      <div class="quiz-progress-row">
+        <span id="quizProgressLabel">Question 1 of 8</span>
+        <span id="quizBestScore"></span>
+      </div>
+      <div class="quiz-question" id="quizQuestion"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-feedback hidden" id="quizFeedback"></div>
+      <div class="quiz-actions">
+        <button type="button" class="btn btn-primary" id="quizNextBtn" disabled>Next Question</button>
+        <button type="button" class="btn btn-secondary hidden" id="quizRestartBtn">Try Again</button>
+      </div>
+    </div>
+  </section>
 
-        <!-- HIEROGLYPHS -->
-        <section class="section learn-section" id="hieroglyphs">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">THE WRITTEN WORD</p>
-                    <h2>Hieroglyphs <span>& the Egyptian Alphabet</span></h2>
-                </div>
-            </div>
-            <p class="prose">Hieroglyphic writing — literally "sacred carving" in Greek — was in use from around 3200 BCE until the last known inscription in 394 CE. The full system combined logograms (signs representing whole words) with phonograms (signs representing sounds), and included over a thousand distinct signs across its history.</p>
-            <p class="prose">Egyptian writing was undecipherable to the modern world for over a thousand years after its last use, until the discovery of the Rosetta Stone in 1799 — a single decree carved in hieroglyphic, Demotic and Greek — let the French scholar Jean-François Champollion crack the code in 1822.</p>
-            <p class="prose">Among the full sign system, 24 signs functioned as single consonants — close to an "alphabet," though Egyptian writing never dropped its word-signs entirely in favor of one. The simplified table below (a popular teaching version, not the full scribal system) shows these uniliteral signs by the object they depict and the consonant sound they represented. Egyptian writing recorded only consonants — vowels were not written.</p>
+  <!-- ═══════════════════════════════════════════════════════════
+       EXPLORE ANCIENT EGYPT — LEARNING PATHS
+       Styled by css/learn-paths.css / js/learn-paths.js
+       ═══════════════════════════════════════════════════════════ -->
+  <section class="section learn-paths-section" id="explore" aria-label="Explore Ancient Egypt learning paths">
 
-            <div class="egypt-table-wrap">
-                <table class="egypt-table">
-                    <thead>
-                        <tr><th>Sign (depicts)</th><th>Sound</th><th>Sign (depicts)</th><th>Sound</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Egyptian vulture</td><td>A</td><td>Folded cloth</td><td>S</td></tr>
-                        <tr><td>Flowering reed</td><td>I</td><td>Pool of water</td><td>SH</td></tr>
-                        <tr><td>Two reed flowers</td><td>Y</td><td>Hill slope</td><td>Q</td></tr>
-                        <tr><td>Forearm</td><td>A (ayin)</td><td>Basket with handle</td><td>K</td></tr>
-                        <tr><td>Quail chick</td><td>W / U</td><td>Jar stand</td><td>G</td></tr>
-                        <tr><td>Leg and foot</td><td>B</td><td>Loaf of bread</td><td>T</td></tr>
-                        <tr><td>Stool</td><td>P</td><td>Tethering rope</td><td>TJ</td></tr>
-                        <tr><td>Horned viper</td><td>F</td><td>Hand</td><td>D</td></tr>
-                        <tr><td>Owl</td><td>M</td><td>Cobra</td><td>DJ</td></tr>
-                        <tr><td>Water ripple</td><td>N</td><td>Door bolt</td><td>Z</td></tr>
-                        <tr><td>Mouth</td><td>R</td><td>Twisted flax</td><td>KH</td></tr>
-                        <tr><td>Courtyard / reed shelter</td><td>H</td><td>Animal's belly</td><td>KH (soft)</td></tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="lp-heading">
+      <p class="lp-eyebrow">EXPLORE ANCIENT EGYPT</p>
+      <h2>Choose a <span>Learning Path</span></h2>
+      <p class="lp-subtitle">Go deeper into the world of ancient Egypt — select a path and enter the collection.</p>
+    </div>
 
-            <!-- HIEROGLYPH NAME GENERATOR -->
-            <div class="hiero-generator">
-                <p class="section-label">TRY IT YOURSELF</p>
-                <h3>Write Your Name — the Uniliteral Way</h3>
-                <p class="prose">Type a name to see it broken into the nearest matching uniliteral signs above. This is a fun, modern approximation, not scholarly transliteration — Egyptian writing wasn't a direct letter-for-letter match to the English alphabet, and vowels in particular have no real Egyptian sign.</p>
-                <div class="hiero-input-row">
-                    <input type="text" id="hieroNameInput" placeholder="Type a name…" maxlength="20" autocomplete="off">
-                    <button type="button" class="btn btn-primary" id="hieroGenerateBtn">Generate</button>
-                </div>
-                <div class="hiero-result" id="hieroResult"></div>
-            </div>
-        </section>
+    <div class="lp-grid" role="list">
 
-        <!-- KINGS -->
-        <section class="section learn-section" id="kings">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">RULERS OF THE NILE</p>
-                    <h2>Notable <span>Kings & Pharaohs</span></h2>
-                </div>
-            </div>
-            <p class="prose">A pharaoh's reign was measured not only in years but in monuments, wars and reforms. These are among the most significant rulers across Egypt's three-thousand-year history.</p>
+      <!-- CARD 01 — Nile Atlas -->
+      <a class="lp-card"
+         href="explore.html"
+         role="listitem"
+         aria-label="Nile Atlas — explore geography of ancient Egypt">
+        <div class="lp-card-top">
+          <span class="lp-card-number" aria-hidden="true">01</span>
+          <span class="lp-card-glyph" aria-hidden="true">𓈗</span>
+        </div>
+        <p class="lp-card-category">GEOGRAPHY</p>
+        <h3 class="lp-card-title">Nile Atlas</h3>
+        <p class="lp-card-desc">Explore the regions and landscapes that shaped ancient Egyptian civilization.</p>
+        <div class="lp-card-cta" aria-hidden="true">
+          <span class="lp-cta-text">EXPLORE ATLAS</span>
+          <span class="lp-cta-line"></span>
+          <span class="lp-cta-arrow">→</span>
+        </div>
+        <div class="lp-card-line" aria-hidden="true"></div>
+      </a>
 
-            <div class="egypt-table-wrap">
-                <table class="egypt-table">
-                    <thead>
-                        <tr><th>Name</th><th>Period</th><th>Reign (approx.)</th><th>Known For</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Narmer (Menes)</td><td>1st Dynasty</td><td>c. 3100 BCE</td><td>Unified Upper and Lower Egypt; founded Memphis</td></tr>
-                        <tr><td>Djoser</td><td>3rd Dynasty, Old Kingdom</td><td>c. 2650 BCE</td><td>Built the Step Pyramid at Saqqara, Egypt's first great stone monument</td></tr>
-                        <tr><td>Khufu (Cheops)</td><td>4th Dynasty, Old Kingdom</td><td>c. 2589–2566 BCE</td><td>Built the Great Pyramid of Giza</td></tr>
-                        <tr><td>Khafre</td><td>4th Dynasty, Old Kingdom</td><td>c. 2570s BCE</td><td>Built the second Giza pyramid and the Great Sphinx</td></tr>
-                        <tr><td>Amenemhat III</td><td>12th Dynasty, Middle Kingdom</td><td>c. 1860–1814 BCE</td><td>Middle Kingdom prosperity; land reclamation in the Faiyum</td></tr>
-                        <tr><td>Hatshepsut</td><td>18th Dynasty, New Kingdom</td><td>c. 1479–1458 BCE</td><td>Ruled as full pharaoh; expanded trade with Punt; mortuary temple at Deir el-Bahari</td></tr>
-                        <tr><td>Thutmose III</td><td>18th Dynasty, New Kingdom</td><td>c. 1479–1425 BCE</td><td>Military campaigns that built Egypt's largest empire</td></tr>
-                        <tr><td>Akhenaten</td><td>18th Dynasty, New Kingdom</td><td>c. 1353–1336 BCE</td><td>Religious reformer; promoted the sun disc Aten; moved the capital to Amarna</td></tr>
-                        <tr><td>Tutankhamun</td><td>18th Dynasty, New Kingdom</td><td>c. 1332–1323 BCE</td><td>Restored traditional religion; his nearly intact tomb (found 1922) is the best-known royal burial today</td></tr>
-                        <tr><td>Seti I</td><td>19th Dynasty, New Kingdom</td><td>c. 1290–1279 BCE</td><td>Military campaigns; elaborate tomb art; father of Ramesses II</td></tr>
-                        <tr><td>Ramesses II ("the Great")</td><td>19th Dynasty, New Kingdom</td><td>c. 1279–1213 BCE</td><td>One of the longest, most celebrated reigns; built Abu Simbel</td></tr>
-                        <tr><td>Ptolemy I Soter</td><td>Ptolemaic Period</td><td>c. 305–282 BCE</td><td>Former general of Alexander the Great; founded the Ptolemaic dynasty</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+      <!-- CARD 02 — Daily Life -->
+      <a class="lp-card"
+         href="daily-life.html"
+         role="listitem"
+         aria-label="Daily Life — step into the routines of ancient Egyptians">
+        <div class="lp-card-top">
+          <span class="lp-card-number" aria-hidden="true">02</span>
+          <span class="lp-card-glyph" aria-hidden="true">𓂋</span>
+        </div>
+        <p class="lp-card-category">PEOPLE &amp; SOCIETY</p>
+        <h3 class="lp-card-title">Daily Life</h3>
+        <p class="lp-card-desc">Step into the daily routines, occupations, homes and social roles of ancient Egyptians.</p>
+        <div class="lp-card-cta" aria-hidden="true">
+          <span class="lp-cta-text">DISCOVER DAILY LIFE</span>
+          <span class="lp-cta-line"></span>
+          <span class="lp-cta-arrow">→</span>
+        </div>
+        <div class="lp-card-line" aria-hidden="true"></div>
+      </a>
 
-        <!-- QUEENS -->
-        <section class="section learn-section" id="queens">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">WOMEN OF POWER</p>
-                    <h2>Notable <span>Queens</span></h2>
-                </div>
-            </div>
-            <p class="prose">Most Egyptian queens ruled as consorts rather than sovereigns — but their influence over religion, diplomacy and succession was often profound, and at least a handful ruled as pharaoh in their own right.</p>
+      <!-- CARD 03 — Archaeology Lab -->
+      <a class="lp-card"
+         href="archaeology.html"
+         role="listitem"
+         aria-label="Archaeology Lab — discover how archaeologists interpret the past">
+        <div class="lp-card-top">
+          <span class="lp-card-number" aria-hidden="true">03</span>
+          <span class="lp-card-glyph" aria-hidden="true">⌖</span>
+        </div>
+        <p class="lp-card-category">METHOD &amp; DISCOVERY</p>
+        <h3 class="lp-card-title">Archaeology Lab</h3>
+        <p class="lp-card-desc">Discover how archaeologists turn objects, places and fragments into evidence about the past.</p>
+        <div class="lp-card-cta" aria-hidden="true">
+          <span class="lp-cta-text">ENTER THE LAB</span>
+          <span class="lp-cta-line"></span>
+          <span class="lp-cta-arrow">→</span>
+        </div>
+        <div class="lp-card-line" aria-hidden="true"></div>
+      </a>
 
-            <div class="egypt-table-wrap">
-                <table class="egypt-table">
-                    <thead>
-                        <tr><th>Name</th><th>Period</th><th>Reign / Active (approx.)</th><th>Known For</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Merneith</td><td>1st Dynasty</td><td>c. 2950 BCE</td><td>Possibly Egypt's earliest female ruler; acted as regent, and may have reigned in her own right</td></tr>
-                        <tr><td>Ahmose-Nefertari</td><td>18th Dynasty</td><td>c. 1562–1495 BCE</td><td>Helped legitimize the New Kingdom's founding dynasty; later worshipped as a deified ancestor</td></tr>
-                        <tr><td>Hatshepsut</td><td>18th Dynasty</td><td>c. 1479–1458 BCE</td><td>Ruled as full pharaoh for over two decades</td></tr>
-                        <tr><td>Tiye</td><td>18th Dynasty</td><td>c. 1398–1338 BCE</td><td>Wife of Amenhotep III, mother of Akhenaten; highly influential in diplomacy</td></tr>
-                        <tr><td>Nefertiti</td><td>18th Dynasty</td><td>c. 1370–1330 BCE</td><td>Great Royal Wife of Akhenaten; central figure of the Amarna religious revolution</td></tr>
-                        <tr><td>Ankhesenamun</td><td>18th Dynasty</td><td>c. 1348 – after 1322 BCE</td><td>Wife of Tutankhamun; daughter of Akhenaten and Nefertiti</td></tr>
-                        <tr><td>Nefertari</td><td>19th Dynasty</td><td>c. 1290s–1250s BCE</td><td>Favored wife of Ramesses II; honored with her own temple at Abu Simbel</td></tr>
-                        <tr><td>Twosret</td><td>19th Dynasty</td><td>c. 1191–1190 BCE</td><td>Ruled as pharaoh in her own right at the dynasty's end</td></tr>
-                        <tr><td>Cleopatra VII</td><td>Ptolemaic Period</td><td>51–30 BCE</td><td>Egypt's last active pharaoh; allied with Rome before Egypt became a Roman province</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+      <!-- CARD 04 — Knowledge Challenge -->
+      <a class="lp-card"
+         href="quiz.html"
+         role="listitem"
+         aria-label="Knowledge Challenge — ten-question quiz with explorer rating">
+        <div class="lp-card-top">
+          <span class="lp-card-number" aria-hidden="true">04</span>
+          <span class="lp-card-glyph" aria-hidden="true">𓂀</span>
+        </div>
+        <p class="lp-card-category">INTERACTIVE LEARNING</p>
+        <h3 class="lp-card-title">Knowledge Challenge</h3>
+        <p class="lp-card-desc">Test what you know with ten questions and discover your Egypt Explorer level.</p>
+        <div class="lp-card-cta" aria-hidden="true">
+          <span class="lp-cta-text">START CHALLENGE</span>
+          <span class="lp-cta-line"></span>
+          <span class="lp-cta-arrow">→</span>
+        </div>
+        <div class="lp-card-line" aria-hidden="true"></div>
+      </a>
 
-        <!-- GODS -->
-        <section class="section learn-section" id="gods">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">THE DIVINE WORLD</p>
-                    <h2>Major <span>Gods & Goddesses</span></h2>
-                </div>
-            </div>
-            <p class="prose">Ancient Egyptian religion was polytheistic, with deities embodying natural forces, moral concepts and the cycle of life and death. These were among the most widely worshipped.</p>
+    </div><!-- /.lp-grid -->
 
-            <div class="egypt-table-wrap">
-                <table class="egypt-table">
-                    <thead>
-                        <tr><th>Deity</th><th>Domain</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Ra</td><td>Sun god and chief deity; sailed across the sky each day</td></tr>
-                        <tr><td>Osiris</td><td>God of the afterlife, death and resurrection</td></tr>
-                        <tr><td>Isis</td><td>Goddess of magic and motherhood; wife of Osiris, mother of Horus</td></tr>
-                        <tr><td>Horus</td><td>Sky and falcon god; pharaohs were considered his living embodiment</td></tr>
-                        <tr><td>Anubis</td><td>Jackal-headed god of mummification and the dead</td></tr>
-                        <tr><td>Thoth</td><td>Ibis-headed god of writing, wisdom and the moon</td></tr>
-                        <tr><td>Set</td><td>God of chaos, storms and the desert; rival of Horus</td></tr>
-                        <tr><td>Hathor</td><td>Goddess of love, joy, music and motherhood, often shown as a cow</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
+    <!-- SOURCES PANEL -->
+    <div class="lp-sources-panel">
+      <div class="lp-sources-inner">
+        <div class="lp-sources-text">
+          <p class="lp-sources-label">RESEARCH &amp; TRANSPARENCY</p>
+          <h3 class="lp-sources-title">Sources &amp; Methodology</h3>
+          <p class="lp-sources-desc">Explore the museums, collections and research resources behind this digital museum.</p>
+        </div>
+        <a href="sources.html"
+           class="lp-sources-cta"
+           aria-label="View sources and methodology behind the Egypt Digital Museum">
+          <span>VIEW SOURCES</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
 
-        <!-- SCIENCE & TECHNOLOGY -->
-        <section class="section learn-section" id="science">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">ANCIENT INNOVATION</p>
-                    <h2>Science <span>& Technology</span></h2>
-                </div>
-            </div>
-            <p class="prose">Egyptian civilization's endurance rested on practical knowledge as much as belief — in the fields, in construction, and in tracking the sky and the calendar.</p>
+  </section>
+  <!-- ═══════════════════════════════════════════════════════════ -->
 
-            <div class="learn-grid science-grid">
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">📐</div>
-                    <h3>Mathematics</h3>
-                    <p>Egyptian mathematics used fractions and geometry for measurement, taxation, and surveying land after the Nile's yearly flood erased field boundaries.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">🌌</div>
-                    <h3>Astronomy</h3>
-                    <p>Egyptians tracked the star Sirius to predict the Nile's flood and built a 365-day calendar — a system later civilizations built directly on.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">🩺</div>
-                    <h3>Medicine</h3>
-                    <p>Medical papyri record surgical procedures, wound treatment and remedies, alongside religious and magical practices used side by side with practical care.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">🏗️</div>
-                    <h3>Engineering</h3>
-                    <p>Quarrying, hauling and precisely aligning multi-ton stone blocks made the pyramids and temples possible, using ramps, levers, and organized labor.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">🚢</div>
-                    <h3>Transportation</h3>
-                    <p>The Nile itself was Egypt's highway — boats carried people, grain, and stone the entire length of the country far faster than any overland route.</p>
-                </div>
-                <div class="learn-card">
-                    <div class="glyph" aria-hidden="true">🌾</div>
-                    <h3>Agriculture</h3>
-                    <p>The Nile's predictable annual flood deposited fertile silt across the floodplain, and irrigation channels extended that fertility further from the river.</p>
-                </div>
-            </div>
-        </section>
+  <!-- CALL TO EXPLORE -->
+  <section class="cta-explore">
+    <h2>See It For Yourself</h2>
+    <p class="prose">Now that you know the names and terms, explore the real artifacts, exhibitions and timeline behind them.</p>
+    <div class="cta-explore-buttons">
+      <a href="artifacts.html" class="btn btn-primary">Browse Artifacts</a>
+      <a href="timeline.html" class="btn btn-secondary">View Timeline</a>
+      <a href="virtual-museum.html" class="btn btn-secondary">Visit Virtual Museum</a>
+    </div>
+  </section>
 
-        <!-- GLOSSARY -->
-        <section class="section learn-section" id="glossary">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">KEY TERMS</p>
-                    <h2>Glossary <span>of Ancient Egypt</span></h2>
-                </div>
-            </div>
+</main>
 
-            <div class="search-bar glossary-search">
-                <input type="text" id="glossarySearch" placeholder="Search terms…" autocomplete="off">
-            </div>
+<footer class="site-footer">
+  <span>© 2026 Egypt Digital Museum</span>
+  <span>Ancient Civilization × Future Technology</span>
+</footer>
 
-            <div class="fact-grid glossary-grid" id="glossaryGrid">
-                <div class="fact" data-term="pharaoh"><span>PHARAOH</span><strong>Title of Egypt's king, originally meaning "great house" (royal palace)</strong></div>
-                <div class="fact" data-term="ma'at"><span>MA'AT</span><strong>Truth, balance and cosmic order — the principle the pharaoh was duty-bound to uphold</strong></div>
-                <div class="fact" data-term="ankh"><span>ANKH</span><strong>Hieroglyphic symbol representing "life"</strong></div>
-                <div class="fact" data-term="cartouche"><span>CARTOUCHE</span><strong>An oval loop enclosing a royal name in hieroglyphic writing</strong></div>
-                <div class="fact" data-term="sarcophagus"><span>SARCOPHAGUS</span><strong>An outer stone coffin enclosing a mummy's inner coffin</strong></div>
-                <div class="fact" data-term="ushabti"><span>USHABTI</span><strong>Small funerary figurines meant to serve the deceased in the afterlife</strong></div>
-                <div class="fact" data-term="ba ka"><span>BA & KA</span><strong>Two aspects of the soul in Egyptian belief — personality (Ba) and life-force (Ka)</strong></div>
-                <div class="fact" data-term="nome"><span>NOME</span><strong>An administrative province of ancient Egypt</strong></div>
-                <div class="fact" data-term="vizier"><span>VIZIER</span><strong>The pharaoh's chief minister, overseeing government administration</strong></div>
-                <div class="fact" data-term="book of the dead"><span>BOOK OF THE DEAD</span><strong>A collection of funerary spells guiding the deceased through the afterlife</strong></div>
-            </div>
-            <p class="glossary-empty hidden" id="glossaryEmpty">No terms match your search.</p>
-        </section>
-
-        <!-- QUIZ -->
-        <section class="section learn-section" id="quiz">
-            <div class="section-heading">
-                <div>
-                    <p class="section-label">TEST YOUR KNOWLEDGE</p>
-                    <h2>Ancient Egypt <span>Quiz</span></h2>
-                </div>
-            </div>
-            <p class="prose">Eight questions covering everything on this page. Your best score is saved on this device so you can try to beat it later.</p>
-
-            <div class="quiz-box" id="quizBox">
-                <div class="quiz-progress-row">
-                    <span id="quizProgressLabel">Question 1 of 8</span>
-                    <span id="quizBestScore"></span>
-                </div>
-                <div class="quiz-question" id="quizQuestion"></div>
-                <div class="quiz-options" id="quizOptions"></div>
-                <div class="quiz-feedback hidden" id="quizFeedback"></div>
-                <div class="quiz-actions">
-                    <button type="button" class="btn btn-primary" id="quizNextBtn" disabled>Next Question</button>
-                    <button type="button" class="btn btn-secondary hidden" id="quizRestartBtn">Try Again</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- CALL TO EXPLORE -->
-        <section class="cta-explore">
-            <h2>See It For Yourself</h2>
-            <p class="prose">Now that you know the names and terms, explore the real artifacts, exhibitions and timeline behind them.</p>
-            <div class="cta-explore-buttons">
-                <a href="artifacts.html" class="btn btn-primary">Browse Artifacts</a>
-                <a href="timeline.html" class="btn btn-secondary">View Timeline</a>
-                <a href="virtual-museum.html" class="btn btn-secondary">Visit Virtual Museum</a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-        <span>© 2025 Egypt Digital Museum</span>
-        <span>Ancient Civilization × Future Technology</span>
-    </footer>
-
-    <script src="js/collection.js"></script>
-    <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/nav-links.js"></script>
-    <script src="js/learn.js"></script>
-    <script src="js/learn-interactive.js"></script>
-
+<script src="js/collection.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/nav-links.js"></script>
+<script src="js/learn.js"></script>
+<script src="js/learn-interactive.js"></script>
+<!-- Learning paths scroll reveal -->
+<script src="js/learn-paths.js"></script>
 </body>
 </html>
