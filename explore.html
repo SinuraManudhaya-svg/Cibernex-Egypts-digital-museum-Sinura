@@ -1,220 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main.css">
-        <title>
-        Nile Atlas | Egypt Digital Museum
-        </title>
-        <meta name="description" content="Explore the regions and landscapes of ancient Egypt.">
-        <link rel="stylesheet" href="css/explore.css">
-    </head>
-    <body>
-        <header class="site-header">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                <span class="logo-symbol">
-                𓂀
-                </span>
-                <span>
-                EGYPT
-                </span>
-                <small>
-                DIGITAL MUSEUM
-                </small>
-                </a>
-                <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">
-                ☰
-                </button>
-                <div class="nav-links" id="navLinks">
-                    <a href="index.html">
-                    Home
-                    </a>
-                    <a href="explore.html">
-                    Explore
-                    </a>
-                    <a href="artifacts.html">
-                    Artifacts
-                    </a>
-                    <a href="timeline.html">
-                    Timeline
-                    </a>
-                    <a href="exhibitions.html">
-                    Exhibitions
-                    </a>
-                    <a href="virtual-museum.html">
-                    Virtual Museum
-                    </a>
-                    <a class="active" href="learn.html">
-                    Learn
-                    </a>
-                </div>
-            </nav>
-        </header>
-        <main class="atlas-page">
-            <section class="atlas-hero">
-                <div>
-                    <p class="section-label">
-                    GEOGRAPHY & CIVILIZATION
-                    </p>
-                    <h1>
-                    The
-                    <span>
-                    Nile Atlas
-                    </span>
-                    </h1>
-                    <p>
-                    Explore the landscapes that shaped ancient Egyptian life — from the fertile Nile Valley and Delta to deserts, borders and southern territories.
-                    </p>
-                    <div class="atlas-meta">
-                        <span>
-                        01 / REGIONS
-                        </span>
-                        <span>
-                        04 / LANDSCAPES
-                        </span>
-                        <span>
-                        ∞ / STORIES
-                        </span>
-                    </div>
-                </div>
-                <div class="atlas-seal" aria-hidden="true">
-                    <strong>
-                    𓈗
-                    </strong>
-                    <small>
-                    NILE
-                    <br>
-                    ATLAS
-                    </small>
-                </div>
-            </section>
-            <section class="atlas-section">
-                <div class="section-intro">
-                    <div>
-                        <p class="section-label">
-                        REGIONAL LENS
-                        </p>
-                        <h2>
-                        Choose a region.
-                        </h2>
-                    </div>
-                    <p>
-                    Change the regional lens to discover how geography influenced settlement, agriculture, movement and culture.
-                    </p>
-                </div>
-                <div class="region-tabs" role="tablist">
-                    <button class="region-tab is-active" data-region="lower">
-                    Lower Egypt
-                    </button>
-                    <button class="region-tab" data-region="upper">
-                    Upper Egypt
-                    </button>
-                    <button class="region-tab" data-region="nubia">
-                    Nubia
-                    </button>
-                </div>
-                <div class="region-panel">
-                    <div class="region-number" id="regionNumber">
-                        01
-                    </div>
-                    <div>
-                        <p class="section-label" id="regionLabel">
-                        LOWER EGYPT
-                        </p>
-                        <h3 id="regionTitle">
-                        The Delta
-                        </h3>
-                        <p id="regionText">
-                        A fertile northern landscape where the Nile spread into branches before reaching the Mediterranean. The Delta supported agriculture, settlements and connections with the wider Mediterranean world.
-                        </p>
-                    </div>
-                </div>
-            </section>
-            <section class="atlas-section">
-                <div class="section-intro">
-                    <div>
-                        <p class="section-label">
-                        LANDSCAPES
-                        </p>
-                        <h2>
-                        More than a river.
-                        </h2>
-                    </div>
-                    <p>
-                    Ancient Egyptian civilization developed through a relationship between fertile land, waterways and surrounding arid landscapes.
-                    </p>
-                </div>
-                <div class="landscape-grid">
-                    <article class="landscape-card">
-                        <span>
-                        01
-                        </span>
-                        <b>
-                        𓈗
-                        </b>
-                        <h3>
-                        Nile Valley
-                        </h3>
-                        <p>
-                        The narrow fertile corridor around the river, central to agriculture, settlement and movement.
-                        </p>
-                    </article>
-                    <article class="landscape-card">
-                        <span>
-                        02
-                        </span>
-                        <b>
-                        𓇿
-                        </b>
-                        <h3>
-                        Western Desert
-                        </h3>
-                        <p>
-                        A vast arid region containing oases and routes connecting communities across the desert.
-                        </p>
-                    </article>
-                    <article class="landscape-card">
-                        <span>
-                        03
-                        </span>
-                        <b>
-                        𓂧
-                        </b>
-                        <h3>
-                        Eastern Desert
-                        </h3>
-                        <p>
-                        A mineral-rich landscape between the Nile and Red Sea, crossed by routes and quarrying activity.
-                        </p>
-                    </article>
-                    <article class="landscape-card">
-                        <span>
-                        04
-                        </span>
-                        <b>
-                        𓅃
-                        </b>
-                        <h3>
-                        Sinai
-                        </h3>
-                        <p>
-                        A strategic peninsula linking Egypt with neighbouring regions and important travel corridors.
-                        </p>
-                    </article>
-                </div>
-            </section>
-        </main>
-        <footer class="site-footer">
-            <span>
-            © 2026 Egypt Digital Museum
-            </span>
-            <span>
-            Explore · Learn · Discover
-            </span>
-        </footer>
-        <script src="js/explore.js">
-        </script>
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the regions and landscapes of ancient Egypt — Lower Egypt, Upper Egypt and Nubia." />
+  <title>Nile Atlas | Egypt Digital Museum</title>
+
+  <!-- Font preconnect (matches learn.html pattern) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/explore.css" />
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.3.26/dist/lenis.css">
+</head>
+<body>
+
+    <!-- ===== LOADING SCREEN ===== -->
+    <div id="loader">
+        <div class="loader-inner">
+            <div class="rings">
+                <div class="ring ring--1"></div>
+                <div class="ring ring--2"></div>
+                <div class="ring ring--3"></div>
+            </div>
+
+            <div class="eye-wrap">
+                <svg viewBox="0 0 120 90" fill="none">
+                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+                                               C 60 66, 30 62, 8 40 Z" />
+                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
+                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+                </svg>
+            </div>
+
+            <p class="loader-eyebrow">A Digital Journey Through History</p>
+            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-meta">
+                <span id="progress-label">Unsealing the archives</span>
+                <span id="progress-percent">0%</span>
+            </div>
+        </div>
+    </div>
+    <!-- ===== END LOADING SCREEN ===== -->
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" class="logo">
+        <span class="logo-symbol" aria-hidden="true">𓂀</span>
+        <span>EGYPT</span>
+        <small>DIGITAL MUSEUM</small>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >☰</button>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="explore.html">Explore</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a href="timeline.html">Timeline</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="virtual-museum.html">Virtual Museum</a>
+        <a href="learn.html" class="active">Learn</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="atlas-page">
+
+    <!-- HERO -->
+    <section class="atlas-hero">
+      <div>
+        <p class="section-label">GEOGRAPHY &amp; CIVILIZATION</p>
+        <h1>The <span>Nile Atlas</span></h1>
+        <p>
+          Explore the landscapes that shaped ancient Egyptian life — from the
+          fertile Nile Valley and Delta to deserts, borders and southern
+          territories.
+        </p>
+        <div class="atlas-meta" aria-label="Atlas overview">
+          <span>01 / REGIONS</span>
+          <span>04 / LANDSCAPES</span>
+          <span>∞ / STORIES</span>
+        </div>
+      </div>
+
+      <div class="atlas-seal" aria-hidden="true">
+        <strong>𓈗</strong>
+        <small>NILE<br />ATLAS</small>
+      </div>
+    </section>
+
+    <!-- REGIONAL LENS -->
+    <section class="atlas-section" aria-labelledby="regionHeading">
+      <div class="section-intro">
+        <div>
+          <p class="section-label">REGIONAL LENS</p>
+          <h2 id="regionHeading">Choose a region.</h2>
+        </div>
+        <p>
+          Change the regional lens to discover how geography influenced
+          settlement, agriculture, movement and culture.
+        </p>
+      </div>
+
+      <div class="region-tabs" role="tablist" aria-label="Egypt regions">
+        <button
+          class="region-tab is-active"
+          role="tab"
+          aria-selected="true"
+          data-region="lower"
+        >Lower Egypt</button>
+        <button
+          class="region-tab"
+          role="tab"
+          aria-selected="false"
+          data-region="upper"
+        >Upper Egypt</button>
+        <button
+          class="region-tab"
+          role="tab"
+          aria-selected="false"
+          data-region="nubia"
+        >Nubia</button>
+      </div>
+
+      <div class="region-panel" role="tabpanel">
+        <div class="region-number" id="regionNumber" aria-hidden="true">01</div>
+        <div>
+          <p class="section-label" id="regionLabel">LOWER EGYPT</p>
+          <h3 id="regionTitle">The Delta</h3>
+          <p id="regionText">
+            A fertile northern landscape where the Nile spread into branches
+            before reaching the Mediterranean. The Delta supported
+            agriculture, settlements and connections with the wider
+            Mediterranean world.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANDSCAPES -->
+    <section class="atlas-section" aria-labelledby="landscapesHeading">
+      <div class="section-intro">
+        <div>
+          <p class="section-label">LANDSCAPES</p>
+          <h2 id="landscapesHeading">More than a river.</h2>
+        </div>
+        <p>
+          Ancient Egyptian civilization developed through a relationship
+          between fertile land, waterways and surrounding arid landscapes.
+        </p>
+      </div>
+
+      <div class="landscape-grid">
+        <article class="landscape-card">
+          <span aria-hidden="true">01</span>
+          <b aria-hidden="true">𓈗</b>
+          <h3>Nile Valley</h3>
+          <p>The narrow fertile corridor around the river, central to agriculture, settlement and movement.</p>
+        </article>
+
+        <article class="landscape-card">
+          <span aria-hidden="true">02</span>
+          <b aria-hidden="true">𓇿</b>
+          <h3>Western Desert</h3>
+          <p>A vast arid region containing oases and routes connecting communities across the desert.</p>
+        </article>
+
+        <article class="landscape-card">
+          <span aria-hidden="true">03</span>
+          <b aria-hidden="true">𓂧</b>
+          <h3>Eastern Desert</h3>
+          <p>A mineral-rich landscape between the Nile and Red Sea, crossed by routes and quarrying activity.</p>
+        </article>
+
+        <article class="landscape-card">
+          <span aria-hidden="true">04</span>
+          <b aria-hidden="true">𓅃</b>
+          <h3>Sinai</h3>
+          <p>A strategic peninsula linking Egypt with neighbouring regions and important travel corridors.</p>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Egypt Digital Museum</span>
+    <span>Explore · Learn · Discover</span>
+  </footer>
+
+  <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+  <script src="js/nav-links.js"></script>
+  <script src="js/explore.js"></script>
+</body>
 </html>
