@@ -1,5 +1,5 @@
 /**
- * explore.js
+ * nile-ailas.js
  * Region tab switcher for the Nile Atlas page.
  * Egypt Digital Museum
  */
