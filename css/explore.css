@@ -1,0 +1,1227 @@
+/* ==========================================================
+   explore.css — Main Explore Page
+   Egypt Digital Museum
+   Organises: hero, map, regions, cities, monuments, routes,
+              journey, markers, info-panel, filters, responsive
+   ========================================================== */
+
+/* ── LOCAL TOKENS (map to main.css variables where possible) ─ */
+:root {
+  --ex-gold:         #c9a84c;
+  --ex-gold-bright:  #e2bb6a;
+  --ex-gold-dim:     rgba(201, 168, 76, 0.12);
+  --ex-gold-line:    rgba(201, 168, 76, 0.28);
+  --ex-surface:      #111009;
+  --ex-surface-2:    #181410;
+  --ex-border:       rgba(201, 168, 76, 0.18);
+  --ex-border-hover: rgba(201, 168, 76, 0.45);
+  --ex-text:         #ede4d1;
+  --ex-text-muted:   rgba(237, 228, 209, 0.52);
+  --ex-text-dim:     rgba(237, 228, 209, 0.28);
+  --ex-radius:       5px;
+  --ex-transition:   0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ── SHARED PAGE SECTION LAYOUT ─────────────────────────────── */
+.ex-section {
+  width: min(1180px, calc(100% - 3rem));
+  margin: 0 auto;
+  padding: 6rem 0;
+}
+
+.ex-section-header {
+  max-width: 780px;
+  margin-bottom: 3.5rem;
+}
+
+.ex-section-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.1rem;
+}
+
+.ex-num {
+  font: 11px 'Share Tech Mono', monospace;
+  color: var(--ex-gold);
+  opacity: 0.6;
+  letter-spacing: 0.15em;
+}
+
+.ex-section-label {
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.22em;
+  color: var(--ex-gold);
+  opacity: 0.65;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ex-section-title {
+  font: 500 clamp(1.9rem, 3.8vw, 2.8rem) / 1.15 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 0.9rem;
+  letter-spacing: 0.03em;
+}
+
+.ex-section-title span {
+  color: var(--ex-gold);
+}
+
+.ex-section-desc {
+  font: 0.9rem / 1.75 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+}
+
+/* ── HORIZONTAL RULE BETWEEN SECTIONS ───────────────────────── */
+.ex-section + .ex-section {
+  border-top: 1px solid rgba(201, 168, 76, 0.10);
+}
+
+/* ── LOCATE BUTTON (shared: cities + regions + monuments) ────── */
+.ex-locate-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  padding: 0.6rem 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--ex-gold-line);
+  color: var(--ex-gold);
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  transition: border-color var(--ex-transition), color var(--ex-transition);
+}
+
+.ex-locate-btn:hover,
+.ex-locate-btn:focus-visible {
+  border-color: var(--ex-gold);
+  color: var(--ex-gold-bright);
+}
+
+.ex-locate-btn:focus-visible {
+  outline: 2px solid var(--ex-gold);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ── EYEBROW (shared) ─────────────────────────────────────────── */
+.ex-eyebrow {
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.22em;
+  color: var(--ex-gold);
+  opacity: 0.72;
+  margin: 0 0 1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════════ */
+.ex-hero {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  align-items: center;
+  gap: 3rem;
+  min-height: 60vh;
+  padding: 7rem clamp(1.5rem, 8vw, 8rem);
+  border-bottom: 1px solid var(--ex-border);
+  background:
+    radial-gradient(ellipse 55% 45% at 70% 40%, rgba(201, 168, 76, 0.07), transparent),
+    radial-gradient(ellipse 35% 55% at 15% 70%, rgba(15, 40, 100, 0.12), transparent);
+}
+
+.ex-hero-inner {
+  max-width: 700px;
+}
+
+.ex-hero h1 {
+  font: 600 clamp(3.5rem, 7vw, 6.5rem) / 0.95 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+}
+
+.ex-hero h1 span {
+  color: var(--ex-gold);
+}
+
+.ex-hero-desc {
+  font: 0.93rem / 1.8 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  max-width: 580px;
+  margin: 0 0 2rem;
+}
+
+.ex-hero-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.ex-hero-chip {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--ex-border);
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.18em;
+  color: var(--ex-text-muted);
+  text-decoration: none;
+  transition: border-color var(--ex-transition), color var(--ex-transition);
+}
+
+.ex-hero-chip:hover,
+.ex-hero-chip:focus-visible {
+  border-color: var(--ex-gold);
+  color: var(--ex-gold);
+}
+
+.ex-hero-seal {
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--ex-border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ex-hero-seal strong {
+  display: block;
+  font-size: 4.5rem;
+  color: var(--ex-gold);
+  line-height: 1;
+}
+
+.ex-hero-seal small {
+  position: absolute;
+  bottom: 22px;
+  font: 9px / 1.5 'Share Tech Mono', monospace;
+  letter-spacing: 0.2em;
+  color: var(--ex-text-dim);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MAP SECTION
+══════════════════════════════════════════════════════════════ */
+.ex-map-section {
+  background: var(--ex-surface);
+  border-top: 1px solid var(--ex-border);
+  border-bottom: 1px solid var(--ex-border);
+  padding: 3rem clamp(1rem, 5vw, 4rem);
+}
+
+/* Map header: title + filters */
+.ex-map-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.ex-map-title-block {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+}
+
+.ex-map-num {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  letter-spacing: 0.15em;
+}
+
+.ex-map-title {
+  font: 500 clamp(1.4rem, 3vw, 2rem) / 1.1 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0;
+}
+
+/* Filter buttons */
+.ex-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.ex-filter-btn {
+  padding: 0.45rem 0.85rem;
+  background: transparent;
+  border: 1px solid var(--ex-border);
+  color: var(--ex-text-muted);
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color var(--ex-transition), color var(--ex-transition),
+              background var(--ex-transition);
+}
+
+.ex-filter-btn:hover,
+.ex-filter-btn:focus-visible {
+  border-color: var(--ex-gold);
+  color: var(--ex-gold);
+}
+
+.ex-filter-btn.is-active {
+  border-color: var(--ex-gold);
+  color: var(--ex-gold);
+  background: var(--ex-gold-dim);
+}
+
+.ex-filter-btn:focus-visible {
+  outline: 2px solid var(--ex-gold);
+  outline-offset: 2px;
+}
+
+/* Map body: SVG + info panel side by side */
+.ex-map-body {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* SVG wrapper */
+.ex-map-svg-wrap {
+  position: relative;
+  width: 100%;
+  border: 1px solid var(--ex-border);
+  border-radius: var(--ex-radius);
+  overflow: hidden;
+  background: #0b0907;
+}
+
+.ex-map-svg-wrap svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── SVG MARKER STYLES ───────────────────────────────────────── */
+.map-marker {
+  cursor: pointer;
+}
+
+.map-marker .marker-ring {
+  fill: none;
+  stroke: var(--ex-gold);
+  stroke-width: 1.4;
+  transition: stroke var(--ex-transition), stroke-width var(--ex-transition);
+}
+
+.map-marker .marker-dot {
+  fill: var(--ex-gold);
+  transition: fill var(--ex-transition);
+}
+
+.map-marker .marker-label {
+  font: 7px 'Share Tech Mono', monospace;
+  fill: rgba(201, 168, 76, 0.65);
+  text-anchor: middle;
+  pointer-events: none;
+  transition: fill var(--ex-transition);
+}
+
+/* Type-based dot colours */
+.map-marker[data-type="pyramids"]       .marker-dot { fill: #e8c56a; }
+.map-marker[data-type="temples"]        .marker-dot { fill: #c9a84c; }
+.map-marker[data-type="tombs"]          .marker-dot { fill: #a07a3c; }
+.map-marker[data-type="cities"]         .marker-dot { fill: #d4b870; }
+.map-marker[data-type="archaeological"] .marker-dot { fill: #b89040; }
+
+/* Hover / focus states */
+.map-marker:hover .marker-ring,
+.map-marker:focus .marker-ring {
+  stroke: var(--ex-gold-bright);
+  stroke-width: 2;
+}
+
+.map-marker:hover .marker-label,
+.map-marker:focus .marker-label {
+  fill: rgba(226, 187, 106, 0.90);
+}
+
+/* Active (selected) state */
+.map-marker.is-active .marker-ring {
+  stroke: var(--ex-gold-bright);
+  stroke-width: 2.2;
+}
+
+.map-marker.is-active .marker-dot {
+  fill: var(--ex-gold-bright);
+}
+
+.map-marker.is-active .marker-label {
+  fill: rgba(226, 187, 106, 1);
+}
+
+/* Hidden (filtered out) */
+.map-marker.is-hidden {
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Focus ring for keyboard navigation */
+.map-marker:focus {
+  outline: none;
+}
+
+.map-marker:focus .marker-ring {
+  stroke: var(--ex-gold-bright);
+  stroke-width: 2.5;
+}
+
+/* ── INFO PANEL ──────────────────────────────────────────────── */
+.ex-info-panel {
+  border: 1px solid var(--ex-border);
+  border-radius: var(--ex-radius);
+  background: var(--ex-surface-2);
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Placeholder state */
+.ex-panel-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  min-height: 380px;
+  padding: 2.5rem 2rem;
+  gap: 0.8rem;
+}
+
+.ex-panel-glyph {
+  font-size: 3rem;
+  color: var(--ex-gold);
+  opacity: 0.3;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.ex-panel-prompt {
+  font: 0.88rem / 1.65 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+}
+
+.ex-panel-hint {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
+/* Active panel content */
+.ex-panel-content {
+  padding: 2rem 1.8rem;
+  flex: 1;
+  position: relative;
+}
+
+.ex-panel-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 1px solid var(--ex-border);
+  color: var(--ex-text-dim);
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  border-radius: 2px;
+  transition: border-color var(--ex-transition), color var(--ex-transition);
+}
+
+.ex-panel-close:hover {
+  border-color: var(--ex-gold);
+  color: var(--ex-gold);
+}
+
+.ex-panel-type-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--ex-gold-line);
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--ex-gold);
+  margin-bottom: 0.5rem;
+}
+
+.ex-panel-region {
+  display: block;
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--ex-text-dim);
+  margin-bottom: 0.9rem;
+}
+
+.ex-panel-name {
+  font: 500 1.5rem / 1.15 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 0.4rem;
+  padding-right: 2rem; /* clear close button */
+}
+
+.ex-panel-period {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--ex-gold);
+  opacity: 0.7;
+  margin: 0 0 1.1rem;
+  letter-spacing: 0.1em;
+}
+
+.ex-panel-description {
+  font: 0.855rem / 1.72 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0 0 1.2rem;
+}
+
+.ex-panel-significance {
+  border-top: 1px solid var(--ex-border);
+  padding-top: 1rem;
+}
+
+.ex-panel-significance strong {
+  display: block;
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.15em;
+  color: var(--ex-gold);
+  opacity: 0.65;
+  margin-bottom: 0.4rem;
+}
+
+.ex-panel-significance p {
+  font: 0.82rem / 1.65 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+}
+
+/* Map footer controls */
+.ex-map-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--ex-border);
+}
+
+.ex-ctrl-btn {
+  padding: 0.55rem 1rem;
+  background: transparent;
+  border: 1px solid var(--ex-border);
+  color: var(--ex-text-muted);
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: border-color var(--ex-transition), color var(--ex-transition);
+}
+
+.ex-ctrl-btn:hover,
+.ex-ctrl-btn:focus-visible {
+  border-color: var(--ex-gold);
+  color: var(--ex-gold);
+}
+
+.ex-site-count {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  letter-spacing: 0.12em;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   REGIONS SECTION
+══════════════════════════════════════════════════════════════ */
+.ex-regions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.ex-region-card {
+  padding: 2.2rem 2rem;
+  border: 1px solid var(--ex-border);
+  background: var(--ex-surface);
+  border-radius: var(--ex-radius);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--ex-transition), background var(--ex-transition);
+}
+
+.ex-region-card:hover {
+  border-color: var(--ex-border-hover);
+  background: var(--ex-surface-2);
+}
+
+.ex-region-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.ex-region-num {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  letter-spacing: 0.12em;
+}
+
+.ex-region-glyph {
+  font-size: 2rem;
+  color: var(--ex-gold);
+  opacity: 0.65;
+  line-height: 1;
+}
+
+.ex-region-label {
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.18em;
+  color: var(--ex-gold);
+  opacity: 0.65;
+  margin: 0 0 0.5rem;
+}
+
+.ex-region-card h3 {
+  font: 500 1.25rem / 1.2 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 0.9rem;
+}
+
+.ex-region-desc {
+  font: 0.855rem / 1.7 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0 0 1rem;
+  flex: 1;
+}
+
+.ex-region-facts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.2rem;
+  border-top: 1px solid var(--ex-border);
+  padding-top: 0.9rem;
+}
+
+.ex-region-facts li {
+  font: 10px / 1.8 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  padding-left: 1em;
+  position: relative;
+}
+
+.ex-region-facts li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ex-gold);
+  opacity: 0.45;
+}
+
+/* Nile Atlas link card (inside Sinai region card) */
+.ex-nile-atlas-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.4rem;
+  padding: 1rem;
+  border: 1px solid var(--ex-gold-line);
+  background: rgba(201, 168, 76, 0.04);
+  text-decoration: none;
+  border-radius: 3px;
+  transition: border-color var(--ex-transition), background var(--ex-transition);
+}
+
+.ex-nile-atlas-link:hover,
+.ex-nile-atlas-link:focus-visible {
+  border-color: var(--ex-gold);
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.ex-nile-atlas-link:focus-visible {
+  outline: 2px solid var(--ex-gold);
+  outline-offset: 3px;
+}
+
+.ex-nile-atlas-glyph {
+  font-size: 2rem;
+  color: var(--ex-gold);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+
+.ex-nile-atlas-link strong {
+  display: block;
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.18em;
+  color: var(--ex-gold);
+  opacity: 0.85;
+  margin-bottom: 0.3rem;
+}
+
+.ex-nile-atlas-link p {
+  font: 0.8rem / 1.5 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CITIES SECTION (JS-rendered cards)
+══════════════════════════════════════════════════════════════ */
+.ex-cities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+/* .city-card styles (generated by JS) */
+.city-card {
+  padding: 1.8rem 1.6rem;
+  border: 1px solid var(--ex-border);
+  background: var(--ex-surface);
+  border-radius: var(--ex-radius);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--ex-transition), transform var(--ex-transition);
+}
+
+.city-card:hover {
+  border-color: var(--ex-border-hover);
+  transform: translateY(-3px);
+}
+
+.city-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.2rem;
+}
+
+.city-seq {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  letter-spacing: 0.12em;
+}
+
+.city-region-tag {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--ex-gold);
+  opacity: 0.6;
+  letter-spacing: 0.12em;
+}
+
+.city-name {
+  font: 500 1.15rem / 1.2 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 0.35rem;
+}
+
+.city-period {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--ex-gold);
+  opacity: 0.55;
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.city-desc {
+  font: 0.84rem / 1.7 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0 0 0.8rem;
+  flex: 1;
+}
+
+.city-landmarks-label {
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--ex-gold);
+  opacity: 0.55;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.city-landmarks {
+  font: 0.78rem / 1.6 Inter, sans-serif;
+  color: var(--ex-text-dim);
+  margin: 0 0 1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   MONUMENTS SECTION (JS-rendered cards)
+══════════════════════════════════════════════════════════════ */
+.ex-monuments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+/* .monument-card styles (generated by JS) */
+.monument-card {
+  border: 1px solid var(--ex-border);
+  background: var(--ex-surface);
+  border-radius: var(--ex-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--ex-transition), transform var(--ex-transition);
+}
+
+.monument-card:hover {
+  border-color: var(--ex-border-hover);
+  transform: translateY(-4px);
+}
+
+.monument-img-wrap {
+  position: relative;
+  aspect-ratio: 16/10;
+  background: linear-gradient(135deg, #1a1408, #0f0c06);
+  overflow: hidden;
+}
+
+.monument-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.4s;
+}
+
+/* Fallback when image fails */
+.monument-img-wrap.img-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monument-img-wrap.img-error::after {
+  content: attr(data-glyph);
+  font-size: 3rem;
+  color: var(--ex-gold);
+  opacity: 0.35;
+}
+
+.monument-type-tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.2rem 0.5rem;
+  background: rgba(11, 9, 7, 0.82);
+  border: 1px solid var(--ex-gold-line);
+  font: 8px 'Share Tech Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--ex-gold);
+}
+
+.monument-body {
+  padding: 1.4rem 1.4rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.monument-name {
+  font: 500 1rem / 1.2 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 0.3rem;
+}
+
+.monument-location {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--ex-gold);
+  opacity: 0.6;
+  margin: 0 0 0.25rem;
+  letter-spacing: 0.1em;
+}
+
+.monument-period {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.monument-desc {
+  font: 0.82rem / 1.68 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+  flex: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ROUTES SECTION
+══════════════════════════════════════════════════════════════ */
+.ex-routes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--ex-border);
+  border: 1px solid var(--ex-border);
+  border-radius: var(--ex-radius);
+  overflow: hidden;
+}
+
+.ex-route-card {
+  background: var(--ex-surface);
+  padding: 2rem 1.8rem;
+  transition: background var(--ex-transition);
+  position: relative;
+}
+
+.ex-route-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.8rem;
+  width: 0;
+  height: 2px;
+  background: var(--ex-gold);
+  opacity: 0.5;
+  transition: width 0.4s ease;
+}
+
+.ex-route-card:hover {
+  background: var(--ex-surface-2);
+}
+
+.ex-route-card:hover::after {
+  width: calc(100% - 3.6rem);
+}
+
+.ex-route-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.4rem;
+}
+
+.ex-route-num {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--ex-text-dim);
+  letter-spacing: 0.12em;
+}
+
+.ex-route-icon {
+  font-size: 1.6rem;
+  color: var(--ex-gold);
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.ex-route-label {
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  color: var(--ex-gold);
+  opacity: 0.55;
+  margin: 0 0 0.5rem;
+}
+
+.ex-route-name {
+  font: 500 1.1rem / 1.2 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0 0 0.85rem;
+}
+
+.ex-route-desc {
+  font: 0.83rem / 1.72 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EXPLORATION JOURNEY
+══════════════════════════════════════════════════════════════ */
+.ex-journey {
+  border-top: 1px solid var(--ex-border);
+  padding: 6rem clamp(1.5rem, 8vw, 8rem);
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(201, 168, 76, 0.05), transparent),
+    var(--ex-surface);
+}
+
+.ex-journey-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.ex-journey-title {
+  font: 500 clamp(1.8rem, 3.5vw, 2.6rem) / 1.2 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0.7rem 0 3rem;
+}
+
+.ex-journey-title span {
+  color: var(--ex-gold);
+}
+
+.ex-journey-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--ex-border);
+  border-radius: var(--ex-radius);
+  overflow: hidden;
+}
+
+.ex-journey-step {
+  padding: 2rem 1.6rem;
+  border-right: 1px solid var(--ex-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  background: var(--ex-surface);
+  position: relative;
+}
+
+.ex-journey-step:last-child {
+  border-right: none;
+}
+
+.ex-step-num {
+  font: 700 2rem / 1 Cinzel, serif;
+  color: rgba(201, 168, 76, 0.18);
+  display: block;
+}
+
+.ex-step-title {
+  font: 500 0.95rem / 1.2 Cinzel, serif;
+  color: var(--ex-text);
+  margin: 0;
+}
+
+.ex-journey-step p {
+  font: 0.8rem / 1.65 Inter, sans-serif;
+  color: var(--ex-text-muted);
+  margin: 0;
+}
+
+.ex-journey-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.ex-begin-btn {
+  padding: 1rem 2rem;
+  background: var(--ex-gold);
+  border: none;
+  color: #080604;
+  font: 600 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background var(--ex-transition), opacity var(--ex-transition);
+}
+
+.ex-begin-btn:hover {
+  background: var(--ex-gold-bright);
+}
+
+.ex-begin-btn:focus-visible {
+  outline: 2px solid var(--ex-gold);
+  outline-offset: 3px;
+}
+
+.ex-learn-link {
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  color: var(--ex-gold);
+  opacity: 0.7;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ex-gold-line);
+  padding-bottom: 2px;
+  transition: opacity var(--ex-transition), border-color var(--ex-transition);
+}
+
+.ex-learn-link:hover {
+  opacity: 1;
+  border-color: var(--ex-gold);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet: ≤1024px ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .ex-map-body {
+    grid-template-columns: 1fr;
+  }
+
+  .ex-info-panel {
+    min-height: auto;
+  }
+
+  .ex-panel-placeholder {
+    min-height: 200px;
+    flex-direction: row;
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  .ex-panel-glyph {
+    font-size: 2rem;
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+  }
+
+  .ex-cities-grid,
+  .ex-monuments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ex-routes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ex-journey-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ex-journey-step:nth-child(2) {
+    border-right: none;
+  }
+
+  .ex-journey-step:nth-child(3) {
+    border-top: 1px solid var(--ex-border);
+  }
+
+  .ex-journey-step:nth-child(4) {
+    border-right: none;
+    border-top: 1px solid var(--ex-border);
+  }
+}
+
+/* ── Tablet 2: ≤860px ────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .ex-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .ex-hero-seal {
+    display: none;
+  }
+
+  .ex-regions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ex-map-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+/* ── Mobile: ≤600px ─────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .ex-hero {
+    padding: 4.5rem 1.2rem;
+    min-height: auto;
+  }
+
+  .ex-map-section {
+    padding: 2rem 1rem;
+  }
+
+  .ex-filters {
+    gap: 0.3rem;
+  }
+
+  .ex-filter-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 8px;
+  }
+
+  .ex-section {
+    width: calc(100% - 2rem);
+    padding: 4rem 0;
+  }
+
+  .ex-cities-grid,
+  .ex-monuments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ex-routes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ex-journey {
+    padding: 4rem 1.2rem;
+  }
+
+  .ex-journey-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .ex-journey-step {
+    border-right: none;
+    border-bottom: 1px solid var(--ex-border);
+  }
+
+  .ex-journey-step:last-child {
+    border-bottom: none;
+  }
+
+  .ex-map-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .ex-journey-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ACCESSIBILITY & REDUCED MOTION
+══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .ex-region-card,
+  .city-card,
+  .monument-card,
+  .ex-route-card,
+  .map-marker .marker-ring,
+  .map-marker .marker-dot,
+  .ex-filter-btn,
+  .ex-locate-btn {
+    transition: none;
+  }
+
+  .ex-region-card:hover,
+  .city-card:hover,
+  .monument-card:hover {
+    transform: none;
+  }
+
+  .ex-route-card::after {
+    transition: none;
+  }
+}
+
+/* Focus visibility for all interactive elements */
+:focus-visible {
+  outline: 2px solid var(--ex-gold, #c9a84c);
+  outline-offset: 3px;
+}
