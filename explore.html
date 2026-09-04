@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore the geography, ancient cities, monuments and routes of Ancient Egypt through an interactive archaeological atlas." />
+  <title>Explore | Egypt Digital Museum</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/explore.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar" aria-label="Main navigation">
+      <a href="index.html" class="logo">
+        <span class="logo-symbol" aria-hidden="true">𓂀</span>
+        <span>EGYPT</span>
+        <small>DIGITAL MUSEUM</small>
+      </a>
+      <button class="menu-toggle" id="menuToggle"
+              aria-label="Open navigation menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="explore.html" class="active">Explore</a>
+        <a href="artifacts.html">Artifacts</a>
+        <a href="timeline.html">Timeline</a>
+        <a href="exhibitions.html">Exhibitions</a>
+        <a href="virtual-museum.html">Virtual Museum</a>
+        <a href="learn.html">Learn</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+    <section class="ex-hero" id="hero" aria-label="Explore Ancient Egypt">
+      <div class="ex-hero-inner">
+        <p class="ex-eyebrow">GEOGRAPHY · ARCHAEOLOGY · CIVILIZATION</p>
+        <h1>Explore <span>Ancient Egypt</span></h1>
+        <p class="ex-hero-desc">
+          Trace the landscapes, cities and monuments that shaped one of the world's
+          great civilizations — from the Nile Delta to Nubia.
+        </p>
+        <nav class="ex-hero-nav" aria-label="Jump to section">
+          <a href="#regions"   class="ex-hero-chip">REGIONS</a>
+          <a href="#cities"    class="ex-hero-chip">CITIES</a>
+          <a href="#monuments" class="ex-hero-chip">MONUMENTS</a>
+          <a href="#routes"    class="ex-hero-chip">ROUTES</a>
+        </nav>
+      </div>
+      <div class="ex-hero-seal" aria-hidden="true">
+        <strong>𓈗</strong>
+        <small>EGYPT<br/>ATLAS</small>
+      </div>
+    </section>
+
+    <!-- ══ INTERACTIVE MAP ════════════════════════════════════════════════ -->
+    <section class="ex-map-section" id="map"
+             aria-label="Interactive archaeological map of Ancient Egypt">
+
+      <!-- Map header: label + filters -->
+      <div class="ex-map-header">
+        <div class="ex-map-title-block">
+          <span class="ex-map-num">00</span>
+          <div>
+            <p class="ex-section-label">ARCHAEOLOGICAL ATLAS</p>
+            <h2 class="ex-map-title">Select a site.</h2>
+          </div>
+        </div>
+        <div class="ex-filters" role="group" aria-label="Filter sites by type">
+          <button class="ex-filter-btn is-active" data-filter="all"            type="button">ALL</button>
+          <button class="ex-filter-btn"            data-filter="pyramids"       type="button">PYRAMIDS</button>
+          <button class="ex-filter-btn"            data-filter="temples"        type="button">TEMPLES</button>
+          <button class="ex-filter-btn"            data-filter="tombs"          type="button">TOMBS</button>
+          <button class="ex-filter-btn"            data-filter="cities"         type="button">CITIES</button>
+          <button class="ex-filter-btn"            data-filter="archaeological" type="button">SITES</button>
+        </div>
+      </div>
+
+      <!-- Map body: SVG + info panel -->
+      <div class="ex-map-body">
+
+        <!-- ── SVG ATLAS ──────────────────────────────────────────────── -->
+        <div class="ex-map-svg-wrap">
+          <svg id="egypt-map"
+               viewBox="0 0 600 750"
+               xmlns="http://www.w3.org/2000/svg"
+               aria-label="Stylized map of Ancient Egypt with clickable site markers"
+               role="img">
+            <title>Ancient Egypt Archaeological Atlas</title>
+
+            <defs>
+              <filter id="glow-filter" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+              <filter id="marker-glow" x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+                <feMerge>
+                  <feMergeNode in="blur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Background (obsidian sea base) -->
+            <rect fill="#0b0907" width="600" height="750"/>
+            <rect fill="rgba(14,30,75,0.20)" width="600" height="750"/>
+
+            <!-- Mediterranean Sea -->
+            <polygon fill="rgba(18,48,115,0.42)"
+              points="0,0 600,0 600,55 487,102 385,109 360,55 340,65 287,61 209,65 104,65 0,68"/>
+
+            <!-- Gulf of Suez (water between mainland and Sinai) -->
+            <polygon fill="rgba(18,48,115,0.36)"
+              points="385,109 391,170 391,341 470,341 522,170 487,102"/>
+
+            <!-- Red Sea and Gulf of Aqaba (east of Sinai + east coast) -->
+            <polygon fill="rgba(18,48,115,0.28)"
+              points="487,102 600,60 600,750 548,682 522,614 496,545 470,477 444,409 470,341 522,170 487,102"/>
+
+            <!-- Egypt mainland land mass -->
+            <path fill="rgba(145,115,65,0.17)" stroke="rgba(201,168,76,0.42)" stroke-width="0.85"
+              d="M 0,68
+                 L 104,65 L 209,65 L 287,61 L 340,65 L 360,55
+                 L 385,109
+                 L 391,170 L 391,341
+                 L 444,409 L 470,477 L 496,545 L 522,614 L 548,682 L 600,716
+                 L 0,716 Z"/>
+
+            <!-- Sinai Peninsula -->
+            <path fill="rgba(145,115,65,0.15)" stroke="rgba(201,168,76,0.38)" stroke-width="0.85"
+              d="M 385,109 L 487,102 L 522,170 L 470,341 L 391,341 L 391,170 Z"/>
+
+            <!-- Nile Delta (fertile green tint) -->
+            <polygon fill="rgba(50,95,45,0.22)"
+              points="265,68 358,68 313,136"/>
+
+            <!-- ── NILE RIVER ─────────────────────────────────────────── -->
+            <!-- Main channel: Abu Simbel → Aswan → Luxor → Cairo → Delta -->
+            <path fill="none"
+                  stroke="rgba(75,150,220,0.68)" stroke-width="2.8"
+                  stroke-linecap="round" stroke-linejoin="round"
+              d="M 345,693
+                 C 365,675 395,635 412,573
+                 L 414,549 L 411,513
+                 C 407,490 402,472 399,463
+                 C 400,448 400,437 400,430
+                 Q 380,430 360,430
+                 L 323,361 L 308,330 L 300,300
+                 C 303,265 315,246 318,238
+                 C 318,220 316,196 323,170
+                 L 313,136"/>
+            <!-- Delta branches -->
+            <path fill="none" stroke="rgba(75,150,220,0.48)" stroke-width="1.7" stroke-linecap="round"
+              d="M 313,136 C 293,110 275,92 265,68"/>
+            <path fill="none" stroke="rgba(75,150,220,0.48)" stroke-width="1.7" stroke-linecap="round"
+              d="M 313,136 L 313,68"/>
+            <path fill="none" stroke="rgba(75,150,220,0.48)" stroke-width="1.7" stroke-linecap="round"
+              d="M 313,136 C 329,110 345,90 358,68"/>
+
+            <!-- ── GRID LINES ─────────────────────────────────────────── -->
+            <g stroke="rgba(201,168,76,0.09)" stroke-width="0.5" stroke-dasharray="3 7">
+              <!-- Latitude: 30°N y=170, 28°N y=307, 26°N y=443, 24°N y=580 -->
+              <line x1="0" y1="170" x2="600" y2="170"/>
+              <line x1="0" y1="307" x2="600" y2="307"/>
+              <line x1="0" y1="443" x2="600" y2="443"/>
+              <line x1="0" y1="580" x2="600" y2="580"/>
+              <!-- Longitude: 28°E x=157, 30°E x=261, 32°E x=365, 34°E x=470 -->
+              <line x1="157" y1="0" x2="157" y2="750"/>
+              <line x1="261" y1="0" x2="261" y2="750"/>
+              <line x1="365" y1="0" x2="365" y2="750"/>
+              <line x1="470" y1="0" x2="470" y2="750"/>
+            </g>
+
+            <!-- ── COORDINATE LABELS ──────────────────────────────────── -->
+            <text font-family="'Share Tech Mono',monospace" font-size="7"
+                  fill="rgba(201,168,76,0.30)">
+              <tspan x="159" y="9">28°E</tspan>
+              <tspan x="263" y="9">30°E</tspan>
+              <tspan x="367" y="9">32°E</tspan>
+              <tspan x="472" y="9">34°E</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="7"
+                  fill="rgba(201,168,76,0.30)" text-anchor="end">
+              <tspan x="596" y="174">30°N</tspan>
+              <tspan x="596" y="311">28°N</tspan>
+              <tspan x="596" y="447">26°N</tspan>
+              <tspan x="596" y="584">24°N</tspan>
+            </text>
+
+            <!-- ── REGION LABELS ──────────────────────────────────────── -->
+            <text font-family="'Share Tech Mono',monospace" font-size="9"
+                  fill="rgba(201,168,76,0.38)" text-anchor="middle">
+              <tspan x="150" y="130">LOWER EGYPT</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="9"
+                  fill="rgba(201,168,76,0.32)" text-anchor="middle">
+              <tspan x="140" y="395">UPPER EGYPT</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="8"
+                  fill="rgba(201,168,76,0.27)" text-anchor="middle">
+              <tspan x="148" y="658">NUBIA</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="7"
+                  fill="rgba(201,168,76,0.20)" text-anchor="middle">
+              <tspan x="68" y="385">WESTERN</tspan>
+              <tspan x="68" y="396">DESERT</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="7"
+                  fill="rgba(201,168,76,0.22)" text-anchor="middle">
+              <tspan x="452" y="198">SINAI</tspan>
+            </text>
+
+            <!-- ── SEA LABELS ─────────────────────────────────────────── -->
+            <text font-family="'Share Tech Mono',monospace" font-size="8"
+                  fill="rgba(80,148,220,0.52)" text-anchor="middle">
+              <tspan x="162" y="33">MEDITERRANEAN SEA</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="7"
+                  fill="rgba(80,148,220,0.38)" text-anchor="middle"
+                  transform="rotate(-72,567,470)">
+              <tspan x="567" y="470">RED SEA</tspan>
+            </text>
+            <text font-family="'Share Tech Mono',monospace" font-size="7"
+                  fill="rgba(80,148,220,0.35)" text-anchor="middle">
+              <tspan x="430" y="248">GULF OF</tspan>
+              <tspan x="430" y="258">SUEZ</tspan>
+            </text>
+
+            <!-- ── MAP BORDER ─────────────────────────────────────────── -->
+            <rect fill="none" stroke="rgba(201,168,76,0.24)" stroke-width="1.2"
+                  x="0.6" y="0.6" width="598.8" height="748.8"/>
+            <rect fill="none" stroke="rgba(201,168,76,0.08)" stroke-width="0.5"
+                  x="5" y="5" width="590" height="740"/>
+
+            <!-- ── COMPASS ROSE (top-right) ───────────────────────────── -->
+            <g transform="translate(553,36)">
+              <circle r="15" fill="none" stroke="rgba(201,168,76,0.25)" stroke-width="0.8"/>
+              <circle r="11" fill="none" stroke="rgba(201,168,76,0.10)" stroke-width="0.5"/>
+              <line x1="0" y1="-13" x2="0" y2="13"
+                    stroke="rgba(201,168,76,0.35)" stroke-width="0.8"/>
+              <line x1="-13" y1="0" x2="13" y2="0"
+                    stroke="rgba(201,168,76,0.35)" stroke-width="0.8"/>
+              <!-- N arrow -->
+              <polygon fill="rgba(201,168,76,0.80)" points="0,-13 -3,-5 0,-8 3,-5"/>
+              <polygon fill="rgba(201,168,76,0.25)" points="0,13 -3,5 0,8 3,5"/>
+              <text font-family="'Share Tech Mono',monospace" font-size="7.5"
+                    fill="rgba(201,168,76,0.68)" text-anchor="middle" y="-18">N</text>
+            </g>
+
+            <!-- ── ATLAS FOOTER LABEL ─────────────────────────────────── -->
+            <text font-family="'Share Tech Mono',monospace" font-size="6.5"
+                  fill="rgba(201,168,76,0.20)" x="10" y="742">
+              ANCIENT EGYPT · ARCHAEOLOGICAL ATLAS · EGYPT DIGITAL MUSEUM
+            </text>
+
+            <!-- ── MARKER LAYER (populated by explore.js) ───────────────── -->
+            <g id="map-markers-layer"
+               role="group"
+               aria-label="Clickable archaeological site markers"></g>
+          </svg>
+        </div><!-- /.ex-map-svg-wrap -->
+
+        <!-- ── INFO PANEL ─────────────────────────────────────────────── -->
+        <aside class="ex-info-panel" id="ex-info-panel" aria-live="polite" aria-atomic="true">
+          <div class="ex-panel-placeholder" id="ex-panel-placeholder">
+            <span class="ex-panel-glyph" aria-hidden="true">𓂀</span>
+            <p class="ex-panel-prompt">Select a site on the map to explore its history.</p>
+            <p class="ex-panel-hint">Click any gold marker to view details.</p>
+          </div>
+          <div class="ex-panel-content" id="ex-panel-content" hidden></div>
+        </aside>
+
+      </div><!-- /.ex-map-body -->
+
+      <!-- Map footer: controls + count -->
+      <div class="ex-map-footer">
+        <button class="ex-ctrl-btn" id="map-reset-btn" type="button"
+                aria-label="Reset map — show all sites and clear selection">
+          RESET MAP
+        </button>
+        <span class="ex-site-count" id="ex-site-count">
+          <span id="ex-count-num">17</span> sites shown
+        </span>
+      </div>
+
+    </section><!-- /#map -->
+
+    <!-- ══ 01 REGIONS & GEOGRAPHY ══════════════════════════════════════ -->
+    <section class="ex-section" id="regions" aria-labelledby="regions-h">
+
+      <div class="ex-section-header">
+        <div class="ex-section-meta">
+          <span class="ex-num">01</span>
+          <span class="ex-section-label">REGIONS &amp; GEOGRAPHY</span>
+        </div>
+        <h2 id="regions-h" class="ex-section-title">
+          Where civilization <span>took root.</span>
+        </h2>
+        <p class="ex-section-desc">
+          Ancient Egypt was built on the precise relationship between the Nile, its flood-plain
+          and surrounding desert. Each region had a distinct geography, role and identity that
+          shaped the civilization over three millennia.
+        </p>
+      </div>
+
+      <div class="ex-regions-grid">
+
+        <article class="ex-region-card">
+          <div class="ex-region-top">
+            <span class="ex-region-num" aria-hidden="true">01</span>
+            <span class="ex-region-glyph" aria-hidden="true">𓇳</span>
+          </div>
+          <p class="ex-region-label">LOWER EGYPT</p>
+          <h3>The Delta &amp; Mediterranean</h3>
+          <p class="ex-region-desc">
+            Northern Egypt, dominated by the Nile Delta — a vast fan of fertile land where the
+            river split before reaching the Mediterranean. Lower Egypt was Egypt's primary
+            agricultural heartland and its main connection to Mediterranean trade networks.
+          </p>
+          <ul class="ex-region-facts">
+            <li>Home to Memphis, Egypt's first capital, founded c. 3100 BCE</li>
+            <li>Gateway to Phoenician, Greek and Roman commerce</li>
+            <li>Alexandria founded here by Alexander the Great, 331 BCE</li>
+          </ul>
+          <button class="ex-locate-btn" data-locate-id="memphis" type="button">
+            Locate Memphis on Map →
+          </button>
+        </article>
+
+        <article class="ex-region-card">
+          <div class="ex-region-top">
+            <span class="ex-region-num" aria-hidden="true">02</span>
+            <span class="ex-region-glyph" aria-hidden="true">𓇼</span>
+          </div>
+          <p class="ex-region-label">UPPER EGYPT</p>
+          <h3>The Nile Valley</h3>
+          <p class="ex-region-desc">
+            A narrow corridor of cultivable land from Cairo southward to Aswan, flanked on
+            both sides by desert plateaus. Upper Egypt was the heartland of New Kingdom power
+            and the location of the greatest concentration of temples, tombs and monuments on earth.
+          </p>
+          <ul class="ex-region-facts">
+            <li>Luxor (Thebes) served as New Kingdom capital for five centuries</li>
+            <li>Valley of the Kings contains over 60 royal tombs</li>
+            <li>Most major temple complexes are located in this region</li>
+          </ul>
+          <button class="ex-locate-btn" data-locate-id="luxor" type="button">
+            Locate Luxor on Map →
+          </button>
+        </article>
+
+        <article class="ex-region-card">
+          <div class="ex-region-top">
+            <span class="ex-region-num" aria-hidden="true">03</span>
+            <span class="ex-region-glyph" aria-hidden="true">𓅃</span>
+          </div>
+          <p class="ex-region-label">NUBIA</p>
+          <h3>The Southern Frontier</h3>
+          <p class="ex-region-desc">
+            South of Aswan, Nubia was Egypt's most consequential external relationship — a land
+            rich in gold, ivory and strategic minerals. Over three millennia, Egypt alternately
+            conquered, traded with and was conquered by Nubian kingdoms. Nubian rulers founded
+            Egypt's 25th Dynasty c. 747 BCE.
+          </p>
+          <ul class="ex-region-facts">
+            <li>Egypt's primary gold source ("Nubt" = the golden land)</li>
+            <li>Abu Simbel built by Ramesses II at the region's northern edge</li>
+            <li>Nubian pharaohs ruled Egypt c. 747–656 BCE</li>
+          </ul>
+          <button class="ex-locate-btn" data-locate-id="abu-simbel" type="button">
+            Locate Abu Simbel on Map →
+          </button>
+        </article>
+
+        <article class="ex-region-card ex-region-card--atlas">
+          <div class="ex-region-top">
+            <span class="ex-region-num" aria-hidden="true">04</span>
+            <span class="ex-region-glyph" aria-hidden="true">𓂧</span>
+          </div>
+          <p class="ex-region-label">SINAI</p>
+          <h3>The Bridge to Asia</h3>
+          <p class="ex-region-desc">
+            The triangular Sinai Peninsula was the only overland link between Africa and Asia,
+            and Egypt's gateway to the ancient Near East. Its turquoise and copper mines were
+            worked by royal expeditions for over three thousand years. Sinai was both a military
+            corridor and a crucial mineral source.
+          </p>
+          <ul class="ex-region-facts">
+            <li>Primary source of Egyptian turquoise for 3,000+ years</li>
+            <li>The Horus Way — Egypt's main military road — crossed Sinai</li>
+            <li>Serabit el-Khadim mines: some of the earliest alphabetic inscriptions</li>
+          </ul>
+          <!-- Nile Atlas link -->
+          <a href="nile-page.html" class="ex-nile-atlas-link">
+            <span class="ex-nile-atlas-glyph" aria-hidden="true">𓈗</span>
+            <div>
+              <strong>NILE ATLAS</strong>
+              <p>Explore detailed Nile Valley and regional geography →</p>
+            </div>
+          </a>
+        </article>
+
+      </div><!-- /.ex-regions-grid -->
+    </section>
+
+    <!-- ══ 02 ANCIENT CITIES ════════════════════════════════════════════ -->
+    <section class="ex-section" id="cities" aria-labelledby="cities-h">
+      <div class="ex-section-header">
+        <div class="ex-section-meta">
+          <span class="ex-num">02</span>
+          <span class="ex-section-label">ANCIENT CITIES</span>
+        </div>
+        <h2 id="cities-h" class="ex-section-title">
+          Cities of Power <span>and Knowledge.</span>
+        </h2>
+        <p class="ex-section-desc">
+          Egypt's cities were not merely administrative centers — they were sacred landscapes,
+          royal capitals and economic hubs whose influence shaped the ancient world for millennia.
+        </p>
+      </div>
+      <!-- JS renders cards here from ancientCities data -->
+      <div class="ex-cities-grid" id="cities-grid" aria-label="Ancient Egyptian cities"></div>
+    </section>
+
+    <!-- ══ 03 MONUMENTS & ARCHAEOLOGICAL SITES ══════════════════════════ -->
+    <section class="ex-section" id="monuments" aria-labelledby="monuments-h">
+      <div class="ex-section-header">
+        <div class="ex-section-meta">
+          <span class="ex-num">03</span>
+          <span class="ex-section-label">MONUMENTS &amp; ARCHAEOLOGICAL SITES</span>
+        </div>
+        <h2 id="monuments-h" class="ex-section-title">
+          Landmarks <span>in Stone.</span>
+        </h2>
+        <p class="ex-section-desc">
+          From the pyramids of Giza to the rock-cut temples of Abu Simbel, ancient Egypt produced
+          some of the largest and most durable structures in human history — monuments still studied
+          and visited more than three thousand years after their construction.
+        </p>
+      </div>
+      <!-- JS renders cards here from monuments data -->
+      <div class="ex-monuments-grid" id="monuments-grid"
+           aria-label="Ancient Egyptian monuments and archaeological sites"></div>
+    </section>
+
+    <!-- ══ 04 ROUTES, BORDERS & CIVILIZATION ════════════════════════════ -->
+    <section class="ex-section" id="routes" aria-labelledby="routes-h">
+      <div class="ex-section-header">
+        <div class="ex-section-meta">
+          <span class="ex-num">04</span>
+          <span class="ex-section-label">ROUTES, BORDERS &amp; CIVILIZATION</span>
+        </div>
+        <h2 id="routes-h" class="ex-section-title">
+          A Civilization Connected <span>by Land and Water.</span>
+        </h2>
+        <p class="ex-section-desc">
+          Egypt was never isolated. It moved goods, armies, knowledge and people along a
+          sophisticated network of river, desert and sea routes reaching from the Mediterranean
+          to Sub-Saharan Africa and the Indian Ocean.
+        </p>
+      </div>
+
+      <div class="ex-routes-grid">
+
+        <article class="ex-route-card">
+          <div class="ex-route-header">
+            <span class="ex-route-num" aria-hidden="true">01</span>
+            <span class="ex-route-icon" aria-hidden="true">𓈗</span>
+          </div>
+          <p class="ex-route-label">INTERNAL TRANSPORT</p>
+          <h3 class="ex-route-name">Nile Route</h3>
+          <p class="ex-route-desc">
+            The Nile was Egypt's central highway — enabling rapid movement of grain, quarried stone,
+            luxury goods and entire armies along the country's full length. Boats sailed south using
+            prevailing north winds; downstream journeys used the current. The Nile made Egypt's
+            monumental building programme logistically possible.
+          </p>
+        </article>
+
+        <article class="ex-route-card">
+          <div class="ex-route-header">
+            <span class="ex-route-num" aria-hidden="true">02</span>
+            <span class="ex-route-icon" aria-hidden="true">⛵</span>
+          </div>
+          <p class="ex-route-label">NORTHERN CONNECTION</p>
+          <h3 class="ex-route-name">Mediterranean Trade</h3>
+          <p class="ex-route-desc">
+            From Delta ports including Alexandria, Naucratis and Tanis, Egypt connected with
+            Phoenicia, Cyprus, Greece, Crete and the broader Mediterranean world. Egypt exported
+            grain, papyrus, linen and gold. It imported cedar from Lebanon, silver from Anatolia,
+            tin from Afghanistan and luxury goods from the wider ancient world.
+          </p>
+        </article>
+
+        <article class="ex-route-card">
+          <div class="ex-route-header">
+            <span class="ex-route-num" aria-hidden="true">03</span>
+            <span class="ex-route-icon" aria-hidden="true">⚓</span>
+          </div>
+          <p class="ex-route-label">EASTERN TRADE</p>
+          <h3 class="ex-route-name">Red Sea Routes</h3>
+          <p class="ex-route-desc">
+            Egypt's Red Sea ports — including Mersa Gawasis and Berenice — connected it to Punt
+            (the Horn of Africa), Arabia and the Indian subcontinent. The famous Punt expeditions,
+            recorded as early as the Old Kingdom, brought myrrh, frankincense, ebony, ivory and
+            live animals for royal and temple use. Under the Ptolemies, this network reached India.
+          </p>
+        </article>
+
+        <article class="ex-route-card">
+          <div class="ex-route-header">
+            <span class="ex-route-num" aria-hidden="true">04</span>
+            <span class="ex-route-icon" aria-hidden="true">𓂧</span>
+          </div>
+          <p class="ex-route-label">ASIA GATEWAY</p>
+          <h3 class="ex-route-name">Sinai Crossing</h3>
+          <p class="ex-route-desc">
+            The Horus Way — Egypt's primary military and trade road — crossed the Sinai Peninsula
+            to connect Egypt with Canaan, Syria and the broader Near East. Egyptian armies, merchants
+            and diplomats used this route continuously from the Early Dynastic period. The turquoise
+            mines at Serabit el-Khadim were worked by royal expeditions for over 3,000 years and
+            preserve some of the earliest known alphabetic writing.
+          </p>
+        </article>
+
+        <article class="ex-route-card">
+          <div class="ex-route-header">
+            <span class="ex-route-num" aria-hidden="true">05</span>
+            <span class="ex-route-icon" aria-hidden="true">⛏</span>
+          </div>
+          <p class="ex-route-label">MINERAL EXPEDITIONS</p>
+          <h3 class="ex-route-name">Desert Quarry Routes</h3>
+          <p class="ex-route-desc">
+            Egypt's monuments required vast quantities of granite (Aswan), limestone (Tura),
+            diorite (Nubia) and alabaster (Middle Egypt). Royal quarrying expeditions crossed the
+            Eastern and Western Deserts, sometimes with thousands of workers. The Wadi Hammamat
+            route through the Eastern Desert was particularly important, connecting the Nile Valley
+            to Red Sea ports and quarry sites simultaneously.
+          </p>
+        </article>
+
+        <article class="ex-route-card">
+          <div class="ex-route-header">
+            <span class="ex-route-num" aria-hidden="true">06</span>
+            <span class="ex-route-icon" aria-hidden="true">𓅃</span>
+          </div>
+          <p class="ex-route-label">SOUTHERN TRADE</p>
+          <h3 class="ex-route-name">Nubian Connection</h3>
+          <p class="ex-route-desc">
+            The Nile above Aswan connected Egypt to Nubia and, through it, to central and
+            sub-Saharan Africa. Gold, ivory, ebony, animal skins and enslaved people moved north.
+            Egyptian goods, culture and political authority moved south. Middle Kingdom forts
+            at Buhen and Semna controlled this corridor; New Kingdom pharaohs extended Egypt's
+            reach deep into Nubia and built temples as monuments to Egyptian power.
+          </p>
+        </article>
+
+      </div><!-- /.ex-routes-grid -->
+    </section>
+
+    <!-- ══ EXPLORATION JOURNEY ════════════════════════════════════════════ -->
+    <section class="ex-journey" id="journey" aria-labelledby="journey-h">
+      <div class="ex-journey-inner">
+        <p class="ex-section-label">YOUR EXPLORATION</p>
+        <h2 id="journey-h" class="ex-journey-title">
+          Begin your journey <span>through ancient Egypt.</span>
+        </h2>
+
+        <ol class="ex-journey-steps">
+          <li class="ex-journey-step">
+            <span class="ex-step-num" aria-hidden="true">01</span>
+            <div>
+              <h3 class="ex-step-title">Choose a Region</h3>
+              <p>Start with Lower Egypt, Upper Egypt, Nubia or Sinai — each shaped civilization differently.</p>
+            </div>
+          </li>
+          <li class="ex-journey-step">
+            <span class="ex-step-num" aria-hidden="true">02</span>
+            <div>
+              <h3 class="ex-step-title">Locate an Ancient City</h3>
+              <p>Find it on the map. Discover its role as a capital, religious center or trading hub.</p>
+            </div>
+          </li>
+          <li class="ex-journey-step">
+            <span class="ex-step-num" aria-hidden="true">03</span>
+            <div>
+              <h3 class="ex-step-title">Discover a Monument</h3>
+              <p>Explore the temples, pyramids and tombs that embodied Egyptian royal and sacred power.</p>
+            </div>
+          </li>
+          <li class="ex-journey-step">
+            <span class="ex-step-num" aria-hidden="true">04</span>
+            <div>
+              <h3 class="ex-step-title">Learn Its Story</h3>
+              <p>Continue to the Learn section for deeper historical and archaeological context.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="ex-journey-actions">
+          <button class="ex-begin-btn" id="begin-exploration-btn" type="button">
+            Begin Your Exploration
+          </button>
+          <a href="learn.html" class="ex-learn-link">Explore the Learn Section →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <span>© 2026 Egypt Digital Museum</span>
+    <span>Explore · Learn · Discover</span>
+  </footer>
+
+  <script src="js/nav-links.js"></script>
+  <script src="js/explore.js"></script>
+</body>
+</html>
