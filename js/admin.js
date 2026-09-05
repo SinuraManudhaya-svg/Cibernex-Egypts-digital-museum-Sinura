@@ -147,6 +147,28 @@ async function initLoginPage() {
     });
 }
 
+async function verifyCredentials(token, password) {
+  try {
+    const res = await fetch(`${API_BASE}/admin/verify`, {
+      headers: { 'x-admin-token': token, 'x-admin-password': password }
+    });
+    if (res.status === 401) return 'invalid';   // wrong credentials
+    if (res.ok)             return 'ok';
+    return 'unreachable';                        // 5xx, etc.
+  } catch {
+    return 'unreachable';                        // network error
+  }
+}
+
+// In initLoginPage():
+const status = await verifyCredentials(existingToken, existingPassword);
+if (status === 'ok') {
+  window.location.href = DASHBOARD_PAGE;
+  return;
+}
+if (status === 'invalid') clearCredentials();   // only clear if server said no
+// if 'unreachable', keep credentials and show the form anyway
+
 // ================= DASHBOARD PAGE (admin.html) =================
 async function initDashboardPage() {
     const token = getToken();
@@ -431,4 +453,12 @@ async function confirmDelete(entityName, id) {
     } catch (err) {
         showToast(err.message, 'error');
     }
+
+function showToast(message, type = 'success') {
+  const toast = $('adminToast');
+  toast.textContent = message;       // ← write to visible text content
+  toast.className = `admin-toast ${type}`;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.add('hidden'), 4000);
+}
 }
