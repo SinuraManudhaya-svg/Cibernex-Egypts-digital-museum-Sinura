@@ -443,22 +443,3 @@ async function submitForm(entityName, form) {
     }
 }
 
-async function confirmDelete(entityName, id) {
-    if (!confirm(`Delete this ${entityName.slice(0, -1)}? This can't be undone.`)) return;
-    const config = ENTITY_CONFIG[entityName];
-    try {
-        await apiFetch(`${API_BASE}/${config.endpoint}/${encodeURIComponent(id)}`, { method: 'DELETE' });
-        showToast('Deleted.', 'success');
-        await loadEntity(entityName);
-    } catch (err) {
-        showToast(err.message, 'error');
-    }
-
-function showToast(message, type = 'success') {
-  const toast = $('adminToast');
-  toast.textContent = message;       // ← write to visible text content
-  toast.className = `admin-toast ${type}`;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.add('hidden'), 4000);
-}
-}
