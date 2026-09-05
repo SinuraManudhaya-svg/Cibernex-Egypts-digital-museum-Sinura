@@ -114,11 +114,27 @@ async function initLoginPage() {
 
     // Already logged in from a previous visit — skip straight to the
     // dashboard instead of making them log in again.
-    if (existingToken && existingPassword && await verifyCredentials(existingToken, existingPassword)) {
-        window.location.href = DASHBOARD_PAGE;
-        return;
-    }
-    clearCredentials();
+    async function verifyCredentials(token, password) {
+  try {
+    const res = await fetch(`${API_BASE}/admin/verify`, {
+      headers: { 'x-admin-token': token, 'x-admin-password': password }
+    });
+    if (res.status === 401) return 'invalid';   // wrong credentials
+    if (res.ok)             return 'ok';
+    return 'unreachable';                        // 5xx, etc.
+  } catch {
+    return 'unreachable';                        // network error
+  }
+}
+
+// In initLoginPage():
+const status = await verifyCredentials(existingToken, existingPassword);
+if (status === 'ok') {
+  window.location.href = DASHBOARD_PAGE;
+  return;
+}
+if (status === 'invalid') clearCredentials();   // only clear if server said no
+// if 'unreachable', keep credentials and show the form anyway
 
     $('adminLoginForm').addEventListener('submit', async e => {
         e.preventDefault();
