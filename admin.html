@@ -168,24 +168,6 @@
     
     <script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
     <script src="js/admin.js"></script>
-    <script>
-        // IntersectionObserver for scroll reveals
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.2 });
-
-        document.querySelectorAll(
-            '.reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item, .reveal'
-        ).forEach((el, i) => {
-            el.style.transitionDelay = `${(i % 3) * 0.15}s`;
-            observer.observe(el);
-        });
-
-    </script>
 
 </body>
 </html>
