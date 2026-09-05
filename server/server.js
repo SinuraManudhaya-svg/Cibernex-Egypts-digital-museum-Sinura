@@ -379,8 +379,16 @@ app.delete('/api/announcements/:id', requireAdmin, async (req, res) => {
     }
 });
 
+app.use('/api', (req, res, next) => {
+  if (!artifactsCollection) {
+    return res.status(503).json({ error: 'Database not ready yet. Try again in a moment.' });
+  }
+  next();
+});
+
 start().catch(err => {
     console.error('Could not connect to MongoDB Atlas:', err.message);
     console.error('Check MONGODB_URI in .env, and that your IP is allowed in Atlas → Network Access.');
     process.exit(1);
 });
+
