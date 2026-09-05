@@ -67,6 +67,18 @@
     </div>
 
     <script src="js/admin.js"></script>
+<script>
+const tokenInput    = $('adminTokenInput');
+const passwordInput = $('adminPasswordInput');
+
+toggleBtn?.addEventListener('click', () => {
+  const isHidden = passwordInput.type === 'password';
+  tokenInput.type    = isHidden ? 'text' : 'password';
+  passwordInput.type = isHidden ? 'text' : 'password';
+  toggleBtn.setAttribute('aria-pressed', String(isHidden));
+  toggleBtn.setAttribute('aria-label', isHidden ? 'Hide fields' : 'Show fields');
+});
+</script>
 
 </body>
 </html>
