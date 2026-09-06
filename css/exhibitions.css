@@ -1,11 +1,5 @@
 /*
  * exhibitions.css
- * Page-specific styles for exhibitions.html (collection/browse page).
- * Shared components (.exhibition-grid, .exhibition-card, .chip-row,
- * .chip, .page-hero, .section-label, .empty-state, .btn) already
- * exist in components.css / artifacts.css / main.css — this file
- * only adds what's new to this page. No inline styles anywhere here;
- * every container gets its own real class.
  */
 
 .featured-exhibition {
@@ -39,9 +33,6 @@
     z-index: 0;
 }
 
-/* When a real photo is showing, dim it and hide the decorative
-   glyph so the photo itself is the focus (glyph still shows on its
-   own, centered, whenever there's no image — unchanged from before). */
 .featured-visual.has-image::after {
     content: '';
     position: absolute;
