@@ -189,7 +189,7 @@ select:focus-visible,
 .featured-card {
   display: grid;
   grid-template-columns: 1.1fr 1fr;
-  min-height: 420px;
+  min-height: 240px;
   border: 1px solid var(--border-strong);
   background: var(--surface);
   overflow: hidden;
