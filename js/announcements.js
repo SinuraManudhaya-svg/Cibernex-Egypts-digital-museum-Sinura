@@ -1,13 +1,5 @@
 /**
  * announcements.js
- * Loads active announcements from the API and renders them at the
- * bottom of the homepage (index.html). Announcements only live in
- * MongoDB — there's no static json/announcements.json fallback like
- * artifacts and exhibitions have — so if the local API server isn't
- * running, this quietly hides the whole section instead of showing
- * an error. Announcements are a nice-to-have, not core content, so a
- * missing section here shouldn't alarm a visitor the way a broken
- * artifacts page would.
  */
 
 'use strict';
