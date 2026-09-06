@@ -18,8 +18,6 @@ let toastTimer = null;
 
 /* ══════════════════════════════════════════════════════════════
    CREDENTIAL STORAGE
-   Bug 9 fix: password goes to sessionStorage ONLY.
-   Token may go to localStorage if "Remember me" is checked.
 ══════════════════════════════════════════════════════════════ */
 
 function storeCredentials(token, password, remember) {
