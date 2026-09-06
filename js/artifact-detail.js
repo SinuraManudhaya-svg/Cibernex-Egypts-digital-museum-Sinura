@@ -1,9 +1,5 @@
 /**
  * artifact-detail.js
- * Powers artifact.html (Phase 7). Reads the numeric id from the URL
- * query string (artifact.html?id=1), loads the shared dataset, and
- * renders one artifact in full plus a set of related artifacts
- * (Phase 10).
  */
 
 'use strict';
