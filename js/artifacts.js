@@ -17,10 +17,6 @@ function esc(v) {
 }
 
 /* ── State ───────────────────────────────────────────── */
-// While you're developing locally with the MongoDB-backed API
-// server (see /server), this points at it. If that server isn't
-// running for some reason, we fall back to the static JSON file so
-// the page still works.
 const API_URL = '/api/artifacts';
 const FALLBACK_DATA_URL = 'json/artifacts.json';
 
@@ -53,15 +49,6 @@ document.addEventListener('DOMContentLoaded', init);
 
 async function init() {
 
-    // Smooth scroll (Lenis) and the loading-screen progress animation
-    // are both handled once, centrally, by main.js — which is loaded
-    // on every page. Running either one again here would start a
-    // second, competing animation loop, so this file only owns
-    // page-specific logic (data, filters, grid, collection).
-
-    // Mobile hamburger menu is wired up once, for every page, by
-    // nav-links.js — no need to duplicate that listener here.
-
     /* ── DOM refs ── */
     grid            = $('artifactGrid');
     count           = $('resultCount');
@@ -93,7 +80,6 @@ async function init() {
         return;
     }
 
-    /* ── Filter / sort listeners ── */
     searchInput.addEventListener('input', applyFilters);
     [periodFilter, categoryFilter, sortSelect].forEach(el =>
         el.addEventListener('change', applyFilters)
@@ -101,7 +87,6 @@ async function init() {
 
     $('resetFilters')?.addEventListener('click', resetFilters);
 
-    /* ── Card click (event delegation): open detail page or toggle save ── */
     grid.addEventListener('click', e => {
         const saveBtn = e.target.closest('.save-toggle');
         if (saveBtn) {
@@ -122,7 +107,6 @@ async function init() {
         }
     });
 
-    /* ── My Collection panel ── */
     $('collectionToggle')?.addEventListener('click', openCollectionPanel);
     $('collectionModalClose')?.addEventListener('click', closeCollectionPanel);
     collectionModal?.addEventListener('click', e => {
@@ -151,9 +135,6 @@ function renderFeatured() {
         section.classList.add('hidden');
         return;
     }
-
-    // Rotate through featured artifacts by day so the section changes
-    // over time without needing a backend.
     const dayIndex = Math.floor(Date.now() / 86400000) % featuredList.length;
     const a = featuredList[dayIndex];
     const hasImage = Boolean(a.image);
@@ -330,43 +311,23 @@ function renderCollectionPanel() {
         </article>`;
     }).join('');
 
-    // Delegate clicks inside the collection list too
     collectionList.onclick = e => {
         const saveBtn = e.target.closest('.save-toggle');
         if (saveBtn) {
             e.stopPropagation();
             toggleSave(saveBtn.dataset.id);
-            renderGrid(state.filtered); // keep grid hearts in sync
+            renderGrid(state.filtered); 
             return;
         }
         const card = e.target.closest('.artifact-card[data-id]');
         if (card) goToArtifact(card.dataset.id);
     };
 
-    /**
- * artifacts.js — DEPLOYMENT FIX (patch only the loadArtifacts function)
- * ========================================================================
- * PROBLEM: const API_URL = '/api/artifacts' always 404s on Vercel because
- * there is no serverless function at that path. The fallback works, but
- * every single page load generates a console warning and a wasted network
- * request.
- *
- * FIX: Detect production by checking if we're NOT on localhost/127.0.0.1,
- * and skip the API call entirely in production, going straight to the JSON.
- *
- * WHERE TO APPLY: Replace the existing loadArtifacts() function in js/artifacts.js
- */
-
-// ── REPLACE this block in artifacts.js ────────────────────────────────────
-// (find "const API_URL" through the closing brace of loadArtifacts)
 
 const API_URL          = '/api/artifacts';
 const FALLBACK_DATA_URL = 'json/artifacts.json';
 
 async function loadArtifacts() {
-  // Only try the local Express API when running on localhost.
-  // On Vercel (or any non-local host) skip straight to the static JSON
-  // so we don't generate a noisy 404 warning on every production page load.
   const isLocal = ['localhost', '127.0.0.1', ''].includes(window.location.hostname);
 
   if (isLocal) {
@@ -379,10 +340,8 @@ async function loadArtifacts() {
     }
   }
 
-  // Production path (or local fallback)
   const res = await fetch(FALLBACK_DATA_URL);
   if (!res.ok) throw new Error(`HTTP ${res.status} loading ${FALLBACK_DATA_URL}`);
   return await res.json();
 }
-// ── END REPLACEMENT ────────────────────────────────────────────────────────
 }
