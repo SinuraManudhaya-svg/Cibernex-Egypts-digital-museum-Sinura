@@ -1,11 +1,5 @@
 /**
  * artifacts.js
- * Handles: smooth scroll (Lenis), loader, mobile nav,
- * artifact data fetch, search/filter/sort, grid render,
- * featured artifact, and the "My Collection" panel.
- *
- * Clicking a card navigates to artifact.html?id=<id> (Phase 7) —
- * this page no longer opens an inline detail modal.
  */
 
 'use strict';
