@@ -128,8 +128,14 @@
   min-height: 60vh;
   padding: 7rem clamp(1.5rem, 8vw, 8rem);
   border-bottom: 1px solid var(--ex-border);
-  background: rgba(0, 0, 0, 0.506);
-  background-image:url("../images/bg/2.png");
+
+  background-image:
+    linear-gradient(
+      rgba(0, 0, 0, 0.506),
+      rgba(0, 0, 0, 0.506)
+    ),
+    url("../images/bg/2.png");
+
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
