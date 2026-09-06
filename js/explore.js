@@ -1,23 +1,5 @@
 /**
- * explore.js — Main Explore Page
- * Egypt Digital Museum
- *
- * Sections:
- *  1. Mobile navigation
- *  2. Ancient site data  (17 sites — drives the SVG map)
- *  3. Ancient cities data (7 cities — drives the Cities section)
- *  4. Monuments data     (10 monuments — drives the Monuments section)
- *  5. Map coordinate system
- *  6. Map initialization & marker rendering
- *  7. Marker interaction & info panel
- *  8. Filter system
- *  9. Map controls (reset)
- * 10. Locate-on-map (event delegation for all locate buttons)
- * 11. Cities section rendering
- * 12. Monuments section rendering
- * 13. Scroll navigation & journey CTA
- * 14. Reduced-motion support
- * 15. Boot
+ * explore.js
  */
 
 'use strict';
