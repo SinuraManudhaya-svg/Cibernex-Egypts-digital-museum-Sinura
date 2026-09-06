@@ -1,9 +1,5 @@
 /**
  * learn-paths.js
- * Handles scroll-reveal animation and accessibility
- * for the "Explore Ancient Egypt" learning-paths section.
- *
- * Egypt Digital Museum
  */
 
 (function () {
