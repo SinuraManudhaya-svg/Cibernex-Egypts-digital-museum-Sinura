@@ -1,12 +1,11 @@
 /**
- * quiz.js
- * Ten-question Knowledge Challenge for the Egypt Digital Museum.
- * Expanded from minified source; inline onclick replaced with event delegation.
+ * quiz.js — Knowledge Challenge
+ * Egypt Digital Museum
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── Questions: [prompt, [options], correctIndex] ──────────────────────────
+  /* ── Questions: [prompt, [options], correctIndex] ─────────────────── */
   const questions = [
     [
       'Which river was central to ancient Egyptian civilization?',
@@ -65,76 +64,92 @@ document.addEventListener('DOMContentLoaded', () => {
     ]
   ];
 
-  // ── State ─────────────────────────────────────────────────────────────────
+  /* ── State ─────────────────────────────────────────────────────────── */
   let currentIndex = 0;
   const answers = Array(questions.length).fill(null);
 
-  // ── Element references ────────────────────────────────────────────────────
+  /* ── Element references ────────────────────────────────────────────── */
   const $ = id => document.getElementById(id);
-  const counterEl  = $('questionCounter');
-  const progressEl = $('progressBar');
-  const scoreEl    = $('scoreLabel');
-  const cardEl     = $('quizCard');
-  const resultEl   = $('quizResult');
-  const prevBtn    = $('prevBtn');
-  const nextBtn    = $('nextBtn');
+  const counterEl    = $('questionCounter');
+  const progressEl   = $('progressBar');
+  const progressWrap = document.querySelector('[role="progressbar"]');
+  const scoreEl      = $('scoreLabel');
+  const cardEl       = $('quizCard');
+  const resultEl     = $('quizResult');
+  const prevBtn      = $('prevBtn');
+  const nextBtn      = $('nextBtn');
 
   if (!counterEl || !cardEl || !resultEl || !prevBtn || !nextBtn) return;
 
-  // ── Score helper ──────────────────────────────────────────────────────────
+  /* ── Helpers ───────────────────────────────────────────────────────── */
   function currentScore() {
     return answers.filter((v, j) => v === questions[j][2]).length;
   }
 
-  // ── Render current question ───────────────────────────────────────────────
-  function render() {
+  /* ── Render a question (full rebuild — called only on question change) ─ */
+  function renderQuestion() {
     const [prompt, options] = questions[currentIndex];
     const total = questions.length;
+    const pct   = Math.round(((currentIndex + 1) / total) * 100);
 
-    counterEl.textContent  = `QUESTION ${String(currentIndex + 1).padStart(2, '0')} / ${total}`;
-    progressEl.style.width = `${((currentIndex + 1) / total) * 100}%`;
-    scoreEl.textContent    = `SCORE ${String(currentScore()).padStart(2, '0')}`;
 
-    const optionsHtml = options.map((text, idx) => {
-      const isSelected = answers[currentIndex] === idx ? 'selected' : '';
-      const letter = String.fromCharCode(65 + idx);
-      return `
-        <button class="answer ${isSelected}" data-index="${idx}" type="button">
-          <span>${letter}</span>${text}
-        </button>`;
-    }).join('');
-
+    counterEl.textContent = `QUESTION ${String(currentIndex + 1).padStart(2, '0')} / ${total}`;
+    scoreEl.textContent   = `SCORE ${String(currentScore()).padStart(2, '0')}`;
+    
+    progressEl.style.width = `${pct}%`;
+    progressWrap?.setAttribute('aria-valuenow', pct);
+/
     cardEl.innerHTML = `
       <span class="card-number">${String(currentIndex + 1).padStart(2, '0')}</span>
       <p class="section-label">KNOWLEDGE CHECK</p>
       <h2>${prompt}</h2>
-      <div class="answers">${optionsHtml}</div>
+      <div class="answers">
+        ${options.map((text, idx) => `
+          <button
+            class="answer${answers[currentIndex] === idx ? ' selected' : ''}"
+            data-index="${idx}"
+            type="button"
+            aria-pressed="${answers[currentIndex] === idx}"
+          ><span>${String.fromCharCode(65 + idx)}</span>${text}</button>
+        `).join('')}
+      </div>
     `;
 
     prevBtn.disabled    = currentIndex === 0;
     nextBtn.textContent = currentIndex === total - 1 ? 'Finish' : 'Next →';
   }
 
-  // ── Answer click (event delegation on the card) ───────────────────────────
+  /* ── Update answer state WITHOUT rebuilding HTML ────────────────────── */
+  function updateAnswerDisplay() {
+    document.querySelectorAll('.answer').forEach(btn => {
+      const idx     = Number(btn.dataset.index);
+      const sel     = answers[currentIndex] === idx;
+      btn.classList.toggle('selected', sel);
+      btn.setAttribute('aria-pressed', String(sel));
+    });
+
+    scoreEl.textContent = `SCORE ${String(currentScore()).padStart(2, '0')}`;
+  }
+
+  /* ── Answer selection — event delegation on the card container ────── */
   cardEl.addEventListener('click', e => {
     const btn = e.target.closest('.answer');
     if (!btn) return;
     answers[currentIndex] = Number(btn.dataset.index);
-    render();
+    updateAnswerDisplay(); 
   });
 
-  // ── Navigation ────────────────────────────────────────────────────────────
+  /* ── Next / Finish ─────────────────────────────────────────────────── */
   nextBtn.addEventListener('click', () => {
-    // Require an answer before advancing
     if (answers[currentIndex] === null) return;
 
     if (currentIndex < questions.length - 1) {
       currentIndex++;
-      render();
+      renderQuestion(); 
       return;
     }
 
-    // ── Show result ───────────────────────────────────────────────────────
+    /* ── Show result ──────────────────────────────────────────────── */
     const score = currentScore();
     const level =
       score >= 9 ? 'MASTER OF THE MUSEUM' :
@@ -143,6 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                    'BEGINNING EXPLORER';
 
     resultEl.hidden = false;
+
     resultEl.innerHTML = `
       <span class="section-label">YOUR RESULT</span>
       <strong>${score} / ${questions.length}</strong>
@@ -150,23 +166,25 @@ document.addEventListener('DOMContentLoaded', () => {
       <p>Review the Learn and Artifacts sections to deepen your knowledge.</p>
       <button class="quiz-button" id="restartBtn" type="button">Try Again</button>
     `;
+
     resultEl.scrollIntoView({ behavior: 'smooth' });
   });
 
+  /* ── Previous ──────────────────────────────────────────────────────── */
   prevBtn.addEventListener('click', () => {
     if (currentIndex > 0) {
       currentIndex--;
-      render();
+      renderQuestion();
     }
   });
 
-  // ── Restart via event delegation (avoids inline onclick) ─────────────────
+  /* ── Bug 6 fix: restart via event delegation — no inline onclick ───── */
   resultEl.addEventListener('click', e => {
     if (e.target.id === 'restartBtn') {
       location.reload();
     }
   });
 
-  // ── Initial render ────────────────────────────────────────────────────────
-  render();
+  /* ── Kick off ──────────────────────────────────────────────────────── */
+  renderQuestion();
 });
