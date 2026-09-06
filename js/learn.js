@@ -1,9 +1,5 @@
 /**
  * learn.js
- * Powers learn.html. This page is static reference content (no
- * MongoDB/artifact data involved), so all this does is drive the
- * sticky jump-nav: smooth-scrolls to a section on click, and
- * highlights whichever section is currently in view.
  */
 
 'use strict';
@@ -49,12 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initQuiz();
 });
 
-// ================= HIEROGLYPH NAME GENERATOR =================
-// Maps each English letter to the nearest uniliteral sign from the
-// table above, by the object it depicts (never an actual hieroglyph
-// Unicode character — some of those render as blank boxes on certain
-// systems/fonts, so plain text descriptions are used instead, exactly
-// like the alphabet table itself does).
 const HIERO_MAP = {
     A: 'Egyptian vulture', B: 'Leg and foot', C: 'Basket with handle (≈ K)',
     D: 'Hand', E: 'Flowering reed (≈ I — no true vowel sign)', F: 'Horned viper',
