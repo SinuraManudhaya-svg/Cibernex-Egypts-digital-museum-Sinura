@@ -1,12 +1,5 @@
 /**
  * exhibition-detail.js
- * Powers exhibition.html (exhibition.html?id=<slug>). Loads the
- * shared exhibitions + artifacts datasets from MongoDB (via the same
- * local API + fallback pattern used everywhere else on the site),
- * renders one exhibition in full — including its cover image when it
- * has one — and links out to each linked artifact's real
- * artifact.html page. Artifact references stay glyph-only (no
- * per-artifact images on this page, only the exhibition's own cover).
  */
 
 'use strict';
