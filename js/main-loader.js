@@ -1,20 +1,13 @@
 /**
  * main-loader.js
- * Drives #mainLoader — the richer, longer intro shown only on
- * index.html, and only once per browser session (sessionStorage).
- * Every other page keeps the original #loader from loader.css/main.js,
- * completely untouched by this file.
  */
 
 'use strict';
 
 (function () {
     const loader = document.getElementById('mainLoader');
-    if (!loader) return; // not on this page — skip safely
+    if (!loader) return;
 
-    // The inline <script> in <head> already added this class before
-    // first paint if the intro already played this session — if so,
-    // there's nothing left to animate.
     if (document.documentElement.classList.contains('skip-main-loader')) {
         return;
     }
@@ -23,11 +16,6 @@
     splitTitleIntoLetters();
     runProgress();
 
-    // ---------- Glyph ring ----------
-    // Only two glyphs are used here — 𓂀 (Eye of Horus) and ☥ (ankh) —
-    // since testing showed most other Egyptian-hieroglyph-block
-    // characters render as blank "tofu" boxes on some systems/fonts.
-    // Both of these are confirmed to render reliably.
     function buildGlyphRing() {
         const ring = document.getElementById('glyphRing');
         if (!ring) return;
@@ -46,7 +34,6 @@
         }
     }
 
-    // ---------- Title letter stagger ----------
     function splitTitleIntoLetters() {
         document.querySelectorAll('#mainLoaderTitle .title-line').forEach(line => {
             const text = line.dataset.text || '';
@@ -60,7 +47,6 @@
         });
     }
 
-    // ---------- Progress + narrative stages ----------
     function runProgress() {
         const fill = document.getElementById('mainProgressFill');
         const percentEl = document.getElementById('mainProgressPercent');
@@ -98,13 +84,10 @@
             }
         }
 
-        // Give the eye-draw + title-stagger animations room to play
-        // before the progress bar starts (this loader is meant to
-        // feel like a short cinematic, not just a spinner).
         setTimeout(() => requestAnimationFrame(tick), 2600);
     }
 
-    // ---------- Finish sequence: flash → doors open → remove ----------
+ 
     function finish() {
         loader.classList.add('flash');
 
