@@ -1,15 +1,5 @@
 /**
  * exhibitions.js
- * Powers exhibitions.html (the browse/collection page only — the
- * detail view lives on its own page, exhibition.html, exactly like
- * artifacts.html -> artifact.html).
- *
- * Exhibition content is served from MongoDB via /api/exhibitions,
- * falling back to json/exhibitions.json if the local API is down —
- * the same pattern artifacts.js already uses. Each exhibition only
- * stores which artifact ids it references — full artifact details
- * (period, dynasty, etc.) are always pulled live from the shared
- * artifact dataset, never duplicated by hand.
  */
 
 'use strict';
