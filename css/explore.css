@@ -128,9 +128,10 @@
   min-height: 60vh;
   padding: 7rem clamp(1.5rem, 8vw, 8rem);
   border-bottom: 1px solid var(--ex-border);
-  background:
-    radial-gradient(ellipse 55% 45% at 70% 40%, rgba(201, 168, 76, 0.07), transparent),
-    radial-gradient(ellipse 35% 55% at 15% 70%, rgba(15, 40, 100, 0.12), transparent);
+  background-image:url("../images/bg/2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .ex-hero-inner {
