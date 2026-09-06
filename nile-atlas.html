@@ -6,7 +6,6 @@
   <meta name="description" content="Explore the regions and landscapes of ancient Egypt — Lower Egypt, Upper Egypt and Nubia." />
   <title>Nile Atlas | Egypt Digital Museum</title>
 
-  <!-- Font preconnect (matches learn.html pattern) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -17,36 +16,36 @@
 </head>
 <body>
 
-    <!-- ===== LOADING SCREEN ===== -->
-    <div id="loader">
-        <div class="loader-inner">
-            <div class="rings">
-                <div class="ring ring--1"></div>
-                <div class="ring ring--2"></div>
-                <div class="ring ring--3"></div>
-            </div>
+  <!-- ===== LOADING SCREEN ===== -->
+  <div id="loader">
+      <div class="loader-inner">
+          <div class="rings">
+              <div class="ring ring--1"></div>
+              <div class="ring ring--2"></div>
+              <div class="ring ring--3"></div>
+          </div>
 
-            <div class="eye-wrap">
-                <svg viewBox="0 0 120 90" fill="none">
-                    <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
+          <div class="eye-wrap">
+              <svg viewBox="0 0 120 90" fill="none">
+                  <path class="eye-path" d="M8 40 C 30 15, 60 8, 78 22 C 92 32, 105 34, 112 30 C 100 45, 88 50, 78 48
                                                C 60 66, 30 62, 8 40 Z" />
-                    <circle class="eye-pupil" cx="52" cy="38" r="8" />
-                    <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
-                </svg>
-            </div>
+                  <circle class="eye-pupil" cx="52" cy="38" r="8" />
+                  <path class="eye-path" d="M52 46 C 50 58, 44 64, 34 68 C 40 70, 46 68, 50 64" />
+              </svg>
+          </div>
 
-            <p class="loader-eyebrow">A Digital Journey Through History</p>
-            <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
+          <p class="loader-eyebrow">A Digital Journey Through History</p>
+          <h1 class="loader-title">EGYPT<span>DIGITAL MUSEUM</span></h1>
 
-            <div class="progress-track">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-            <div class="progress-meta">
-                <span id="progress-label">Unsealing the archives</span>
-                <span id="progress-percent">0%</span>
-            </div>
-        </div>
-    </div>
+          <div class="progress-track">
+              <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-meta">
+              <span id="progress-label">Unsealing the archives</span>
+              <span id="progress-percent">0%</span>
+          </div>
+      </div>
+  </div>
     <!-- ===== END LOADING SCREEN ===== -->
 
   <header class="site-header">
@@ -66,12 +65,12 @@
 
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
-        <a href="explore.html">Explore</a>
+        <a href="explore.html" class="active">Explore</a>
         <a href="artifacts.html">Artifacts</a>
         <a href="timeline.html">Timeline</a>
         <a href="exhibitions.html">Exhibitions</a>
         <a href="virtual-museum.html">Virtual Museum</a>
-        <a href="learn.html" class="active">Learn</a>
+        <a href="learn.html">Learn</a>
       </div>
     </nav>
   </header>
@@ -102,11 +101,11 @@
     </section>
 
     <!-- REGIONAL LENS -->
-    <section class="atlas-section" aria-labelledby="regionHeading">
+    <section class="atlas-section" aria-labelledby="region-heading">
       <div class="section-intro">
         <div>
           <p class="section-label">REGIONAL LENS</p>
-          <h2 id="regionHeading">Choose a region.</h2>
+          <h2 id="region-heading">Choose a region.</h2>
         </div>
         <p>
           Change the regional lens to discover how geography influenced
@@ -119,23 +118,36 @@
           class="region-tab is-active"
           role="tab"
           aria-selected="true"
+          aria-controls="region-panel"
+          tabindex="0"
           data-region="lower"
         >Lower Egypt</button>
+
         <button
           class="region-tab"
           role="tab"
           aria-selected="false"
+          aria-controls="region-panel"
+          tabindex="-1"
           data-region="upper"
         >Upper Egypt</button>
+
         <button
           class="region-tab"
           role="tab"
           aria-selected="false"
+          aria-controls="region-panel"
+          tabindex="-1"
           data-region="nubia"
         >Nubia</button>
       </div>
 
-      <div class="region-panel" role="tabpanel">
+      <div
+        id="region-panel"
+        class="region-panel"
+        role="tabpanel"
+        aria-label="Region information"
+      >
         <div class="region-number" id="regionNumber" aria-hidden="true">01</div>
         <div>
           <p class="section-label" id="regionLabel">LOWER EGYPT</p>
@@ -151,11 +163,11 @@
     </section>
 
     <!-- LANDSCAPES -->
-    <section class="atlas-section" aria-labelledby="landscapesHeading">
+    <section class="atlas-section" aria-labelledby="landscapes-heading">
       <div class="section-intro">
         <div>
           <p class="section-label">LANDSCAPES</p>
-          <h2 id="landscapesHeading">More than a river.</h2>
+          <h2 id="landscapes-heading">More than a river.</h2>
         </div>
         <p>
           Ancient Egyptian civilization developed through a relationship
@@ -182,14 +194,14 @@
           <span aria-hidden="true">03</span>
           <b aria-hidden="true">𓂧</b>
           <h3>Eastern Desert</h3>
-          <p>A mineral-rich landscape between the Nile and Red Sea, crossed by routes and quarrying activity.</p>
+          <p>A mineral-rich landscape between the Nile and Red Sea, crossed by routes and quarrying expeditions.</p>
         </article>
 
         <article class="landscape-card">
           <span aria-hidden="true">04</span>
           <b aria-hidden="true">𓅃</b>
           <h3>Sinai</h3>
-          <p>A strategic peninsula linking Egypt with neighbouring regions and important travel corridors.</p>
+          <p>A strategic peninsula linking Egypt with neighbouring regions, and a major source of turquoise and copper.</p>
         </article>
       </div>
     </section>
@@ -222,7 +234,7 @@
             observer.observe(el);
         });
 
-    </script>
+  </script>
   
 </body>
 </html>
