@@ -6,7 +6,6 @@
   <meta name="description" content="Test your knowledge of ancient Egypt with ten questions and discover your explorer level." />
   <title>Knowledge Challenge | Egypt Digital Museum</title>
 
-  <!-- Font preconnect (matches learn.html pattern) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -56,14 +55,8 @@
         <span>EGYPT</span>
         <small>DIGITAL MUSEUM</small>
       </a>
-
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-      >☰</button>
-
+      <button class="menu-toggle" id="menuToggle"
+              aria-label="Open navigation menu" aria-expanded="false">☰</button>
       <div class="nav-links" id="navLinks">
         <a href="index.html">Home</a>
         <a href="explore.html">Explore</a>
@@ -78,7 +71,6 @@
 
   <main class="quiz-page">
 
-    <!-- HERO -->
     <section class="quiz-hero">
       <p class="section-label">KNOWLEDGE CHALLENGE</p>
       <h1>Test your <span>knowledge.</span></h1>
@@ -88,28 +80,33 @@
       </p>
     </section>
 
-    <!-- QUIZ SHELL -->
     <section class="quiz-shell" aria-label="Knowledge challenge quiz">
 
-      <!-- Progress row -->
-      <div class="quiz-top" aria-live="polite" aria-atomic="true">
+      <div class="quiz-top">
         <span id="questionCounter">QUESTION 01 / 10</span>
-        <div class="quiz-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
-          <i id="progressBar"></i>
+        <div
+          class="quiz-progress"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="10"
+          aria-label="Quiz progress"
+        >
+          <span id="progressBar"></span>
         </div>
+
         <span id="scoreLabel">SCORE 00</span>
       </div>
 
-      <!-- Question card (populated by quiz.js) -->
-      <div id="quizCard" class="quiz-card"></div>
-
-      <!-- Navigation controls -->
+      <div id="quizCard" class="quiz-card" aria-live="polite" aria-atomic="false"></div>
+      
       <div class="quiz-controls">
-        <button id="prevBtn" class="quiz-button secondary" type="button" disabled>← Previous</button>
+        <button id="prevBtn" class="quiz-button secondary" type="button" disabled>
+          ← Previous
+        </button>
         <button id="nextBtn" class="quiz-button" type="button">Next →</button>
       </div>
 
-      <!-- Result panel (hidden until quiz is finished) -->
       <div id="quizResult" class="quiz-result" hidden aria-live="polite"></div>
 
     </section>
@@ -141,8 +138,6 @@
             observer.observe(el);
         });
 
-    </script>
+  </script>
 </body>
 </html>
-
- 
