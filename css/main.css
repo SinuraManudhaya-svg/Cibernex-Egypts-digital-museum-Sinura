@@ -162,6 +162,10 @@ a {
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    background-image:url("../images/bg/1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -416,16 +420,6 @@ a {
     font-size: 12px;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   NEW BELOW THIS LINE — append to the end of main.css.
-   Nothing above this marker should be changed.
-   ══════════════════════════════════════════════════════════════ */
-
-/* ---------- SCROLL REVEAL ----------
-   Makes the already-wired-up IntersectionObserver (js/nav-links.js)
-   actually visible — before this, .reveal/.is-visible existed only
-   as JS class names with no matching styles anywhere, so elements
-   were always fully visible regardless of scroll position. */
 .reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .stagger-item {
     opacity: 0;
     transition: opacity 0.8s ease, transform 0.8s ease;
@@ -450,9 +444,6 @@ a {
     }
 }
 
-/* ---------- NAV UTILITY BOX ----------
-   Appended inside #navLinks by js/nav-links.js — opens and closes
-   with the same toggle as the main nav links. */
 .nav-utility-box {
     display: flex;
     flex-direction: column;
@@ -481,14 +472,6 @@ a {
 
 .nav-utility-box .nav-utility-admin:hover { color: var(--gold-light); }
 
-/* On wide screens the mobile nav-links panel (and this box inside
-   it) is hidden entirely by the existing responsive rules, so no
-   extra breakpoint handling is needed here. */
-
-/* ---------- LARGE FOOTER ----------
-   Overrides the original .site-footer's simple flex row (border-top,
-   padding, space-between) once js/nav-links.js adds the
-   .site-footer--large modifier class and replaces its content. */
 .site-footer.site-footer--large {
     display: block;
     padding: 0;
