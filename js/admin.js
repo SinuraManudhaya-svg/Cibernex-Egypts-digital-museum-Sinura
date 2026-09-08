@@ -167,13 +167,16 @@ const state = {
 
 function showToast(message, type = 'success') {
   const toast = $('adminToast');
-  if (!toast) return;
 
   toast.textContent = message;
-  toast.className   = `admin-toast ${type}`;
+  toast.className = `admin-toast ${type}`;
+  toast.classList.remove('hidden');
 
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.add('hidden'), 4000);
+  clearTimeout(window.__toastTimer);
+
+  window.__toastTimer = setTimeout(() => {
+    toast.classList.add('hidden');
+  }, 3500);
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -382,13 +385,27 @@ async function confirmDelete(entityName, id) {
    DATA LOADING
 ══════════════════════════════════════════════════════════════ */
 async function loadEntity(entityName) {
-  const config = ENTITY_CONFIG[entityName];
   try {
-    const data = await fetch(`${API_BASE}/${config.endpoint}`).then(r => r.json());
+    const response = await fetch(`${API_BASE}/${config.endpoint}`);
+    if (!response.ok) {
+      throw new Error(`Server returned ${response.status}`);
+    }
+
+    const data = await response.json();
     state.data[entityName] = Array.isArray(data) ? data : [];
+     
+    if (!Array.isArray(data)) {
+      showToast('The server returned invalid data.', 'error');
+    }
     renderTable(entityName);
-  } catch {
-    showToast(`Failed to load ${entityName}.`, 'error');
+  } catch (error) {
+    console.error(`Failed to load ${entityName}:`, error);
+    state.data[entityName] = [];
+    renderTable(entityName);
+    showToast(
+      `Unable to load ${entityName}. Please try again.`,
+      'error'
+    );
   }
 }
 
