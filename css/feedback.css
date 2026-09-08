@@ -1,0 +1,850 @@
+/* ==========================================================
+   feedback.css — Visitor Feedback Page
+   Egypt Digital Museum
+   Sections: tokens, hero, contact cards, form, stars,
+             success state, responsive, reduced motion
+   ========================================================== */
+
+/* ── LOCAL DESIGN TOKENS ────────────────────────────────────── */
+:root {
+  --fb-gold:          #c9a84c;
+  --fb-gold-bright:   #e2bb6a;
+  --fb-gold-dim:      rgba(201, 168, 76, 0.10);
+  --fb-gold-border:   rgba(201, 168, 76, 0.22);
+  --fb-gold-focus:    rgba(201, 168, 76, 0.50);
+  --fb-obsidian:      #0b0907;
+  --fb-surface:       #111009;
+  --fb-surface-hover: #171410;
+  --fb-wa-green:      #25d366;
+  --fb-wa-green-dim:  rgba(37, 211, 102, 0.10);
+  --fb-wa-border:     rgba(37, 211, 102, 0.22);
+  --fb-text:          #ede4d1;
+  --fb-text-muted:    rgba(237, 228, 209, 0.52);
+  --fb-text-dim:      rgba(237, 228, 209, 0.28);
+  --fb-error:         #e07070;
+  --fb-error-dim:     rgba(224, 112, 112, 0.12);
+  --fb-radius:        5px;
+  --fb-transition:    0.26s cubic-bezier(0.22, 0.61, 0.36, 1);
+  --fb-max-width:     860px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO
+══════════════════════════════════════════════════════════════ */
+.fb-hero {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  align-items: center;
+  gap: 3rem;
+  padding: 6rem clamp(1.5rem, 8vw, 8rem) 5rem;
+  border-bottom: 1px solid var(--fb-gold-border);
+  background: radial-gradient(
+    ellipse 50% 70% at 72% 50%,
+    rgba(201, 168, 76, 0.06),
+    transparent
+  );
+}
+
+.fb-eyebrow {
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.22em;
+  color: var(--fb-gold);
+  opacity: 0.7;
+  margin: 0 0 1rem;
+}
+
+.fb-hero h1 {
+  font: 500 clamp(3rem, 6vw, 5.5rem) / 1 Cinzel, serif;
+  color: var(--fb-text);
+  margin: 0 0 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.fb-hero h1 span {
+  color: var(--fb-gold);
+}
+
+.fb-hero-desc {
+  font: 0.93rem / 1.78 Inter, sans-serif;
+  color: var(--fb-text-muted);
+  max-width: 520px;
+  margin: 0;
+}
+
+/* Circular seal badge */
+.fb-hero-seal {
+  width: 180px;
+  height: 180px;
+  border: 1px solid var(--fb-gold-border);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.fb-hero-seal strong {
+  display: block;
+  font-size: 4rem;
+  color: var(--fb-gold);
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.fb-hero-seal small {
+  position: absolute;
+  bottom: 20px;
+  font: 8px / 1.5 'Share Tech Mono', monospace;
+  letter-spacing: 0.2em;
+  color: var(--fb-text-dim);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CONTACT CARDS STRIP
+══════════════════════════════════════════════════════════════ */
+.fb-contact-section {
+  padding: 4rem clamp(1.5rem, 8vw, 8rem);
+  border-bottom: 1px solid var(--fb-gold-border);
+}
+
+.fb-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  max-width: var(--fb-max-width);
+  margin: 0 auto;
+}
+
+/* Shared card base */
+.fb-contact-card {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem 1.8rem;
+  border: 1px solid var(--fb-gold-border);
+  border-radius: var(--fb-radius);
+  background: var(--fb-surface);
+  text-decoration: none;
+  transition:
+    border-color var(--fb-transition),
+    background   var(--fb-transition),
+    transform    var(--fb-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Thin coloured line at the top of each card */
+.fb-contact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  transition: opacity var(--fb-transition);
+  opacity: 0.55;
+}
+
+.fb-contact-card--email::before {
+  background: var(--fb-gold);
+}
+
+.fb-contact-card--whatsapp::before {
+  background: var(--fb-wa-green);
+}
+
+/* Hover states */
+.fb-contact-card--email:hover {
+  border-color: var(--fb-gold-focus);
+  background: var(--fb-surface-hover);
+  transform: translateY(-4px);
+}
+
+.fb-contact-card--whatsapp:hover {
+  border-color: rgba(37, 211, 102, 0.40);
+  background: var(--fb-surface-hover);
+  transform: translateY(-4px);
+}
+
+.fb-contact-card--email:hover::before,
+.fb-contact-card--whatsapp:hover::before {
+  opacity: 1;
+}
+
+/* Focus ring */
+.fb-contact-card:focus-visible {
+  outline: 2px solid var(--fb-gold);
+  outline-offset: 3px;
+}
+
+.fb-contact-card--whatsapp:focus-visible {
+  outline-color: var(--fb-wa-green);
+}
+
+/* Card icon */
+.fb-contact-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 1.4rem;
+  opacity: 0.7;
+  transition: opacity var(--fb-transition);
+}
+
+.fb-contact-card--email .fb-contact-icon {
+  color: var(--fb-gold);
+}
+
+.fb-contact-card--whatsapp .fb-contact-icon {
+  color: var(--fb-wa-green);
+}
+
+.fb-contact-card:hover .fb-contact-icon {
+  opacity: 1;
+}
+
+.fb-contact-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Card text */
+.fb-contact-label {
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.2em;
+  margin: 0 0 0.5rem;
+}
+
+.fb-contact-card--email .fb-contact-label {
+  color: var(--fb-gold);
+  opacity: 0.65;
+}
+
+.fb-contact-card--whatsapp .fb-contact-label {
+  color: var(--fb-wa-green);
+  opacity: 0.65;
+}
+
+.fb-contact-title {
+  font: 500 1.2rem / 1.2 Cinzel, serif;
+  color: var(--fb-text);
+  margin: 0 0 0.5rem;
+}
+
+.fb-contact-address {
+  font: 0.84rem / 1.5 'Share Tech Mono', monospace;
+  color: var(--fb-text-muted);
+  margin: 0 0 1.4rem;
+  flex: 1;
+}
+
+.fb-contact-cta {
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  border-bottom: 1px solid;
+  padding-bottom: 2px;
+  transition: letter-spacing var(--fb-transition);
+  align-self: flex-start;
+}
+
+.fb-contact-card--email .fb-contact-cta {
+  color: var(--fb-gold);
+  border-color: rgba(201, 168, 76, 0.35);
+}
+
+.fb-contact-card--whatsapp .fb-contact-cta {
+  color: var(--fb-wa-green);
+  border-color: rgba(37, 211, 102, 0.35);
+}
+
+.fb-contact-card:hover .fb-contact-cta {
+  letter-spacing: 0.22em;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FORM SECTION
+══════════════════════════════════════════════════════════════ */
+.fb-form-section {
+  padding: 5rem clamp(1.5rem, 8vw, 8rem) 6rem;
+  max-width: calc(var(--fb-max-width) + 16vw);
+  margin: 0 auto;
+}
+
+.fb-form-header {
+  max-width: var(--fb-max-width);
+  margin: 0 auto 3rem;
+}
+
+.fb-section-label {
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.22em;
+  color: var(--fb-gold);
+  opacity: 0.65;
+  margin: 0 0 0.9rem;
+}
+
+.fb-form-header h2 {
+  font: 500 clamp(1.8rem, 3.5vw, 2.6rem) / 1.15 Cinzel, serif;
+  color: var(--fb-text);
+  margin: 0 0 0.8rem;
+  letter-spacing: 0.03em;
+}
+
+.fb-form-intro {
+  font: 0.88rem / 1.72 Inter, sans-serif;
+  color: var(--fb-text-muted);
+  margin: 0;
+}
+
+/* ── Form wrapper ───────────────────────────────────────────── */
+.fb-form {
+  max-width: var(--fb-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+/* ── Two-column row ─────────────────────────────────────────── */
+.fb-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+
+/* ── Individual field ───────────────────────────────────────── */
+.fb-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fb-field--full {
+  grid-column: 1 / -1;
+}
+
+/* ── Label ──────────────────────────────────────────────────── */
+.fb-label {
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.18em;
+  color: var(--fb-gold);
+  opacity: 0.7;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.fb-required {
+  color: var(--fb-gold);
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
+.fb-optional {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--fb-text-dim);
+  letter-spacing: 0.1em;
+  text-transform: none;
+  margin-left: 4px;
+}
+
+/* ── Shared input base ──────────────────────────────────────── */
+.fb-input,
+.fb-select,
+.fb-textarea {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: var(--fb-surface);
+  border: 1px solid var(--fb-gold-border);
+  border-radius: var(--fb-radius);
+  color: var(--fb-text);
+  font: 0.88rem / 1.5 Inter, sans-serif;
+  transition: border-color var(--fb-transition), background var(--fb-transition),
+              box-shadow var(--fb-transition);
+  -webkit-appearance: none;
+  appearance: none;
+  box-sizing: border-box;
+}
+
+.fb-input::placeholder,
+.fb-textarea::placeholder {
+  color: var(--fb-text-dim);
+  opacity: 1;
+}
+
+/* Focus */
+.fb-input:focus,
+.fb-select:focus,
+.fb-textarea:focus {
+  outline: none;
+  border-color: var(--fb-gold);
+  background: var(--fb-surface-hover);
+  box-shadow: 0 0 0 3px var(--fb-gold-dim);
+}
+
+/* Error state */
+.fb-input.is-invalid,
+.fb-select.is-invalid,
+.fb-textarea.is-invalid {
+  border-color: var(--fb-error);
+  background: var(--fb-error-dim);
+}
+
+.fb-input.is-invalid:focus,
+.fb-select.is-invalid:focus,
+.fb-textarea.is-invalid:focus {
+  box-shadow: 0 0 0 3px rgba(224, 112, 112, 0.15);
+}
+
+/* Valid state (after correction) */
+.fb-input.is-valid,
+.fb-textarea.is-valid {
+  border-color: rgba(201, 168, 76, 0.55);
+}
+
+/* ── Select wrapper ─────────────────────────────────────────── */
+.fb-select-wrap {
+  position: relative;
+}
+
+.fb-select {
+  padding-right: 2.5rem; /* room for the arrow */
+  cursor: pointer;
+}
+
+.fb-select-wrap option {
+  background: #1a1610;
+  color: var(--fb-text);
+}
+
+.fb-select-arrow {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--fb-gold);
+  opacity: 0.6;
+  font-size: 0.75rem;
+  pointer-events: none;
+  transition: transform var(--fb-transition);
+}
+
+.fb-select:focus ~ .fb-select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+  opacity: 1;
+}
+
+/* ── Textarea ───────────────────────────────────────────────── */
+.fb-textarea {
+  resize: vertical;
+  min-height: 160px;
+  line-height: 1.65;
+}
+
+.fb-textarea-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+/* ── Error messages ─────────────────────────────────────────── */
+.fb-error {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--fb-error);
+  letter-spacing: 0.08em;
+  min-height: 1em;
+  display: block;
+  transition: opacity var(--fb-transition);
+}
+
+.fb-error:empty {
+  opacity: 0;
+}
+
+/* ── Character count ────────────────────────────────────────── */
+.fb-char-count {
+  font: 10px 'Share Tech Mono', monospace;
+  color: var(--fb-text-dim);
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.fb-char-count.is-near-limit {
+  color: var(--fb-gold);
+  opacity: 0.8;
+}
+
+.fb-char-count.is-at-limit {
+  color: var(--fb-error);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   STAR RATING
+══════════════════════════════════════════════════════════════ */
+.fb-stars {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0.55rem 0;
+}
+
+.fb-star {
+  width: 34px;
+  height: 34px;
+  background: none;
+  border: 1px solid var(--fb-gold-border);
+  border-radius: 3px;
+  color: var(--fb-text-dim);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    color        var(--fb-transition),
+    border-color var(--fb-transition),
+    background   var(--fb-transition),
+    transform    var(--fb-transition);
+}
+
+.fb-star:hover,
+.fb-star.is-hovered {
+  border-color: rgba(201, 168, 76, 0.45);
+  color: var(--fb-gold);
+  transform: scale(1.1);
+}
+
+.fb-star.is-lit {
+  border-color: var(--fb-gold);
+  color: var(--fb-gold);
+  background: var(--fb-gold-dim);
+}
+
+.fb-star:focus-visible {
+  outline: 2px solid var(--fb-gold);
+  outline-offset: 2px;
+}
+
+.fb-rating-status {
+  font: 9px 'Share Tech Mono', monospace;
+  color: var(--fb-gold);
+  opacity: 0.65;
+  letter-spacing: 0.12em;
+  min-height: 1em;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SUBMIT ACTIONS
+══════════════════════════════════════════════════════════════ */
+.fb-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 0.5rem;
+}
+
+.fb-actions-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Shared button base */
+.fb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.6rem;
+  border: 1px solid;
+  border-radius: var(--fb-radius);
+  font: 600 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition:
+    background     var(--fb-transition),
+    border-color   var(--fb-transition),
+    color          var(--fb-transition),
+    transform      var(--fb-transition);
+  white-space: nowrap;
+}
+
+.fb-btn:focus-visible {
+  outline: 2px solid var(--fb-gold);
+  outline-offset: 3px;
+}
+
+.fb-btn:active {
+  transform: scale(0.98);
+}
+
+/* Email button — gold filled */
+.fb-btn--email {
+  background: var(--fb-gold);
+  border-color: var(--fb-gold);
+  color: #080604;
+}
+
+.fb-btn--email:hover {
+  background: var(--fb-gold-bright);
+  border-color: var(--fb-gold-bright);
+}
+
+/* WhatsApp button — outlined with green accent */
+.fb-btn--whatsapp {
+  background: transparent;
+  border-color: var(--fb-wa-border);
+  color: var(--fb-wa-green);
+}
+
+.fb-btn--whatsapp:hover {
+  background: var(--fb-wa-green-dim);
+  border-color: rgba(37, 211, 102, 0.50);
+}
+
+.fb-btn--whatsapp:focus-visible {
+  outline-color: var(--fb-wa-green);
+}
+
+/* Button icon */
+.fb-btn-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.fb-btn-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Note below buttons */
+.fb-actions-note {
+  font: 0.78rem / 1.65 Inter, sans-serif;
+  color: var(--fb-text-dim);
+  margin: 0;
+}
+
+.fb-actions-note strong {
+  color: var(--fb-text-muted);
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SUCCESS STATE
+══════════════════════════════════════════════════════════════ */
+.fb-success {
+  max-width: var(--fb-max-width);
+  margin: 2rem auto 0;
+}
+
+.fb-success-inner {
+  padding: 3rem 2.5rem;
+  border: 1px solid var(--fb-gold-border);
+  border-radius: var(--fb-radius);
+  background: linear-gradient(
+    135deg,
+    rgba(201, 168, 76, 0.05),
+    transparent
+  );
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.fb-success-glyph {
+  display: block;
+  font-size: 3rem;
+  color: var(--fb-gold);
+  opacity: 0.55;
+  margin-bottom: 0.4rem;
+}
+
+.fb-success-inner h3 {
+  font: 500 1.6rem / 1.2 Cinzel, serif;
+  color: var(--fb-text);
+  margin: 0;
+}
+
+.fb-success-inner p {
+  font: 0.88rem / 1.7 Inter, sans-serif;
+  color: var(--fb-text-muted);
+  max-width: 480px;
+  margin: 0;
+}
+
+.fb-success-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0.4rem 0;
+}
+
+.fb-success-link {
+  font: 10px 'Share Tech Mono', monospace;
+  letter-spacing: 0.14em;
+  color: var(--fb-gold);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.35);
+  padding-bottom: 2px;
+  transition: color var(--fb-transition), border-color var(--fb-transition);
+}
+
+.fb-success-link:hover {
+  color: var(--fb-gold-bright);
+  border-color: var(--fb-gold);
+}
+
+.fb-success-link--wa {
+  color: var(--fb-wa-green);
+  border-color: rgba(37, 211, 102, 0.35);
+}
+
+.fb-success-link--wa:hover {
+  color: #4ade80;
+  border-color: var(--fb-wa-green);
+}
+
+.fb-reset-btn {
+  margin-top: 0.6rem;
+  padding: 0.7rem 1.4rem;
+  background: transparent;
+  border: 1px solid var(--fb-gold-border);
+  border-radius: var(--fb-radius);
+  color: var(--fb-text-muted);
+  font: 9px 'Share Tech Mono', monospace;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  transition: border-color var(--fb-transition), color var(--fb-transition);
+}
+
+.fb-reset-btn:hover {
+  border-color: var(--fb-gold);
+  color: var(--fb-gold);
+}
+
+.fb-reset-btn:focus-visible {
+  outline: 2px solid var(--fb-gold);
+  outline-offset: 3px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+
+/* Tablet ≤ 860px */
+@media (max-width: 860px) {
+  .fb-hero {
+    grid-template-columns: 1fr;
+    padding-bottom: 4rem;
+  }
+
+  .fb-hero-seal {
+    display: none;
+  }
+
+  .fb-contact-section,
+  .fb-form-section {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Tablet ≤ 680px */
+@media (max-width: 680px) {
+  .fb-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fb-contact-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.4rem 1.6rem;
+  }
+
+  .fb-contact-card::before {
+    top: 0;
+    left: 0;
+    right: auto;
+    bottom: 0;
+    width: 2px;
+    height: auto;
+  }
+
+  .fb-contact-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .fb-contact-address {
+    margin-bottom: 0.3rem;
+  }
+
+  .fb-row {
+    grid-template-columns: 1fr;
+  }
+
+  .fb-actions-buttons {
+    flex-direction: column;
+  }
+
+  .fb-btn {
+    justify-content: center;
+  }
+}
+
+/* Mobile ≤ 480px */
+@media (max-width: 480px) {
+  .fb-hero {
+    padding: 4rem 1.2rem 3rem;
+  }
+
+  .fb-contact-section {
+    padding: 3rem 1.2rem;
+  }
+
+  .fb-form-section {
+    padding: 3.5rem 1.2rem 4rem;
+  }
+
+  .fb-success-inner {
+    padding: 2rem 1.4rem;
+  }
+
+  .fb-stars {
+    gap: 0.25rem;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ACCESSIBILITY & REDUCED MOTION
+══════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .fb-contact-card,
+  .fb-star,
+  .fb-btn,
+  .fb-input,
+  .fb-select,
+  .fb-textarea,
+  .fb-contact-cta {
+    transition: none;
+  }
+
+  .fb-contact-card:hover,
+  .fb-star:hover,
+  .fb-star.is-hovered {
+    transform: none;
+  }
+
+  .fb-btn:active {
+    transform: none;
+  }
+}
