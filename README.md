@@ -4,7 +4,7 @@ A dark, gold-accented digital museum for Ancient Egypt — HTML/CSS/vanilla JS
 frontend, Express + MongoDB Atlas backend. "Ancient Egypt meets future
 technology."
 
-## Pages
+## Pages  
 
 | Page | What it does |
 |---|---|
