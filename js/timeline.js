@@ -21,19 +21,51 @@ function esc(v) {
 // Same local-API-with-fallback pattern used on the artifacts and
 // artifact detail pages.
 const API_URL = '/api/artifacts';
-const FALLBACK_DATA_URL = 'json/artifacts.json';
+const FALLBACK_DATA_URL = './json/artifacts.json';
 
 async function loadArtifacts() {
-    try {
-        const res = await fetch(API_URL);
-        if (!res.ok) throw new Error(`API responded ${res.status}`);
-        return await res.json();
-    } catch (err) {
-        console.warn('Local API unavailable, falling back to json/artifacts.json:', err.message);
-        const res = await fetch(FALLBACK_DATA_URL);
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return await res.json();
+    const hostname = window.location.hostname;
+
+    const isLocal =
+        hostname === 'localhost' ||
+        hostname === '127.0.0.1' ||
+        hostname === '';
+
+    // Use the API only when running locally.
+    if (isLocal) {
+        try {
+            const response = await fetch(API_URL);
+
+            if (!response.ok) {
+                throw new Error(`API responded ${response.status}`);
+            }
+
+            return await response.json();
+
+        } catch (error) {
+            console.warn(
+                'Local API unavailable. Using static artifact data.',
+                error
+            );
+        }
     }
+
+    // GitHub Pages / production static deployment
+    const response = await fetch(FALLBACK_DATA_URL);
+
+    if (!response.ok) {
+        throw new Error(
+            `Unable to load ${FALLBACK_DATA_URL}: HTTP ${response.status}`
+        );
+    }
+
+    const data = await response.json();
+
+    if (!Array.isArray(data)) {
+        throw new Error('Artifact data is not an array.');
+    }
+
+    return data;
 }
 
 // Fixed chronological order — the dataset's "period" strings are
