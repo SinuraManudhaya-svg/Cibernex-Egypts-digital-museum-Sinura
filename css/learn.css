@@ -305,3 +305,117 @@
     .learn-jump-nav { padding: 14px 20px; }
     .glossary-grid { grid-template-columns: 1fr !important; }
 }
+
+/* =========================================================
+   LEARN — MOBILE RESPONSIVE FIX
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* Main page container */
+    .learn-page,
+    .learn-main,
+    main {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Prevent accidental horizontal overflow */
+    .learn-page *,
+    .learn-main *,
+    main * {
+        max-width: 100%;
+    }
+
+    /* Main content spacing */
+    .learn-page section,
+    .learn-main section {
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Hero */
+    .learn-hero {
+        min-height: auto;
+        padding: 4.5rem 1rem 3rem;
+    }
+
+    .learn-hero h1 {
+        font-size: clamp(2.5rem, 11vw, 3.8rem);
+        line-height: 0.95;
+        max-width: 100%;
+    }
+
+    .learn-hero p {
+        max-width: 100%;
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    /* Section headings */
+    .learn-section h2,
+    .section-title {
+        font-size: clamp(1.8rem, 8vw, 2.7rem);
+        line-height: 1.05;
+    }
+
+    /* Learning paths */
+    .learning-path-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 0.75rem;
+    }
+
+    .learning-path-card {
+        width: 100%;
+        min-width: 0;
+        padding: 1.1rem;
+    }
+
+    /* Feature cards */
+    .learn-cards,
+    .learning-cards,
+    .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 0.85rem;
+    }
+
+    .learn-card,
+    .feature-card {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Tables */
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .table-wrapper table {
+        min-width: 650px;
+    }
+
+    /* Images */
+    .learn-page img,
+    .learn-main img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Buttons */
+    .learn-page .btn,
+    .learn-main .btn {
+        max-width: 100%;
+    }
+
+    /* Footer */
+    .site-footer {
+        width: 100%;
+    }
+}
