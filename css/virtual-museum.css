@@ -317,3 +317,47 @@
     letter-spacing: 1px;
     border-top: 1px solid var(--border);
 }
+
+/* =========================================================
+   VIRTUAL MUSEUM — ARTIFACT IMAGES
+   ========================================================= */
+
+.linked-artifact-image {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(214, 168, 79, 0.12),
+            transparent 65%
+        ),
+        #0d0b08;
+    border-bottom: 1px solid var(--border);
+}
+
+.linked-artifact-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.linked-artifact-card:hover .linked-artifact-image img {
+    transform: scale(1.04);
+}
+
+.linked-artifact-image.image-failed img {
+    display: none;
+}
+
+.image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--gold);
+    font-size: 38px;
+}
