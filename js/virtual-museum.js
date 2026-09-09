@@ -146,7 +146,7 @@ function goToRoom(index) {
     const room = state.rooms[index];
     const total = state.rooms.length;
     const hasImage = Boolean(room.image);
-    const hotspotArtifacts = room.artifacts.slice(0, HOTSPOT_POSITIONS.length);
+    const hotspotArtifacts = [];
 
     $('roomProgressLabel').textContent = `ROOM ${index + 1} OF ${total}`;
 
