@@ -361,3 +361,9 @@
     color: var(--gold);
     font-size: 38px;
 }
+
+@media (max-width: 600px) {
+    .linked-artifact-image {
+        height: 200px;
+    }
+}
