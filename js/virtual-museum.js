@@ -207,7 +207,15 @@ function goToRoom(index) {
         grid.innerHTML = room.artifacts.map(a => `
             <article class="linked-artifact-card" data-id="${esc(a.id)}" role="listitem" tabindex="0"
                      aria-label="${esc(a.name)} — ${esc(a.period)}">
-                <div class="linked-artifact-glyph" aria-hidden="true">𓂀</div>
+                <div class="linked-artifact-image">
+    <img
+        src="${esc(a.image || '')}"
+        alt="${esc(a.name)}"
+        loading="lazy"
+        onerror="this.parentElement.classList.add('image-failed');"
+    >
+    ${!a.image ? '<span class="image-placeholder" aria-hidden="true">𓂀</span>' : ''}
+</div>
                 <div class="linked-artifact-body">
                     <h3>${esc(a.name)}</h3>
                     <p class="linked-artifact-meta">${esc(a.dynasty)}<br>${esc(a.date)} · ${esc(a.category)}</p>
