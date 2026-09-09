@@ -56,8 +56,6 @@ async function loadExhibitions() {
 // these stay in the middle two-thirds of the frame to avoid landing
 // on empty sky/floor in most photos.
 const HOTSPOT_POSITIONS = [
-    { x: 22, y: 62 }, { x: 42, y: 38 }, { x: 63, y: 58 },
-    { x: 78, y: 35 }, { x: 34, y: 78 }, { x: 58, y: 22 },
 ];
 
 const state = { rooms: [], currentIndex: 0 };
